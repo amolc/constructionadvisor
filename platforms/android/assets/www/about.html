@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<link href="css/print.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+<link href="css/responsive.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="customersCtrl">
+<div id="wrapper">
+  <div class="header">
+    <div class="container">
+      <ul class="reset">
+        <li class="search-text">
+          <input type="text" placeholder="Search.." class="search-input" id="search-input" disabled>
+          <button class="search-btn"><img src="images/search.png" alt="Search"></button>
+        </li>
+        <li>
+          <div class="mob-menu">
+            <div class="mob-nav">
+              <input class="menu-btn" type="checkbox" id="menu-btn" />
+              <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
+              <ul class="menu dropdown-content smk_accordion">
+                <li class="menu-titlie">Filter</li>
+                <li class="acc_active">
+                  <h3>
+                    <input type="checkbox">
+                    <label>Article type</label>
+                  </h3>
+                  <ul>
+                    <li ng-repeat="ft in ftype">
+                      <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="{{ ft.id }}" onclick="get_filtered_records()">
+                      <label>{{ ft.title }}</label>
+                    </li>
+                    
+                    <!-- <li>
+                    <input type="checkbox">
+                    <label>CA Article</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Project Announcement</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Shared article</label>
+                  </li> -->
+                  </ul>
+                </li>
+                <li>
+                  <h3>
+                    <input type="checkbox">
+                    <label>Date Punlished</label>
+                  </h3>
+                  <ul>
+                    <li>
+                      <input type="checkbox">
+                      <label>CA Article</label>
+                    </li>
+                    <li>
+                      <input type="checkbox">
+                      <label>Project Announcement</label>
+                    </li>
+                    <li>
+                      <input type="checkbox">
+                      <label>Shared article</label>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="index.html" class="min-logo"><img src="images/mini-logo.png" alt="Mini-Logo"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="routes">
+    <div id="pageLoader" align="center">
+      <div> <img src="images/loading.gif" /> </div>
+    </div>
+    <div class="how-it-works">
+      <div class="container">
+        <div class="how-it-works-bg">
+          <div class="about-top">
+            <h1 class="abt-title">Australia's 1st Online Construction Marketplace</h1>
+            <div class="top-left lf">
+              <ul class="reset">
+                <li><img src="http://constructionadvisor.theelook.in/assets/images/icon-1.png" /> <span>Everything in one place</span></li>
+                <li><img src="http://constructionadvisor.theelook.in/assets/images/icon-2.png" /> <span>Accessible 24/7</span></li>
+                <li><img src="http://constructionadvisor.theelook.in/assets/images/icon-3.png" /> <span>User Friendly</span></li>
+                <li><img src="http://constructionadvisor.theelook.in/assets/images/icon-4.png" /> <span>High Quality </span></li>
+              </ul>
+            </div>
+            <div class="top-right rf"> <img src="http://constructionadvisor.theelook.in/assets/images/video-thumb.jpg" /> </div>
+            <div class="clear"></div>
+          </div>
+          <div class="for-whom">
+            <div class="about-title-sec">
+              <h3>Who is it for </h3>
+              <span class="dahed"></span></div>
+            <div class="for-whom-boxes">
+              <div class="for-whom-box box-1"> <img src="http://constructionadvisor.theelook.in/assets/images/buyers-icon.png" />
+                <h4>Buyers</h4>
+                <ul class="reset">
+                  <li>Government Agencies</li>
+                  <li>Head Contractors</li>
+                  <li>Sub-Contractors</li>
+                  <li>Suppliers</li>
+                  <li>Trades</li>
+                  <li>Authorities</li>
+                </ul>
+              </div>
+              <div class="for-whom-box box-2"> <img src="http://constructionadvisor.theelook.in/assets/images/Advertisers-icon.png" />
+                <h4>Sellers</h4>
+                <ul class="reset">
+                  <li>Advisors</li>
+                  <li>Contractors</li>
+                  <li>Other Construction Partners</li>
+                </ul>
+              </div>
+              <div class="for-whom-box box-3"> <img src="http://constructionadvisor.theelook.in/assets/images/sellers-icon.png" />
+                <h4>Advertisers</h4>
+                <ul class="reset">
+                  <li>Any Construction or Non-Construction related entities targeting a construction audience</li>
+                </ul>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div class="mid-sec">
+            <div class="about-title-sec">
+              <h3>What can they do</h3>
+              <span class="dahed"></span></div>
+            <div class="mid-boxes">
+              <div class="mid-box mid-box-1">
+                <div class="mid-left lf"> <img src="http://constructionadvisor.theelook.in/assets/images/mid-icon-1.jpg" />
+                  <h4>Buyers</h4>
+                </div>
+                <div class="mid-right rf">
+                  <ul class="reset">
+                    <li>Search and engage with Australia's top Construction Advisors</li>
+                    <li>Browse, learn and advertise in our News Feed</li>
+                    <li>Find construction-related information: Events, Seminars, Industry Bodies, Training and Accreditation</li>
+                    <li>Explore products and resources: Sub-Contractor Search, Plant and Equipment, Project & Tender list</li>
+                  </ul>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="mid-box mid-box-2">
+                <div class="mid-left lf"> <img src="http://constructionadvisor.theelook.in/assets/images/mid-icon-2.jpg" />
+                  <h4>Sellers</h4>
+                </div>
+                <div class="mid-right rf">
+                  <ul class="reset">
+                    <li>Gain exposure to the industry and bid for new work opportunities</li>
+                    <li>Apply for a position on Procurement Panels</li>
+                    <li>Access News, construction information and project/tender lists</li>
+                    <li>Manage enquiries and current projects via an Online Dashboard</li>
+                  </ul>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="mid-box mid-box-3">
+                <div class="mid-left lf"> <img src="http://constructionadvisor.theelook.in/assets/images/mid-icon-3.jpg" />
+                  <h4>Advertisers</h4>
+                </div>
+                <div class="mid-right rf">
+                  <ul class="reset">
+                    <li>Select an appropriate Advertising Package to achieve your objectives and gain exposure to a targeted construction audience. </li>
+                  </ul>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <div class="process-sec">
+            <ul class="reset client-btn">
+              <li><a href="javascript:void(0)" class="adviser-btn current">I'm an Advisor</a></li>
+              <li><a href="javascript:void(0)" class="general-user-btn">I'M A CLIENT</a></li>
+            </ul>
+          </div>
+          <div id="adviser-tab" class="about-tab-sec">
+            <div class="about-left-tab lf"> <img src="http://constructionadvisor.theelook.in/assets/images/Advertisers-profile.png"/>
+              <ul class="reset">
+                <li>Advisors/Consultants</li>
+                <li>Contractors</li>
+              </ul>
+              <a href="http://constructionadvisor.theelook.in/signup" class="abt-register">REGISTER AS AN ADVISOR</a> </div>
+            <div class="about-right-tab rf">
+              <p>Advisors are typically consultants representing a number of disciplines who have the skills and experience to meet a diverse range of needs within the Construction Industry, working on short or longer-term assignments.</p>
+              <h3>Process</h3>
+              <ul class="reset advrs-process">
+                <li class="abt-browse">
+                  <p>Complete an Advisor Profile (10 - minutes)</p>
+                  <img src="http://constructionadvisor.theelook.in/assets/images/process-1.jpg"/>
+                  <h4>Browse</h4>
+                </li>
+                <li class="abt-enquiries">
+                  <p>Clients will submit an enquiry which will arrive in your dashboard</p>
+                  <img src="http://constructionadvisor.theelook.in/assets/images/process-2.jpg"/>
+                  <h4>Receive enquiries</h4>
+                </li>
+                <li class="abt-offer">
+                  <p>Discuss the client's requirements and submit an offer using Create Offer &copy;</p>
+                  <img src="http://constructionadvisor.theelook.in/assets/images/process-3.jpg"/>
+                  <h4>Submit offer</h4>
+                </li>
+                <li class="abt-Perform">
+                  <p>Once the offer is accepted, perform the works. Billing occurs outside of CA</p>
+                  <img src="http://constructionadvisor.theelook.in/assets/images/process-4.jpg"/>
+                  <h4>Perform works</h4>
+                </li>
+              </ul>
+              <div class="clear"></div>
+              <div class="abt-pricing">
+                <h3>Pricing</h3>
+                <div class="fix-pricing-table">
+                  <table width="100%" border="0" cellspacing="1" cellpadding="0">
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td><img src="http://constructionadvisor.theelook.in/assets/images/pricing-icon-1.png"/></td>
+                      <td><img src="http://constructionadvisor.theelook.in/assets/images/pricing-icon-2.png"/></td>
+                    </tr>
+                    <tr>
+                      <td width="135">Overview</td>
+                      <td>Use this option if you are signing up on behalf of a consultancy company,where you intend on listing 3-10 individual Advisors on Construction Advisors'online platform</td>
+                      <td>Use this option if you are signing up as an individual Advisor where you have your own ABN and ACN and current insurances in place</td>
+                    </tr>
+                    <tr>
+                      <td width="135">Pricing Flexible</td>
+                      <td>$109 per month,per Advisor ex GST</td>
+                      <td>$129 per month ex GST</td>
+                    </tr>
+                    <tr>
+                      <td width="135">Pricing 12 months</td>
+                      <td>$79 per month,per Advisor ex GST</td>
+                      <td>$99 per month ex GST</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div id="general-user-tab" class="about-tab-sec">
+            <div class="about-left-tab lf"> <img src="http://constructionadvisor.theelook.in/assets/images/Advertisers-profile.png"/>
+              <ul class="reset">
+                <li>Government Agencies</li>
+                <li>Head Contractors</li>
+                <li>Sub-Contractors</li>
+                <li>Suppliers</li>
+                <li>Trades</li>
+                <li>Authorities</li>
+                <li>Other Industry Partners</li>
+              </ul>
+              <a href="http://constructionadvisor.theelook.in/signup" class="abt-register">REGISTER AS A CLIENT</a> </div>
+            <div class="about-right-tab rf">
+              <p>Clients can be drawn from any area within the Construction Industry and who have a requirement to meet a short or longer-term need for Information, Advice, People, Products and /or Resources.</p>
+              <h3>Process</h3>
+              <div class="abt-client-prcs">
+                <ul class="reset abt-client">
+                  <li class="abt-browse">
+                    <div class="abt-proces abt-proces-content-top">Select the category that best suits your need or use the keyword search and filters to find an Advisor</div>
+                    <img src="http://constructionadvisor.theelook.in/assets/images/client-process-1.jpg" />
+                    <h4>Browse</h4>
+                  </li>
+                  <li class="abt-compare">
+                    <div class="abt-proces abt-proces-content-bottom">Once you've refined your search, compare up to 3x profiles</div>
+                    <img src="http://constructionadvisor.theelook.in/assets/images/client-process-2.jpg" />
+                    <h4>Compare</h4>
+                  </li>
+                  <li class="abt-enquire">
+                    <div class="abt-proces abt-proces-content-top">Send an enquiry to relevant Advisors – follow up and discuss using the messagingmodule</div>
+                    <img src="http://constructionadvisor.theelook.in/assets/images/client-process-3.jpg" />
+                    <h4>Enquire</h4>
+                  </li>
+                  <li class="abt-compare">
+                    <div class="abt-proces abt-proces-content-bottom">Negotiate and Accept the offer – then track it through your dashboard</div>
+                    <img src="http://constructionadvisor.theelook.in/assets/images/client-process-4.jpg" />
+                    <h4>Accept offer</h4>
+                  </li>
+                  <li class="abt-enquire">
+                    <div class="abt-proces abt-proces-content-top">Once the project tis completed, review the services of the Advisor</div>
+                    <img src="http://constructionadvisor.theelook.in/assets/images/client-process-5.jpg" />
+                    <h4>Review</h4>
+                  </li>
+                </ul>
+                <h3 class="abt-free">Pricing <span>Free!</span></h3>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="abt-service-sec">
+              <h3>Examples of Services</h3>
+              <div class="abt-service-table">
+                <ul class="reset" ng-repeat="x in names">
+                  <li >{{ x.categoryTitle }} </li>
+                  <li ng-repeat="subcat in x.subcategories"> {{ subcat.name }} </li>
+                </ul>
+                
+                <!-- <?php
+         //print_r($categories);
+         foreach ($categories as $key => $value) { 
+
+          $subcategories = $this->users_model->get_Sub_Categories($value['categoryID']);
+
+          ?>
+
+         <ul class="reset">
+         <li><a href="http://constructionadvisor.theelook.in/searchform/'.$value['categoryID'] ?>"><?= $value['categoryTitle']?></a></li>
+         <?php foreach ($subcategories as $key => $val) {?>
+             <li><a href="http://constructionadvisor.theelook.in/searchform/'.$value['categoryID'].'/'.$val->id ?>"><?= $val->sub_category_name?></a></li>
+          <?php } ?>
+         </ul>
+          
+         <?php }
+         ?>-->
+                
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="reset" id="news">
+    </ul>
+  </div>
+  <div class="footer-space" id="footer"> </div>
+  <script type="text/javascript" src="js/smk-accordion.js"></script> 
+</div>
+</div>
+<script>
+
+   $("#footer").load("footer.html"); 
+
+$(document).ready(function() {
+    $(".advisor-tab a").click(function(event) {
+        event.preventDefault();
+        $(this).parent().addClass("current");
+        $(this).parent().siblings().removeClass("current");
+        var tab = $(this).attr("href");
+        $(".tab-content").not(tab).css("display", "none");
+        $(tab).fadeIn();
+    });
+  $(".general-user-tab a").click(function(event) {
+        event.preventDefault();
+        $(this).parent().addClass("current");
+        $(this).parent().siblings().removeClass("current");
+        var tab = $(this).attr("href");
+        $(".tab-content").not(tab).css("display", "none");
+        $(tab).fadeIn();
+    });
+});
+
+
+  $(document).ready(function(){
+
+   $(".adviser-btn").click(function(event){
+  $(".adviser-btn").addClass("current");  
+  $(".general-user-btn").removeClass("current");      
+    $("#adviser-tab").show();
+  $("#adviser-tab li").removeClass("current");
+  $("#adviser-tab li:first-child").addClass("current");
+   $("#general-user-tab").hide();
+    $("#tab-1").show();
+    $("#tab-2").hide();
+    $("#tab-3").hide();
+    $("#user-tab-1").hide();
+    $("#user-tab-2").hide();
+    $("#user-tab-3").hide();
+  });
+   
+   $(".general-user-btn").click(function(event){
+  $(".adviser-btn").removeClass("current");     
+  $(".general-user-btn").addClass("current");  
+    $("#general-user-tab").show();
+  $("#general-user-tab li").removeClass("current");
+  $("#general-user-tab li:first-child").addClass("current");
+  $("#adviser-tab").hide();
+  $("#user-tab-1").show();
+  $("#user-tab-2").hide();
+  $("#user-tab-3").hide();
+  $("#tab-1").show();
+  $("#tab-2").hide();
+  $("#tab-3").hide();
+  });
+  
+   
+ });
+ 
+var app = angular.module('myApp', []);
+$("#pageLoader").show();
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("https://www.app.constructionadvisor.com.au/getcategories")
+    .then(function (response) {
+      $("#pageLoader").hide();
+      $scope.names = response.data.records;
+      $scope.ftype = response.data.filtypes;
+      $( "#search-input" ).prop( "disabled", false );
+
+    });
+});
+
+
+function showSpinner(){
+    $.mobile.loading("show");
+}
+
+function hideSpinner(){
+    $.mobile.loading("hide");
+}
+
+$("#search-input").on('keyup', function() { 
+
+    if ($(this).val().length>2)
+     {
+
+      var URL = "https://www.app.constructionadvisor.com.au/newssearch/"+$(this).val();
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('.how-it-works').hide();
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          }); 
+     }
+          else
+     {  
+
+            var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          });
+     }
+
+});
+
+function get_filtered_records()
+{
+  var arr = [];
+  $('input.filter_chkbox:checkbox:checked').each(function () {
+    arr.push($(this).val());
+  });
+  //alert(arr.length);
+  if (arr.length>0) 
+  {
+     var URL = "https://www.app.constructionadvisor.com.au/newstype";
+            $.ajax({
+              type: "POST",
+              url: URL,
+              data : $('.filter_chkbox').serialize(),
+              dataType :'json',
+              success: function(data)
+              {
+
+                $('.how-it-works').hide();
+                  $('#news li').remove();
+                 $('.smk-accordion').hide();
+                 
+                  $.each(data.records,function (index, value) { 
+
+                   var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          }); 
+  }
+  else
+  {
+
+            var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          });
+
+  }
+}
+
+</script>
+</body>
+</html>

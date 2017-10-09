@@ -1,0 +1,104 @@
+{
+  "project_info": {
+    "project_number": "1034993386249",
+    "firebase_url": "https://constructadvisor-push.firebaseio.com",
+    "project_id": "constructadvisor-push",
+    "storage_bucket": "constructadvisor-push.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034993386249:android:0b4f39f06a94311c",
+        "android_client_info": {
+          "package_name": "com.canewsapp.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034993386249-kmke1g14trj0kraova7kpk0i3ge5bk0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRbkhFczpmsVZNBUThFG0XNGce8Or02Dc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034993386249:android:685e340acc6d1108",
+        "android_client_info": {
+          "package_name": "com.canewsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034993386249-kmke1g14trj0kraova7kpk0i3ge5bk0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRbkhFczpmsVZNBUThFG0XNGce8Or02Dc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034993386249:android:bf715f0b9f17d040",
+        "android_client_info": {
+          "package_name": "com.canewsapp2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034993386249-kmke1g14trj0kraova7kpk0i3ge5bk0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRbkhFczpmsVZNBUThFG0XNGce8Or02Dc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

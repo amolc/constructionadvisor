@@ -1,0 +1,22 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "com.canewsapp.myapp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.canewsapp.myapp"
+        }
+    },
+    "dependent_plugins": {
+        "in.edelworks.sharedpreferences": {
+            "PACKAGE_NAME": "com.canewsapp.myapp"
+        }
+    }
+}

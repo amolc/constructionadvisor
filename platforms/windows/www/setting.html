@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<link href="css/print.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+<link href="css/responsive.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="customersCtrl">
+<div id="wrapper">
+  <div class="header">
+  <div class="container">
+    <ul class="reset">
+      <li class="search-text">
+        <input type="text" placeholder="Search.." class="search-input" id="search-input" disabled>
+        <button class="search-btn"><img src="images/search.png" alt="Search"></button>
+      </li>
+      <li>
+        <div class="mob-menu">
+          <div class="mob-nav">
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
+            <ul class="menu dropdown-content smk_accordion">
+              <li class="menu-titlie">Filter</li>
+              <li class="acc_active">
+                <h3>
+                  <input type="checkbox">
+                  <label>Article type</label>
+                </h3>
+                 <ul>
+                
+                <li ng-repeat="ft in ftype">
+                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="{{ ft.id }}" onclick="get_filtered_records()">
+                    <label>{{ ft.title }}</label>
+                </li>
+
+                 <!-- <li>
+                    <input type="checkbox">
+                    <label>CA Article</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Project Announcement</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Shared article</label>
+                  </li> -->
+                </ul>
+              </li>
+              <li>
+                <h3>
+                  <input type="checkbox">
+                  <label>Date Punlished</label>
+                </h3>
+                <ul>
+                  <li>
+                    <input type="checkbox">
+                    <label>CA Article</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Project Announcement</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Shared article</label>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li><a href="index.html" class="min-logo"><img src="images/mini-logo.png" alt="Mini-Logo"></a></li>
+    </ul>
+  </div>
+</div>
+  <div class="notification">
+    <div class="container">
+      <div class="sub-noti">
+        <h3>Notifications</h3>
+      </div>
+      <div class="allow">
+        <div class="lf">
+          <h4>Allow Notifications</h4>
+        </div>
+        <div class="rf"> <a href="#"><img src="images/notification.png" alt="notification"></a> </div>
+        <div class="clear"></div>
+      </div>
+      <div class="sub-allow"> </div>
+    </div>
+  </div>
+
+
+ <div class="routes">
+   
+
+  <ul class="reset" id="news">
+  <li ng-repeat="x in names">
+
+  </li>
+  
+ </ul>
+   
+   </div>
+
+  <div class="footer-space" id="footer">
+
+</div>
+<script type="text/javascript" src="js/smk-accordion.js"></script> 
+
+</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+   $("#footer").load("footer.html"); 
+   $(".routes").hide(); 
+
+    var app = angular.module('myApp', []);
+   app.controller('customersCtrl', function($scope, $http) {
+      $http.get("http://constructionadvisor.theelook.in/newsAPI")
+      .then(function (response) {
+        $scope.ftype = response.data.filtypes;
+        $( "#search-input" ).prop( "disabled", false );
+      });
+  });
+
+
+   $("#search-input").on('keyup', function() { 
+
+    if ($(this).val().length>2)
+     {
+
+      var URL = "http://constructionadvisor.theelook.in/newssearch/"+$(this).val();
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('.notification').hide();
+                  $('.routes').show();
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          }); 
+     }
+          else
+     {  
+
+            var URL = "http://constructionadvisor.theelook.in/newsAPI";
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          });
+     }
+
+});
+
+function get_filtered_records()
+{
+  var arr = [];
+  $('input.filter_chkbox:checkbox:checked').each(function () {
+    arr.push($(this).val());
+  });
+  //alert(arr.length);
+  if (arr.length>0) 
+  {
+     var URL = "http://constructionadvisor.theelook.in/newstype";
+            $.ajax({
+              type: "POST",
+              url: URL,
+              data : $('.filter_chkbox').serialize(),
+              dataType :'json',
+              success: function(data)
+              {
+
+                $('.notification').hide();
+                  $('.routes').show();
+                  $('#news li').remove();
+                 $('.smk-accordion').hide();
+                 
+                  $.each(data.records,function (index, value) { 
+
+                   var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          }); 
+  }
+  else
+  {
+
+            var URL = "http://constructionadvisor.theelook.in/newsAPI";
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          });
+
+  }
+}
+</script>

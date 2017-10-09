@@ -1,0 +1,33 @@
+{
+    "name": "com.canewsapp.myapp",
+    "displayName": "MyAppName",
+    "version": "1.0.0",
+    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Apache Cordova Team",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-firebase": "^0.1.24",
+        "cordova-plugin-sharedpref": "0.0.3",
+        "cordova-plugin-whitelist": "^1.3.2",
+        "cordova-windows": "^5.0.0"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-firebase": {}
+        },
+        "platforms": [
+            "ios",
+            "windows"
+        ]
+    },
+    "devDependencies": {
+        "cordova-minify": "0.0.15"
+    }
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<link href="css/print.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+<link href="css/responsive.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="customersCtrl">
+<div id="wrapper">
+  <div class="header">
+    <div class="container">
+      <ul class="reset">
+        <li class="search-text">
+          <input type="text" placeholder="Search.." class="search-input" id="search-input" disabled>
+          <button class="search-btn"><img src="images/search.png" alt="Search"></button>
+        </li>
+        <li>
+          <div class="mob-menu">
+            <div class="mob-nav">
+              <input class="menu-btn" type="checkbox" id="menu-btn" />
+              <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
+              <ul class="menu dropdown-content smk_accordion">
+                <li class="menu-titlie">Filter</li>
+                <li class="acc_active">
+                  <h3>
+                    <input type="checkbox">
+                    <label>Article type</label>
+                  </h3>
+                  <ul id="ftype">
+
+                    <!--<li>
+                      <input type="checkbox">
+                      <label>CA Article</label>
+                    </li>
+                    <li>
+                      <input type="checkbox">
+                      <label>Project Announcement</label>
+                    </li>
+                    <li>
+                      <input type="checkbox">
+                      <label>Shared article</label>
+                    </li>-->
+                  </ul>
+                </li>
+                <li>
+                  <h3>
+                    <input type="checkbox">
+                    <label>Date Punlished</label>
+                  </h3>
+                  <ul>
+                    <li>
+                      <input type="checkbox">
+                      <label>CA Article</label>
+                    </li>
+                    <li>
+                      <input type="checkbox">
+                      <label>Project Announcement</label>
+                    </li>
+                    <li>
+                      <input type="checkbox">
+                      <label>Shared article</label>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><a href="index.html" class="min-logo"><img src="images/mini-logo.png" alt="Mini-Logo"></a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="routes single-full-page">
+    <div class="container">
+    <div id="pageLoader" align="center">
+      <div>
+         <img src="images/loading.gif" />
+      </div>
+   </div>
+      <div class="sub-routes single-news" ng-repeat="x in names">
+        <h1 class="single-title" id="newsTitle"></h1>
+        <div class="single-post-thumb"><img src="" id="newsImg"></div>
+        <div class="single-news-content" id="newsContent">
+        </div>
+        <ul id="ads">
+          
+        </ul>
+        <ul id="recentnews">
+        <h3>RECENT NEWS</h3>
+          
+        </ul>
+      </div>
+
+
+    <ul class="reset" id="news">
+  
+    </ul>
+
+    </div>
+  </div>
+  <div class="footer-space" id="footer">
+
+  </div>
+  <script type="text/javascript" src="js/smk-accordion.js"></script> 
+</div>
+</div>
+<script>
+$("#footer").load("footer.html");
+/*var app = angular.module('myApp', []);
+$("#pageLoader").show();
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("http://constructionadvisor.theelook.in/post/25")
+    .then(function (response) { $("#pageLoader").hide();
+      $scope.names = response.data.records;});
+});*/
+$("#pageLoader").show();
+
+$(document).ready(function () {
+
+   var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $.each(data.filtypes,function (index, value) { 
+
+                    var content = '<li><input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="'+value.id+'" onclick="get_filtered_records()"><label>'+value.title+'</label></li>';
+                    $("#ftype").append(content);
+
+                 });
+
+              },
+          });
+
+  var itemId = getParameterByName('id');
+ // alert(itemId);
+    $.ajax({ 
+        type: 'GET', 
+        url: 'https://www.app.constructionadvisor.com.au/post/'+itemId, 
+        //data: { id: itemId },
+        dataType: 'json', 
+        success: function (data) { 
+            $("#pageLoader").hide();
+            //var names = data;
+            //alert(data.postTitle);
+            $('#newsTitle').html(data.postTitle);
+            $('#newsContent').html(data.postContent);
+            $("#newsImg").attr("src",data.postImage);
+           // $('#newsImg').html(data.postImage);
+           $.each(data.recentnews,function (index, value) { 
+
+                    var content = '<li><a href="news-single.html?id='+value.postID+'"><p>'+value.postTitle+'</p></li>';
+                    $("#recentnews").append(content);
+
+                 });
+
+           $.each(data.ads,function (index, value) { 
+
+                    var content = '<li><a href="'+value.site+'"><img src="'+value.img+'" height="143px" width="297px"></li>';
+                    $("#ads").append(content);
+
+                 });
+
+            $( "#search-input" ).prop( "disabled", false );
+        }
+    });
+});
+
+
+function getParameterByName(name) {  
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+
+function showSpinner(){
+    $.mobile.loading("show");
+}
+
+
+function hideSpinner(){
+    $.mobile.loading("hide");
+}
+
+$("#search-input").on('keyup', function() { 
+   $( "#search-input" ).prop( "disabled", true );
+
+    if ($(this).val().length>2)
+     {
+
+      var URL = "https://www.app.constructionadvisor.com.au/newssearch/"+$(this).val();
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('.single-news').hide();
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+                   $( "#search-input" ).prop( "disabled", false );
+
+              },
+          }); 
+     }
+          else
+     {  
+
+            var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+                   $( "#search-input" ).prop( "disabled", false );
+
+              },
+          });
+     }
+
+});
+
+function get_filtered_records()
+{
+  var arr = [];
+  $('input.filter_chkbox:checkbox:checked').each(function () {
+    arr.push($(this).val());
+  });
+  //alert(arr.length);
+  if (arr.length>0) 
+  {
+     var URL = "https://www.app.constructionadvisor.com.au/newstype";
+            $.ajax({
+              type: "POST",
+              url: URL,
+              data : $('.filter_chkbox').serialize(),
+              dataType :'json',
+              success: function(data)
+              {
+
+                $('.single-news').hide();
+                $('#news li').remove();
+                $('.smk-accordion').hide();
+                 
+                  $.each(data.records,function (index, value) { 
+
+                   var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          }); 
+  }
+  else
+  {
+
+            var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          });
+
+  }
+}
+
+</script>
+</body>
+</html>

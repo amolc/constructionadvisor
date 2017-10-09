@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* GLOBAL RESETS
+**********************************************************/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd,q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,dl, dt, dd, ol, ul, li, fieldset, form, label, legend{margin:0; padding:0; border:0; outline:0; font-size:100%; background:transparent; resize:none}
+body {line-height:1}
+a, a:hover {text-decoration:none; outline:none}
+a:active, a:focus {outline:0} 
+img {border:none; vertical-align:top;}
+
+/* DEFAULT FORM STYLING */
+input[type="radio"], input[type="checkbox"] {vertical-align:-2px}
+textarea {resize:none}
+input {visibility:visible; outline:none}
+
+/* INDIVIDUAL RESET */
+.reset {list-style:none; padding:0; margin:0}
+
+/* FLOATS */
+.lf {float:left} .rf {float:right}
+
+/* CLEAR FLOAT */
+.clear {clear:both; padding:0; margin:0; overflow:hidden; height:0}
+
+/* POSITION RELATIVE */
+.rel {position:relative}
+
+/* WIDTH 100% */
+.fullwid {width:100%}
+
+/* DISPLAY INLINE */
+.inline {display:inline}
+
+/* font SIZES */
+.vsmlTxt {font-size:10px}
+.smlTxt {font-size:11px}
+.paraTxt {font-size:12px}
+.bigTxt {font-size:14px}
+
+/*font WEIGHTS */
+.strong {font-weight:bold} 
+.normTxt, .normTxt a {font-weight:normal}
+
+/* OVERFLOW-HIDDEN */
+.ovfl-hidden {overflow:hidden}
+
+/* TEXT ALIGN */
+.centerAll {text-align:center}
+.rightAlign {text-align:right}
+.leftAlign {text-align:left}
+.justfy {text-align:justify}
+
+/* NO MARGIN */
+.nomargin {margin:0}
+.lftmargin {margin-left:0}
+.rgtmargin {margin-right:0}
+
+/*HTML5 Reset*/
+header,footer,aside,article,nav,hgroup,section {display:block}
+
+.error{color:#ff0000}

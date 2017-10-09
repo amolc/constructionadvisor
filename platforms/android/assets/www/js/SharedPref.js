@@ -1,0 +1,1 @@
+SharedPref.arkPref("save","name","yovan juggoo",function(e){alert(JSON.stringify(e))}),SharedPref.arkPref("get","name"," ",function(e){alert(e.name)});

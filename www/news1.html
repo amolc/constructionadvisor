@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<link href="css/print.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+<link href="css/responsive.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body>
+<div id="wrapper">
+<div class="header">
+  <div class="container">
+    <ul class="reset">
+      <li class="search-text">
+        <input type="text" placeholder="Search.." class="search-input" id="search-input">
+        <button class="search-btn"><img src="images/search.png" alt="Search"></button>
+      </li>
+      <li>
+        <div class="mob-menu">
+          <div class="mob-nav">
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
+            <ul class="menu dropdown-content smk_accordion">
+              <li class="menu-titlie">Filter</li>
+              <li class="acc_active">
+                <h3>
+                  <input type="checkbox">
+                  <label>Article type</label>
+                </h3>
+                <ul>
+                  <li>
+                    <input type="checkbox">
+                    <label>CA Article</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Project Announcement</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Shared article</label>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3>
+                  <input type="checkbox">
+                  <label>Date Punlished</label>
+                </h3>
+                <ul>
+                  <li>
+                    <input type="checkbox">
+                    <label>CA Article</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Project Announcement</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Shared article</label>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li><a href="index.html" class="min-logo"><img src="images/mini-logo.png" alt="Mini-Logo"></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="routes" ng-app="myApp" ng-controller="customersCtrl">
+   <div class="container">
+   <div id="pageLoader" align="center">
+    <div>
+       <img src="images/loading.gif" />
+    </div>
+ </div>
+   
+
+  <ul class="reset" id="news">
+  <li ng-repeat="x in names">
+    <div class="sub-routes">
+      <h3><a href="news-single.html?id={{ x.postID }}">{{ x.postTitle }}</a></h3>
+      <p> {{ x.postContent }}....</p>
+  	 <img src="{{ x.postImage }}">
+    </div>
+  </li>
+  
+</ul>
+   
+   </div>
+   </div>
+      
+<div class="footer-space">
+  <div class="footer-sec">
+    <div class="container">
+      <ul class="reset">
+        <li> <a href="news.html"><img src="images/news.png" alt="News">
+          <p>News</p>
+          </a> </li>
+        <li> <a href="contribute.html"><img src="images/contribute.png" alt="Contributation">
+          <p>Contribute</p>
+          </a> </li>
+        <li> <a href="#"><img src="images/about-ca.png" alt="About">
+          <p>About CA </p>
+          </a> </li>
+        <li> <a href="setting.html"><img src="images/setting.png" alt="Setting">
+          <p>Settings</p>
+          </a> </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="js/smk-accordion.js"></script> 
+
+</div>  
+</div>
+<script>
+var app = angular.module('myApp', []);
+$("#pageLoader").show();
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("http://constructionadvisor.theelook.in/newsAPI")
+    .then(function (response) {
+      $("#pageLoader").hide();
+      $scope.names = response.data.records;
+
+    });
+});
+
+
+function showSpinner(){
+    $.mobile.loading("show");
+}
+
+function hideSpinner(){
+    $.mobile.loading("hide");
+}
+
+
+$("#search-input").on('keyup', function() { 
+
+    if ($(this).val().length>2)
+     {
+
+      var URL = "http://constructionadvisor.theelook.in/newssearch/"+$(this).val();
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType: 'json',
+              success: function(data)
+              {
+
+                  //var obj = $.parseJSON( '{ "name": "John" }' );
+                  alert( data.records);;
+                  //$("#news li").remove();
+                   // data1 = $.parseJSON(data);
+                   $.each(data.records,function (index, value) { 
+
+                    alert(value.postTitle);
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.id+'">'+value.postTitle+'</a></h3><p>'+value.postContentHTML+'....</p><img src="http://localhost/constructionadvisor/assets/images/posts'+value.postImage+'"></div></li>';
+                    $("#news").html(content);
+
+                 });
+
+              },
+          }); 
+     }
+
+});
+
+
+
+
+
+</script>
+</body>
+</html>

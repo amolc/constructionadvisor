@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-sharedpref" version="0.0.3">
+        <name>SharedPref</name>
+        <description>Cordova Shared preference plugin</description>
+        <license>Apache 2.0</license>
+        <keywords>
+            SharedPref, SharedPref, Preferences, storage, data, local storage
+        </keywords>
+        <repo></repo>
+        <issue></issue>
+
+        <js-module src="www/SharedPref.js" name="SharedPref">
+            <clobbers target="SharedPref" />
+        </js-module>
+
+        <!-- android -->
+        <platform name="android">
+            <config-file target="res/xml/config.xml" parent="/*">
+                <feature name="SharedPref">
+                    <param name="android-package" value="SharedPref" />
+                </feature>
+            </config-file>
+            <source-file src="src/android/SharedPref.java" target-dir="src/" />
+        </platform>
+
+    </plugin>
