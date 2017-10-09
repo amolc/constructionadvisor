@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-firebase": {
-            "PACKAGE_NAME": "com.canewsapp.myapp"
-        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.canewsapp.myapp"
         }
