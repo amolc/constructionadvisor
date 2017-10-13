@@ -85,6 +85,7 @@
 					( 'open' === mode ) ? acc_content.slideDown( speed ) : acc_content.slideUp( speed );
 				}
 				else{
+
 					( 'open' === mode ) ? acc_content.show( speed ) : acc_content.hide( speed );
 				}
 
@@ -94,20 +95,23 @@
 
 		// Open a single section by index
 		this.openSection = function(section, speed){
+			//alert('hi');
 			plugin.toggleSection( 'open', section, speed );
 		}
 
 		// Close a single section by index
 		this.closeSection = function(section, speed){
+			//alert('hii');
 			plugin.toggleSection( 'close', section, speed );
 		}
 
 		// Close all sections
 		this.closeAllSections = function(current_accortdion_sections, speed){
+			//alert('hi');
 			plugin.closeSection( current_accortdion_sections, speed );
 		}
 
-		this.destroy = function(){
+	    this.destroy = function(){
 
 			//Add classes to accordion head and content for each section
 			$.each( plugin.children(), function(index, elem){
@@ -124,7 +128,6 @@
 			
 			//Hide inactive
 			plugin.children('.acc_section').not('.acc_active').children('.acc_content').show();
-
 		}
 
 		// Add .smk_accordion class
@@ -176,14 +179,16 @@
 				
 				// Close other sections when this section is opened
 				if( s_parent.hasClass('acc_active') === false && settings.closeOther ){
+					//alert('hi');
 					plugin.closeSection( plugin.children() );
 				}
 
 				// Allow to close itself
 				if( s_parent.hasClass('acc_active') ){
-					if( false !== settings.closeAble || plugin.children().length === 1 ){
+					//alert('hello');
+					//if( false !== settings.closeAble || plugin.children().length === 1 ){
 						plugin.closeSection( s_parent );
-					}
+					//}
 				}
 
 				// Default behavior
@@ -204,6 +209,13 @@
 	// Allow to create accordions only with `.smk_accordion` class
 	jQuery(document).ready(function($){
 		$(".smk_accordion").smk_Accordion();
+
+		$('.routes, #footer ,#search-input').click(function (event) {    
+
+          	 if($('#menu-btn'). prop("checked") == true)
+		  	 	$('#menu-btn').click(); 
+		 
+		});
 	});
 
 }( jQuery ));

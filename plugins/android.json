@@ -1,19 +1,19 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
-    },
-    "config_munge": {
-        "files": {}
-    },
-    "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.canewsapp.myapp"
-        }
-    },
-    "dependent_plugins": {
-        "in.edelworks.sharedpreferences": {
-            "PACKAGE_NAME": "com.canewsapp.myapp"
-        }
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.canewsapp.myapp"
     }
+  },
+  "dependent_plugins": {
+    "in.edelworks.sharedpreferences": {
+      "PACKAGE_NAME": "com.canewsapp.myapp"
+    }
+  }
 }

@@ -1,41 +1,47 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
-    },
-    "config_munge": {
-        "files": {
-            "res/xml/config.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {
+      "res/xml/config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             },
-            "res/values/strings.xml": {
-                "parents": {
-                    "/resources": []
-                }
-            },
-            "AndroidManifest.xml": {
-                "parents": {
-                    "/*": [],
-                    "/manifest/application": []
-                }
+            {
+              "xml": "<feature name=\"Sharedpreferences\"><param name=\"android-package\" value=\"in.edelworks.sharedpreferences.Sharedpreferences\" /></feature>",
+              "count": 1
             }
+          ]
         }
-    },
-    "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.canewsapp.myapp"
-        }
-    },
-    "dependent_plugins": {},
-    "modules": [],
-    "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.3.2"
+      }
     }
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.canewsapp.myapp"
+    },
+    "in.edelworks.sharedpreferences": {
+      "PACKAGE_NAME": "com.canewsapp.myapp"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "id": "in.edelworks.sharedpreferences.SharedPreferences",
+      "file": "plugins/in.edelworks.sharedpreferences/www/sharedpreferences.js",
+      "pluginId": "in.edelworks.sharedpreferences",
+      "clobbers": [
+        "sharedpreferences"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-plugin-whitelist": "1.3.2",
+    "in.edelworks.sharedpreferences": "0.1.0"
+  }
 }

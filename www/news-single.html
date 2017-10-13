@@ -33,26 +33,19 @@
                 <li class="menu-titlie">Filter</li>
                 <li class="acc_active">
                   <h3>
-                    <input type="checkbox">
-                    <label>Article type</label>
+                    <label>Sector</label>
                   </h3>
-                  <ul id="ftype">
-
-                    <!--<li>
-                      <input type="checkbox">
-                      <label>CA Article</label>
-                    </li>
-                    <li>
-                      <input type="checkbox">
-                      <label>Project Announcement</label>
-                    </li>
-                    <li>
-                      <input type="checkbox">
-                      <label>Shared article</label>
-                    </li>-->
+                  <ul id="fsector">
                   </ul>
                 </li>
                 <li>
+                  <h3>
+                    <label>Article type</label>
+                  </h3>
+                  <ul id="ftype">
+                  </ul>
+                </li>
+               <!-- <li>
                   <h3>
                     <input type="checkbox">
                     <label>Date Punlished</label>
@@ -71,7 +64,7 @@
                       <label>Shared article</label>
                     </li>
                   </ul>
-                </li>
+                </li>-->
               </ul>
             </div>
           </div>
@@ -110,13 +103,30 @@
     </div>
   </div>
   <div class="footer-space" id="footer">
-
+   <div class="footer-sec">
+    <div class="container">
+      <ul class="reset">
+        <li class="current"> <a href="news.html"><img src="images/news.png" alt="News">
+          <p>News</p>
+          </a> </li>
+        <li> <a href="contribute.html"><img src="images/contribute.png" alt="Contributation">
+          <p>Contribute</p>
+          </a> </li>
+        <li> <a href="about.html"><img src="images/about-ca.png" alt="About">
+          <p>About CA </p>
+          </a> </li>
+       <!--  <li> <a href="setting.html"><img src="images/setting.png" alt="Setting">
+          <p>Settings</p>
+          </a> </li> -->
+      </ul>
+    </div>
   </div>
+
+</div>
   <script type="text/javascript" src="js/smk-accordion.js"></script> 
 </div>
 </div>
 <script>
-$("#footer").load("footer.html");
 /*var app = angular.module('myApp', []);
 $("#pageLoader").show();
 app.controller('customersCtrl', function($scope, $http) {
@@ -139,6 +149,13 @@ $(document).ready(function () {
 
                     var content = '<li><input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="'+value.id+'" onclick="get_filtered_records()"><label>'+value.title+'</label></li>';
                     $("#ftype").append(content);
+                    });
+
+
+                    $.each(data.filsectors,function (index, value) { 
+
+                    var content = '<li><input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="'+value.id+'" onclick="get_filtered_records()"><label>'+value.title+'</label></li>';
+                    $("#fsector").append(content);
 
                  });
 
@@ -254,6 +271,7 @@ function get_filtered_records()
     arr.push($(this).val());
   });
   //alert(arr.length);
+  $('#menu-btn').click();
   if (arr.length>0) 
   {
      var URL = "https://www.app.constructionadvisor.com.au/newstype";
