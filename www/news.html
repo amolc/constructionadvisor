@@ -12,13 +12,6 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
 <link rel="stylesheet" href="css/jquery.pull2refresh.css" type="text/css"/>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-
-<script src="js/jquery.ui.touch-punch.min.js"></script>
-<script src="js/jquery.velocity.min.js"></script>
-<script src="js/jquery.pull2refresh.js"></script>
 </head>
 
 <body ng-app="myApp" ng-controller="customersCtrl">
@@ -131,7 +124,7 @@
    <div class="footer-sec">
     <div class="container">
       <ul class="reset">
-        <li class="current"> <a href="news.html"><img src="images/news.png" alt="News">
+        <li class="current"> <a href="news.html" class="active-link"><img src="images/news.png" alt="News">
           <p>News</p>
           </a> </li>
         <li> <a href="contribute.html"><img src="images/contribute.png" alt="Contributation">
@@ -148,6 +141,19 @@
   </div>
 
 </div>
+<script
+  src="js/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/jquery.velocity.min.js"></script>
+<script src="js/jquery.pull2refresh.js"></script>
 <script type="text/javascript" src="js/smk-accordion.js"></script> 
 
 </div>  
@@ -326,11 +332,7 @@ function get_filtered_records()
 
   }
 }
-
-
-
-
-
 </script>
+
 </body>
 </html>

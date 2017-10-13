@@ -7,6 +7,10 @@ body.contribute{ background:#26323b}
 a{ color:#c81221; }
 a:hover{ color:#000000;} 
 
+.active-link {
+    background: #ff9016;
+}
+
 /*Main COntent*/
 #wrapper{ max-width:800px; margin:0 auto; height:100%;}
 
