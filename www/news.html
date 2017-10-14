@@ -10,8 +10,16 @@
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
-<link rel="stylesheet" href="css/jquery.pull2refresh.css" type="text/css"/>
+<!--<link rel="stylesheet" href="css/jquery.pull2refresh.css" type="text/css"/>-->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="js/pulltorefresh.js" type="text/javascript"></script>
+
+<!--<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/jquery.velocity.min.js"></script>
+<script src="js/jquery.pull2refresh.js"></script>-->
 </head>
 
 <body ng-app="myApp" ng-controller="customersCtrl">
@@ -141,19 +149,6 @@
   </div>
 
 </div>
-<script
-  src="js/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-
-
-<script src="js/jquery.ui.touch-punch.min.js"></script>
-<script src="js/jquery.velocity.min.js"></script>
-<script src="js/jquery.pull2refresh.js"></script>
 <script type="text/javascript" src="js/smk-accordion.js"></script> 
 
 </div>  
@@ -161,9 +156,9 @@
 <script>
 //$("#footer").load("footer.html");
 
-$(".routes").pull2refresh('init', {
-                loaderImage: "images/loader.gif", /* optional */
-                loaderClass: "pull2refresh-loader", /* optional */
+/*$(".routes").pull2refresh('init', {
+                loaderImage: "images/loader.gif",
+                loaderClass: "pull2refresh-loader", 
                 start: function() {
                     asyncFunction(function() {
                         $(".routes").pull2refresh('hide');
@@ -193,7 +188,7 @@ $(".routes").pull2refresh('init', {
                 setTimeout(function() {
                     callback();
                 }, 1000)
-            }
+            }*/
 
 
 var app = angular.module('myApp', []);
@@ -207,6 +202,16 @@ app.controller('customersCtrl', function($scope, $http) {
       $scope.fsector = response.data.filsectors;
       $( "#search-input" ).prop( "disabled", false );
     });
+});
+
+
+PullToRefresh.init({
+    mainElement: 'body',
+    onRefresh: function(){
+        // What do you want to do when the user does the pull-to-refresh gesture
+        window.location.reload(); 
+    }
+
 });
 
 /*app.controller('filtertypeCtrl', function($scope, $http) {
@@ -332,7 +337,11 @@ function get_filtered_records()
 
   }
 }
-</script>
 
+
+
+
+
+</script>
 </body>
 </html>

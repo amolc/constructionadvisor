@@ -10,15 +10,13 @@
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
+<link rel="stylesheet" href="css/jquery.pull2refresh.css" type="text/css"/>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="js/pulltorefresh.js" type="text/javascript"></script>
 </head>
 
-<body class="contribute" ng-app="myApp" ng-controller="customersCtrl">
+<body ng-app="myApp" ng-controller="customersCtrl">
 <div id="wrapper">
-  <div class="header">
+<div class="header">
   <div class="container">
     <ul class="reset">
       <li class="search-text">
@@ -29,8 +27,8 @@
         <div class="mob-menu">
           <div class="mob-nav">
             <input class="menu-btn" type="checkbox" id="menu-btn" />
-            <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
-            <ul class="menu dropdown-content smk_accordion">
+            <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard" id="mob-menu"></label>
+            <ul class="menu dropdown-content smk_accordion" id="dropdown">
               <li class="menu-titlie">Filter</li>
               <li class="acc_active">
                <h3>
@@ -98,53 +96,38 @@
     </ul>
   </div>
 </div>
-  <div class="news">
+
+<div class="routes">
     <div class="container">
-    <div id="newsdiv">
-       <div class="sub-news">
-        <h3>Send us News</h3>
-        <p>If we use it we'll pay you</p>
-        <a href="mailto:news@constructionadvisor.com.au">news@constructionadvisor.com.au</a> </div>
-      <div class="photo-sec">
-        <ul>
-          <li> <a href="#"><img src="images/photo.png" alt="Photo"></a> <span>1. Take Photo</span> </li>
-          <li> <a href="#"><img src="images/mail.png" alt="E-mail"></a> <span>2. Send it to us!</span> </li>
+         <div id="pageLoader" align="center">
+          <div>
+             <img src="images/loading.gif" />
+          </div>
+       </div>
+   
+
+        <ul class="reset" id="news">
+          <li ng-repeat="x in names">
+            <div class="sub-routes">
+              <h3><a href="news-single.html?id={{ x.postID }}">{{ x.postTitle }}</a></h3>
+              <p> {{ x.postContent }}....</p>
+          	 <img src="{{ x.postImage }}">
+            </div>
+          </li>
+        
         </ul>
-      </div>
-      <div class="include">
-        <h3>Make sure you include :</h3>
-        <p>-Your name and Number</p>
-        <p>- Details of the news</p>
-      </div>
-    </div>
-    
-
-    </div>
-  </div>
-
- <div class="routes">
    
-
-  <ul class="reset" id="news">
-  <li ng-repeat="x in names">
-
-  </li>
-  
- </ul>
-   
+      </div>
    </div>
-   </div>
-
-
-
+      
  <div class="footer-space" id="footer">
    <div class="footer-sec">
     <div class="container">
       <ul class="reset">
-        <li> <a href="news.html"><img src="images/news.png" alt="News">
+        <li class="current"> <a href="news.html" class="active-link"><img src="images/news.png" alt="News">
           <p>News</p>
           </a> </li>
-        <li class="current"> <a href="contribute.html" class="active-link"><img src="images/contribute.png" alt="Contributation">
+        <li> <a href="contribute.html"><img src="images/contribute.png" alt="Contributation">
           <p>Contribute</p>
           </a> </li>
         <li> <a href="about.html"><img src="images/about-ca.png" alt="About">
@@ -158,32 +141,93 @@
   </div>
 
 </div>
+<script
+  src="js/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/jquery.velocity.min.js"></script>
+<script src="js/jquery.pull2refresh.js"></script>
 <script type="text/javascript" src="js/smk-accordion.js"></script> 
 
+</div>  
 </div>
-</div>
-</body>
-</html>
-<script type="text/javascript">
-   $(".routes").hide(); 
-   var app = angular.module('myApp', []);
-   app.controller('customersCtrl', function($scope, $http) {
-      $http.get("https://www.app.constructionadvisor.com.au/newsAPI")
-      .then(function (response) {
-        $scope.ftype = response.data.filtypes;
-        $scope.fsector = response.data.filsectors;
-        $( "#search-input" ).prop( "disabled", false );
-      });
-  });
+<script>
+//$("#footer").load("footer.html");
 
-PullToRefresh.init({
-    mainElement: 'body',
-    onRefresh: function(){
-        // What do you want to do when the user does the pull-to-refresh gesture
-        window.location.reload(); 
-    }
-    
+$(".routes").pull2refresh('init', {
+                loaderImage: "images/loader.gif", /* optional */
+                loaderClass: "pull2refresh-loader", /* optional */
+                start: function() {
+                    asyncFunction(function() {
+                        $(".routes").pull2refresh('hide');
+
+        var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
+            $.ajax({
+              type: "GET",
+              url: URL,
+              dataType :'json',
+              success: function(data)
+              {
+                  $('#news li').remove();
+                  $.each(data.records,function (index, value) { 
+
+                    var content = '<li><div class="sub-routes"><h3><a href="news-single.html?id='+value.postID+'">'+value.postTitle+'</a></h3><p>'+value.postContent+'....</p><img src="'+value.postImage+'"></div></li>';
+                    $("#news").append(content);
+
+                 });
+
+              },
+          });
+                    })
+                }
+            });
+
+            function asyncFunction(callback) {
+                setTimeout(function() {
+                    callback();
+                }, 1000)
+            }
+
+
+var app = angular.module('myApp', []);
+$("#pageLoader").show();
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("https://www.app.constructionadvisor.com.au/newsAPI")
+    .then(function (response) {
+      $("#pageLoader").hide();
+      $scope.names = response.data.records;
+      $scope.ftype = response.data.filtypes;
+      $scope.fsector = response.data.filsectors;
+      $( "#search-input" ).prop( "disabled", false );
+    });
 });
+
+/*app.controller('filtertypeCtrl', function($scope, $http) {
+    $http.get("http://constructionadvisor.theelook.in/newsAPI")
+    .then(function (response) {
+      $("#pageLoader").hide();
+      $scope.names = response.data.records;
+      $scope.filters = response.data.types;
+
+    });
+});*/
+
+
+function showSpinner(){
+    $.mobile.loading("show");
+}
+
+function hideSpinner(){
+    $.mobile.loading("hide");
+}
+
 
 $("#search-input").on('keyup', function() { 
 
@@ -197,8 +241,6 @@ $("#search-input").on('keyup', function() {
               dataType :'json',
               success: function(data)
               {
-                  $('.news').hide();
-                  $('.routes').show();
                   $('#news li').remove();
                   $.each(data.records,function (index, value) { 
 
@@ -213,7 +255,7 @@ $("#search-input").on('keyup', function() {
           else
      {  
 
-            var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
+        var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
             $.ajax({
               type: "GET",
               url: URL,
@@ -241,7 +283,7 @@ function get_filtered_records()
     arr.push($(this).val());
   });
   //alert(arr.length);
-   $('#menu-btn').click();
+  $('#menu-btn').click();
   if (arr.length>0) 
   {
      var URL = "https://www.app.constructionadvisor.com.au/newstype";
@@ -252,11 +294,11 @@ function get_filtered_records()
               dataType :'json',
               success: function(data)
               {
+                 $("#search-input").val('');
+                 $('#news li').remove();
+                
 
-                $('.news').hide();
-                  $('.routes').show();
-                  $('#news li').remove();
-                 $('.smk-accordion').hide();
+                 //alert(data);
                  
                   $.each(data.records,function (index, value) { 
 
@@ -270,7 +312,6 @@ function get_filtered_records()
   }
   else
   {
-
             var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
             $.ajax({
               type: "GET",
@@ -291,5 +332,7 @@ function get_filtered_records()
 
   }
 }
-
 </script>
+
+</body>
+</html>
