@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/global.css" rel="stylesheet" type="text/css" />
-<link href="css/print.css" rel="stylesheet" type="text/css" />
+<!-- <link href="css/print.css" rel="stylesheet" type="text/css" /> -->
+<link href="https://www.app.constructionadvisor.com.au/assets/css/mobile_app.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
@@ -241,7 +242,6 @@ function get_filtered_records()
     arr.push($(this).val());
   });
   //alert(arr.length);
-   $('#menu-btn').click();
   if (arr.length>0) 
   {
      var URL = "https://www.app.constructionadvisor.com.au/newstype";
@@ -256,7 +256,6 @@ function get_filtered_records()
                 $('.news').hide();
                   $('.routes').show();
                   $('#news li').remove();
-                 $('.smk-accordion').hide();
                  
                   $.each(data.records,function (index, value) { 
 
