@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
@@ -30,7 +31,7 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = CordovaLib;
 		};
-		3CBC49DD1F8B6EB4009B9A72 /* PBXContainerItemProxy */ = {
+		3CBC49E91F8BCA96009B9A72 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
 			proxyType = 2;
@@ -54,7 +55,7 @@
 		3047A5101AB8059700498E2A /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-release.xcconfig"; path = "cordova/build-release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		3047A5111AB8059700498E2A /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = SOURCE_ROOT; };
 		32CA4F630368D1EE00C91783 /* Construction Advisor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Construction Advisor-Prefix.pch"; sourceTree = "<group>"; };
-		3CBC49E41F8BADCB009B9A72 /* Construction Advisor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Construction Advisor.entitlements"; path = "Construction Advisor/Construction Advisor.entitlements"; sourceTree = "<group>"; };
+		3CBC49EB1F8E0F20009B9A72 /* Construction Advisor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Construction Advisor.entitlements"; path = "Construction Advisor/Construction Advisor.entitlements"; sourceTree = "<group>"; };
 		6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CDVLaunchScreen.storyboard; path = "Construction Advisor/CDVLaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Construction Advisor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Construction Advisor-Info.plist"; path = "Construction Advisor/Construction Advisor-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
@@ -99,7 +100,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				3CBC49E41F8BADCB009B9A72 /* Construction Advisor.entitlements */,
+				3CBC49EB1F8E0F20009B9A72 /* Construction Advisor.entitlements */,
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				EB87FDF31871DA8E0020F90C /* www */,
 				EB87FDF11871DA420020F90C /* Staging */,
@@ -148,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				301BF535109A57CC0062928A /* libCordova.a */,
-				3CBC49DE1F8B6EB4009B9A72 /* Cordova.framework */,
+				3CBC49EA1F8BCA96009B9A72 /* Cordova.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,14 +209,14 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 820;
+				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = X6M38A2D28;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -251,11 +252,11 @@
 			remoteRef = 301BF534109A57CC0062928A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3CBC49DE1F8B6EB4009B9A72 /* Cordova.framework */ = {
+		3CBC49EA1F8BCA96009B9A72 /* Cordova.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Cordova.framework;
-			remoteRef = 3CBC49DD1F8B6EB4009B9A72 /* PBXContainerItemProxy */;
+			remoteRef = 3CBC49E91F8BCA96009B9A72 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -322,21 +323,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "Construction Advisor/Construction Advisor.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = X6M38A2D28;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -348,8 +337,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.canewsapp.myapp;
 				PRODUCT_NAME = "Construction Advisor";
-				PROVISIONING_PROFILE = "a2e41691-7f43-4327-867a-e0a88aecb6c2";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: com.canewsapp.myapp";
+				PROVISIONING_PROFILE = "3bf1f823-fa59-48d1-8e57-10ce122ec247";
+				PROVISIONING_PROFILE_SPECIFIER = constructionadvisordist;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -363,21 +352,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "Construction Advisor/Construction Advisor.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = X6M38A2D28;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-					"\"Construction Advisor/Plugins/cordova-plugin-firebase\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Construction Advisor/Construction Advisor-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -387,7 +364,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.canewsapp.myapp;
 				PRODUCT_NAME = "Construction Advisor";
-				PROVISIONING_PROFILE = "524aa2e8-52a6-4fb4-a922-32ecadb7ca79";
+				PROVISIONING_PROFILE = "fbaf6ad2-c595-41ec-ae93-c53de9dd344c";
 				PROVISIONING_PROFILE_SPECIFIER = constructionadvisor;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

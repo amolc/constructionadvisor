@@ -6,12 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/global.css" rel="stylesheet" type="text/css" />
-<link href="css/print.css" rel="stylesheet" type="text/css" />
+<!-- <link href="css/print.css" rel="stylesheet" type="text/css" /> -->
+<link href="https://www.app.constructionadvisor.com.au/assets/css/mobile_app.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="js/pulltorefresh.js" type="text/javascript"></script>
+
 </head>
 
 <body ng-app="myApp" ng-controller="customersCtrl">
@@ -29,19 +32,32 @@
               <input class="menu-btn" type="checkbox" id="menu-btn" />
               <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
               <ul class="menu dropdown-content smk_accordion">
-                <li class="menu-titlie">Filter</li>
-                <li class="acc_active">
-                  <h3>
-                    <input type="checkbox">
-                    <label>Article type</label>
-                  </h3>
-                  <ul>
-                    <li ng-repeat="ft in ftype">
-                      <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="{{ ft.id }}" onclick="get_filtered_records()">
-                      <label>{{ ft.title }}</label>
-                    </li>
-                    
-                    <!-- <li>
+              <li class="menu-titlie">Filter</li>
+              <li class="acc_active">
+               <h3>
+                  <label>Sector</label>
+              </h3> 
+               <ul>
+                
+                <li ng-repeat="ft in fsector">
+                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="{{ ft.id }}" onclick="get_filtered_records()">
+                    <label>{{ ft.title }}</label>
+                </li>
+               </ul> 
+                
+              </li>
+              <li>
+               <h3>
+                  <label>Article type</label>
+                </h3> 
+                <ul>
+                
+                <li ng-repeat="ft in ftype">
+                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="{{ ft.id }}" onclick="get_filtered_records()">
+                    <label>{{ ft.title }}</label>
+                </li>
+
+                 <!-- <li>
                     <input type="checkbox">
                     <label>CA Article</label>
                   </li>
@@ -53,29 +69,29 @@
                     <input type="checkbox">
                     <label>Shared article</label>
                   </li> -->
-                  </ul>
-                </li>
-                <li>
-                  <h3>
+                </ul>
+              </li>
+          <!-- <li>
+                <h3>
+                  <input type="checkbox">
+                  <label>Date Punlished</label>
+                </h3>
+                <ul>
+                  <li>
                     <input type="checkbox">
-                    <label>Date Punlished</label>
-                  </h3>
-                  <ul>
-                    <li>
-                      <input type="checkbox">
-                      <label>CA Article</label>
-                    </li>
-                    <li>
-                      <input type="checkbox">
-                      <label>Project Announcement</label>
-                    </li>
-                    <li>
-                      <input type="checkbox">
-                      <label>Shared article</label>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+                    <label>CA Article</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Project Announcement</label>
+                  </li>
+                  <li>
+                    <input type="checkbox">
+                    <label>Shared article</label>
+                  </li>
+                </ul>
+              </li> -->
+            </ul>
             </div>
           </div>
         </li>
@@ -87,8 +103,9 @@
     <div id="pageLoader" align="center">
       <div> <img src="images/loading.gif" /> </div>
     </div>
+    <div class="aboutban"><img src="images/banner-about.jpg" /></div> 
     <div class="how-it-works">
-      <div class="container">
+      <div class="container">      
         <div class="how-it-works-bg">
           <div class="about-top">
             <h1 class="abt-title">Australia's 1st Online Construction Marketplace</h1>
@@ -100,7 +117,14 @@
                 <li><img src="http://constructionadvisor.theelook.in/assets/images/icon-4.png" /> <span>High Quality </span></li>
               </ul>
             </div>
-            <div class="top-right rf"> <img src="http://constructionadvisor.theelook.in/assets/images/video-thumb.jpg" /> </div>
+            <div class="top-right rf">
+            <div class="video-sec">  
+			<div class="ytd-video">
+            <iframe src="https://www.youtube.com/embed/fgJRpps-gXg?rel=0" frameborder="0" allowfullscreen=""></iframe>
+            </div>
+            </div>
+            </div>
+            
             <div class="clear"></div>
           </div>
           <div class="for-whom">
@@ -280,12 +304,12 @@
                     <h4>Compare</h4>
                   </li>
                   <li class="abt-enquire">
-                    <div class="abt-proces abt-proces-content-top">Send an enquiry to relevant Advisors – follow up and discuss using the messagingmodule</div>
+                    <div class="abt-proces abt-proces-content-top">Send an enquiry to relevant Advisors ? follow up and discuss using the messagingmodule</div>
                     <img src="http://constructionadvisor.theelook.in/assets/images/client-process-3.jpg" />
                     <h4>Enquire</h4>
                   </li>
                   <li class="abt-compare">
-                    <div class="abt-proces abt-proces-content-bottom">Negotiate and Accept the offer – then track it through your dashboard</div>
+                    <div class="abt-proces abt-proces-content-bottom">Negotiate and Accept the offer ? then track it through your dashboard</div>
                     <img src="http://constructionadvisor.theelook.in/assets/images/client-process-4.jpg" />
                     <h4>Accept offer</h4>
                   </li>
@@ -302,7 +326,7 @@
             <div class="clear"></div>
             <div class="abt-service-sec">
               <h3>Examples of Services</h3>
-              <div class="abt-service-table">
+              <div class="abt-service-table"  id="categories">
                 <ul class="reset" ng-repeat="x in names">
                   <li >{{ x.categoryTitle }} </li>
                   <li ng-repeat="subcat in x.subcategories"> {{ subcat.name }} </li>
@@ -336,13 +360,31 @@
     <ul class="reset" id="news">
     </ul>
   </div>
-  <div class="footer-space" id="footer"> </div>
+   <div class="footer-space" id="footer">
+   <div class="footer-sec">
+    <div class="container">
+      <ul class="reset">
+        <li> <a href="news.html"><img src="images/news.png" alt="News">
+          <p>News</p>
+          </a> </li>
+        <li> <a href="contribute.html"><img src="images/contribute.png" alt="Contributation">
+          <p>Contribute</p>
+          </a> </li>
+        <li class="current"><a href="about.html" class="active-link"><img src="images/about-ca.png" alt="About">
+          <p>About CA </p>
+          </a> </li>
+       <!--  <li> <a href="setting.html"><img src="images/setting.png" alt="Setting">
+          <p>Settings</p>
+          </a> </li> -->
+      </ul>
+    </div>
+  </div>
+
+</div>
   <script type="text/javascript" src="js/smk-accordion.js"></script> 
 </div>
 </div>
 <script>
-
-   $("#footer").load("footer.html"); 
 
 $(document).ready(function() {
     $(".advisor-tab a").click(function(event) {
@@ -398,6 +440,9 @@ $(document).ready(function() {
   
    
  });
+
+
+
  
 var app = angular.module('myApp', []);
 $("#pageLoader").show();
@@ -407,9 +452,19 @@ app.controller('customersCtrl', function($scope, $http) {
       $("#pageLoader").hide();
       $scope.names = response.data.records;
       $scope.ftype = response.data.filtypes;
+      $scope.fsector = response.data.filsectors;
       $( "#search-input" ).prop( "disabled", false );
 
     });
+});
+
+PullToRefresh.init({
+    mainElement: 'body',
+    onRefresh: function(){
+        // What do you want to do when the user does the pull-to-refresh gesture
+        window.location.reload(); 
+    }
+    
 });
 
 
@@ -426,7 +481,7 @@ $("#search-input").on('keyup', function() {
     if ($(this).val().length>2)
      {
 
-      var URL = "https://www.app.constructionadvisor.com.au/newssearch/"+$(this).val();
+      var URL = "https://www.app.constructionadvisor.com.au/"+$(this).val();
             $.ajax({
               type: "GET",
               url: URL,
@@ -489,7 +544,6 @@ function get_filtered_records()
 
                 $('.how-it-works').hide();
                   $('#news li').remove();
-                 $('.smk-accordion').hide();
                  
                   $.each(data.records,function (index, value) { 
 
