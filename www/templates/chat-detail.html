@@ -12,20 +12,20 @@
     </p>
   </ion-content>
 </ion-view> -->
-<ion-header-bar>
+<ion-header-bar id="news_detail_header">
       <div class="header">
     <div class="container">
       <ul class="reset">
         <li class="search-text">
-          <input type="text" placeholder="Search.." class="search-input" onkeyup="search(this.value);" id="search-input">
+          <input type="text" placeholder="Search.." class="search-input" onkeyup="search(this.value);" id="search-input" onclick="$('.smk_accordion').hide();">
           <button class="search-btn"><img src="images/search.png" alt="Search"></button>
         </li>
         <li>
           <div class="mob-menu">
-            <div class="mob-nav" id="detToggle">
-              <input class="menu-btn" type="checkbox" id="menu-btndetails" />
+            <div class="mob-nav">
+              <input class="menu-btn" type="checkbox" onclick="$('.smk_accordion').toggle();"/>
               <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
-              <ul class="menu dropdown-content smk_accordion" id="dropdown">
+              <ul class="menu dropdown-content smk_accordion">
               <li class="menu-titlie">Filter</li>
               <li class="acc_active">
                <h3>
@@ -63,7 +63,7 @@
     </div>
   </div>
     </ion-header-bar> 
-<ion-view view-title="Construction Advisor" id="app_body_detail">
+<ion-view view-title="Construction Advisor" id="app_body_detail" onclick="$('.smk_accordion').hide();">
   <ion-content class="padding" id="news_detail">
   <div class="card">
       

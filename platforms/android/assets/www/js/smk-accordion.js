@@ -205,24 +205,31 @@
 		return this;
 
 	};
-
 	// Allow to create accordions only with `.smk_accordion` class
-	 jQuery(document).ready(function($){
+	// jQuery(document).ready(function($){
 	 	//alert('hi');
-	 	$(".smk_accordion").smk_Accordion();
-	 	$('#dropdown').hide();
+	 	//$(".smk_accordion").smk_Accordion();
+	 	//$('#dropdown').hide();
+	 	/*$('#menu-btn').click(function (event) {  
+ 			alert('list'); 
+
+          	$('#dropdown').toggle();
+ 		});
+
+ 		$('#menu-btnbtndetails').click(function (event) {  
+ 			alert('details'); 
+          	$('#dropdown').toggle();
+ 		});
+
 
 		$('#app_body,#search-input,#app_body_detail').click(function (event) {    
 
           	//if($('#menu-btn').prop("checked") == true)
 		  	 	//$('#menu-btn').click();
 		  	$('#dropdown').hide();
- 		});
+ 		});*/
 
- 		$('#menu-btn').click(function (event) {  
- 			//alert('gghhgug');  
-          	$('#dropdown').toggle();
- 		});
-	});
+ 		
+	//});
 
 }( jQuery ));

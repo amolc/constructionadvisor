@@ -21,7 +21,9 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-    $('#dropdown').hide();
+
+    $(".smk_accordion").smk_Accordion();
+    $('.smk_accordion').hide();
     $scope.clearHistory = function() {
         $ionicHistory.clearHistory();
     }
@@ -63,8 +65,9 @@ angular.module('starter.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams,$http, Chats,$ionicLoading,$ionicHistory) {
   //$scope.chat = Chats.get($stateParams.chatId);
+    $(".smk_accordion").smk_Accordion();
+    $('.smk_accordion').hide();
     $ionicLoading.show();
-    $('#dropdown').hide();
       $scope.clearHistory = function() {
         $ionicHistory.clearHistory();
       }

@@ -3,15 +3,15 @@
     <div class="container">
       <ul class="reset">
         <li class="search-text">
-          <input type="text" placeholder="Search.." class="search-input" id="search-input" onkeyup="search(this.value);">
+          <input type="text" placeholder="Search.." class="search-input" id="search-input" onkeyup="search(this.value);" onclick="$('.smk_accordion').hide();">
           <button class="search-btn"><img src="images/search.png" alt="Search"></button>
         </li>
         <li>
           <div class="mob-menu">
             <div class="mob-nav" id="listToggle">
-              <input class="menu-btn" type="checkbox" id="menu-btn" />
+              <input class="menu-btn" type="checkbox" id="menu-btn" onclick="$('.smk_accordion').toggle();" />
               <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
-              <ul class="menu dropdown-content smk_accordion" id="dropdown">
+              <ul class="menu dropdown-content smk_accordion">
               <li class="menu-titlie">Filter</li>
               <li class="acc_active">
                <h3>
@@ -49,7 +49,7 @@
     </div>
   </div>
     </ion-header-bar> 
-<ion-view view-title="Construction Advisor" id="app_body">
+<ion-view view-title="Construction Advisor" id="app_body" onclick="$('.smk_accordion').hide();">
  
   <ion-content class="card-background-page" id="news">
     <ion-refresher
