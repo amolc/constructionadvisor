@@ -496,7 +496,7 @@ ion-tabs.tabs-color-active-positive .tab-item {
 
 .dropdown-content li input[type="checkbox"]{margin-left:0;}
 .dropdown-content li label{  font-size:14px; font-weight:400; color:#666666; }
-.dropdown-content  h3{ font-size:16px; color:#313232; font-weight:400;}
+.dropdown-content  h3{ font-size:16px; color:#313232; margin-bottom: 0px !important; font-weight:400;}
 .header ul li a.btn:hover .dropdown-content {    display: block;}
 
 
