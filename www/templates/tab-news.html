@@ -1,0 +1,18 @@
+<ion-view view-title="Construction Advisor">
+
+  <ion-content class="card-background-page">
+
+    <div class="card" ng-repeat="x in news">
+      
+        <div class="item item-text-wrap">
+          <h2><strong><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></strong></h2><br /> 
+          <img class="full-image" src="{{x.postImage}}"/>
+          <br />
+          <div>{{x.postContent}}</div>
+        </div>
+
+  </div>
+ 
+
+  </ion-content>
+</ion-view>

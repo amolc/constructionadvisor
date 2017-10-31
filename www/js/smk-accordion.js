@@ -1,5 +1,5 @@
 
-;(function ( $ ) {
+(function ( $ ) {
 
 	$.fn.smk_Accordion = function( options ) {
 		
@@ -205,17 +205,31 @@
 		return this;
 
 	};
-
 	// Allow to create accordions only with `.smk_accordion` class
-	jQuery(document).ready(function($){
-		$(".smk_accordion").smk_Accordion();
+	 jQuery(document).ready(function($){
+	 	//alert('hi');
+	 	$(".smk_accordion").smk_Accordion();
+	 	//$('#dropdown').hide();
+	 	$('#menu-btn').click(function (event) {  
+ 			alert('list'); 
 
-		$('.routes, #footer ,#search-input').click(function (event) {    
+          	$('#dropdown').toggle();
+ 		});
 
-          	 if($('#menu-btn'). prop("checked") == true)
-		  	 	$('#menu-btn').click(); 
-		 
-		});
+ 		$('#menu-btnbtndetails').click(function (event) {  
+ 			alert('details'); 
+          	$('#dropdown').toggle();
+ 		});
+
+
+		$('#app_body,#search-input,#app_body_detail').click(function (event) {    
+
+          	//if($('#menu-btn').prop("checked") == true)
+		  	 	//$('#menu-btn').click();
+		  	$('#dropdown').hide();
+ 		});
+
+ 		
 	});
 
 }( jQuery ));
