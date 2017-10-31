@@ -514,7 +514,7 @@ ion-tabs.tabs-color-active-positive .tab-item {
 .dropdown-content li.acc_section { background:#fff;}
 .dropdown-content ul.acc_content {background: #f3f3f3;}
 .menu-titlie{background: #e0e0e0; font-size: 20px !important; color: #000;}
-.header .dropdown-content li{padding: 10px 15px;}
+.header .dropdown-content li{/*padding: 10px 15px;*/}
 .acc_active li{padding: 0px;}
 .smk_accordion ul li{padding: 10px 0px;}
 .ft-wrapper{
