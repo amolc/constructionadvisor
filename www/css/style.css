@@ -420,9 +420,20 @@ z-index: 8;}*/
     z-index: 99;
 }
 .bar { background: #26323b !important;}
-.tabs{ background-color: #26323b !important; }
+.tabs{ background-color: #26323b !important;     
+    padding-left: 12%;
+    padding-right: 12%;
+    height: 66px;
+}
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.activated{
+    background: #ff9016;
+    border-color: #ff9016;
+}
 ion-tabs.tabs-color-active-positive .tab-item {
-  color: #fff !important;  font-size: 15px !important;  }
+  color: #fff !important;  font-size: 15px !important;  
+  padding-top: 6px;
+    padding-bottom: 6px;
+}
   ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
     color: #fff !important;  font-size: 15px !important;  
 
@@ -504,3 +515,6 @@ ion-tabs.tabs-color-active-positive .tab-item {
 .header .dropdown-content li{padding: 10px 15px;}
 .acc_active li{padding: 0px;}
 .smk_accordion ul li{padding: 10px 0px;}
+.ft-wrapper{
+
+}

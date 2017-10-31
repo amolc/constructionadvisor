@@ -34,8 +34,8 @@
                <ul>
                 
                 <li ng-repeat="ft in fsector">
-                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="{{ ft.id }}" onclick="get_filtered_records()">
-                    <label>{{ ft.value }}</label>
+                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="check_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
+                    <label for="check_{{ ft.id }}">{{ ft.value }}</label>
                 </li>
                </ul> 
                 
@@ -47,8 +47,8 @@
                 <ul>
                 
                 <li ng-repeat="ft in ftype">
-                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="{{ ft.id }}" onclick="get_filtered_records()">
-                    <label>{{ ft.value }}</label>
+                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="check_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
+                    <label for="check_{{ ft.id }}">{{ ft.value }}</label>
                 </li>
 
                 </ul>
