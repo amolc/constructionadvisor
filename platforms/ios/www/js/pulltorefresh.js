@@ -1,1 +1,351 @@
-var PullToRefresh=function(){function e(){var e=s.classPrefix,n=s.ptrElement,t=s.iconArrow,r=s.iconRefreshing,o=s.instructionsRefreshing,i=s.instructionsPullToRefresh,l=s.instructionsReleaseToRefresh,c=n.querySelector("."+e+"icon"),a=n.querySelector("."+e+"text");"refreshing"===f?c.innerHTML=r:c.innerHTML=t,"releasing"===f&&(a.innerHTML=l),("pulling"===f||"pending"===f)&&(a.innerHTML=i),"refreshing"===f&&(a.innerHTML=o)}function n(){function n(){var e=s.cssProp,n=s.ptrElement,t=s.classPrefix;n.classList.remove(t+"refresh"),n.style[e]="0px",f="pending"}function t(n){var t=s.shouldPullToRefresh,o=s.triggerElement;t()&&(c=n.touches[0].screenY),"pending"===f&&(clearTimeout(r),p=o.contains(n.target),f="pending",e())}function o(n){var t=s.cssProp,r=s.classPrefix,o=s.distMax,i=s.distThreshold,l=s.ptrElement,h=s.resistanceFunction,v=s.shouldPullToRefresh;return c?a=n.touches[0].screenY:v()&&(c=n.touches[0].screenY),p&&"refreshing"!==f?("pending"===f&&(l.classList.add(r+"pull"),f="pulling",e()),c&&a&&(u=a-c),void(u>0&&(n.preventDefault(),l.style[t]=d+"px",d=h(u/i)*Math.min(o,u),"pulling"===f&&d>i&&(l.classList.add(r+"release"),f="releasing",e()),"releasing"===f&&i>d&&(l.classList.remove(r+"release"),f="pulling",e())))):void(v()&&a>c&&n.preventDefault())}function i(){var t=s.ptrElement,o=s.onRefresh,i=s.refreshTimeout,l=s.distThreshold,h=s.distReload,p=s.cssProp,v=s.classPrefix;if("releasing"===f&&d>l)f="refreshing",t.style[p]=h+"px",t.classList.add(v+"refresh"),r=setTimeout(function(){var e=o(n);e&&"function"==typeof e.then&&e.then(function(){return n()}),e||o.length||n()},i);else{if("refreshing"===f)return;t.style[p]="0px",f="pending"}e(),t.classList.remove(v+"release"),t.classList.remove(v+"pull"),c=a=null,u=d=0}function l(){var e=s.mainElement,n=s.classPrefix,t=s.shouldPullToRefresh;e.classList.toggle(n+"top",t())}return window.addEventListener("touchend",i),window.addEventListener("touchstart",t),window.addEventListener("touchmove",o,v?{passive:s.passive||!1}:void 0),window.addEventListener("scroll",l),{onTouchStart:t,onTouchMove:o,onTouchEnd:i,onScroll:l}}function t(){var e=s.mainElement,n=s.getMarkup,t=s.getStyles,r=s.classPrefix,o=s.onInit;if(!document.querySelector("."+r+"ptr")){var i=document.createElement("div");e!==document.body?e.parentNode.insertBefore(i,e):document.body.insertBefore(i,document.body.firstChild),i.classList.add(r+"ptr"),i.innerHTML=n().replace(/__PREFIX__/g,r),s.ptrElement=i}var l;return document.querySelector("#pull-to-refresh-js-style")?l=document.querySelector("#pull-to-refresh-js-style"):(l=document.createElement("style"),l.setAttribute("id","pull-to-refresh-js-style"),document.head.appendChild(l)),l.textContent=t().replace(/__PREFIX__/g,r).replace(/\s+/g," "),"function"==typeof o&&o(s),{styleNode:l,ptrElement:s.ptrElement}}var r,o=function(){return'<div class="__PREFIX__box"><div class="__PREFIX__content"><div class="__PREFIX__icon"></div><div class="__PREFIX__text"></div></div></div>'},i=function(){return".__PREFIX__ptr {\n  box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.12);\n  pointer-events: none;\n  font-size: 0.85em;\n  font-weight: bold;\n  top: 0;\n  height: 0;\n  transition: height 0.3s, min-height 0.3s;\n  text-align: center;\n  width: 100%;\n  overflow: hidden;\n  display: flex;\n  align-items: flex-end;\n  align-content: stretch;\n}\n.__PREFIX__box {\n  padding: 10px;\n  flex-basis: 100%;\n}\n.__PREFIX__pull {\n  transition: none;\n}\n.__PREFIX__text {\n  margin-top: .33em;\n  color: rgba(0, 0, 0, 0.3);\n}\n.__PREFIX__icon {\n  color: rgba(0, 0, 0, 0.3);\n  transition: transform .3s;\n}\n.__PREFIX__top {\n  touch-action: pan-x pan-down pinch-zoom;\n}\n.__PREFIX__release .__PREFIX__icon {\n  transform: rotate(180deg);\n}\n"},s={},l={distThreshold:60,distMax:80,distReload:50,bodyOffset:20,mainElement:"body",triggerElement:"body",ptrElement:".ptr",classPrefix:"ptr--",cssProp:"min-height",iconArrow:"&#8675;",iconRefreshing:"&hellip;",instructionsPullToRefresh:"",instructionsReleaseToRefresh:"",instructionsRefreshing:"Refreshing",refreshTimeout:500,getMarkup:o,getStyles:i,onInit:function(){},onRefresh:function(){return location.reload()},resistanceFunction:function(e){return Math.min(1,e/2.5)},shouldPullToRefresh:function(){return!window.scrollY}},c=null,a=null,u=0,d=0,f="pending",h=!1,p=!1,v=!1;try{window.addEventListener("test",null,{get passive(){v=!0}})}catch(m){}var g={init:function(e){void 0===e&&(e={});var r;Object.keys(l).forEach(function(n){s[n]=e[n]||l[n]});var o=["mainElement","ptrElement","triggerElement"];o.forEach(function(e){"string"==typeof s[e]&&(s[e]=document.querySelector(s[e]))}),h||(r=n(),h=!0);var i=t(),c=i.styleNode,a=i.ptrElement;return{destroy:function(){window.removeEventListener("touchstart",r.onTouchStart),window.removeEventListener("touchend",r.onTouchEnd),window.removeEventListener("touchmove",r.onTouchMove,v?{passive:s.passive||!1}:void 0),window.removeEventListener("scroll",r.onScroll),c.parentNode.removeChild(c),a.parentNode.removeChild(a),h=!1,r=null,c=null,a=null,s={}}}}};return g}();
+
+var PullToRefresh = (function () {
+var _ptrMarkup = function () { return "<div class=\"__PREFIX__box\"><div class=\"__PREFIX__content\"><div class=\"__PREFIX__icon\"></div><div class=\"__PREFIX__text\"></div></div></div>"; };
+
+var _ptrStyles = function () { return ".__PREFIX__ptr {\n  box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.12);\n  pointer-events: none;\n  font-size: 0.85em;\n  font-weight: bold;\n  top: 0;\n  height: 0;\n  transition: height 0.3s, min-height 0.3s;\n  text-align: center;\n  width: 100%;\n  overflow: hidden;\n  display: flex;\n  align-items: flex-end;\n  align-content: stretch;\n}\n.__PREFIX__box {\n  padding: 10px;\n  flex-basis: 100%;\n}\n.__PREFIX__pull {\n  transition: none;\n}\n.__PREFIX__text {\n  margin-top: .33em;\n  color: rgba(0, 0, 0, 0.3);\n}\n.__PREFIX__icon {\n  color: rgba(0, 0, 0, 0.3);\n  transition: transform .3s;\n}\n.__PREFIX__top {\n  touch-action: pan-x pan-down pinch-zoom;\n}\n.__PREFIX__release .__PREFIX__icon {\n  transform: rotate(180deg);\n}\n"; };
+
+/* eslint-disable import/no-unresolved */
+
+var _SETTINGS = {};
+
+var _defaults = {
+  distThreshold: 60,
+  distMax: 80,
+  distReload: 50,
+  bodyOffset: 20,
+  mainElement: 'body',
+  triggerElement: 'body',
+  ptrElement: '.ptr',
+  classPrefix: 'ptr--',
+  cssProp: 'min-height',
+  iconArrow: '&#8675;',
+  iconRefreshing: '&hellip;',
+  instructionsPullToRefresh: '',
+  instructionsReleaseToRefresh: '',
+  instructionsRefreshing: 'Refreshing',
+  refreshTimeout: 500,
+  getMarkup: _ptrMarkup,
+  getStyles: _ptrStyles,
+  onInit: function () {},
+  onRefresh: function () { return location.reload(); },
+  resistanceFunction: function (t) { return Math.min(1, t / 2.5); },
+  shouldPullToRefresh: function () { return !window.scrollY; },
+};
+
+var pullStartY = null;
+var pullMoveY = null;
+var dist = 0;
+var distResisted = 0;
+
+var _state = 'pending';
+var _setup = false;
+var _enable = false;
+var _timeout;
+
+var supportsPassive = false;
+
+try {
+  window.addEventListener('test', null, {
+    get passive() {
+      supportsPassive = true;
+    },
+  });
+} catch (e) {
+  // do nothing
+}
+
+function _update() {
+  var classPrefix = _SETTINGS.classPrefix;
+  var ptrElement = _SETTINGS.ptrElement;
+  var iconArrow = _SETTINGS.iconArrow;
+  var iconRefreshing = _SETTINGS.iconRefreshing;
+  var instructionsRefreshing = _SETTINGS.instructionsRefreshing;
+  var instructionsPullToRefresh = _SETTINGS.instructionsPullToRefresh;
+  var instructionsReleaseToRefresh = _SETTINGS.instructionsReleaseToRefresh;
+
+  var iconEl = ptrElement.querySelector(("." + classPrefix + "icon"));
+  var textEl = ptrElement.querySelector(("." + classPrefix + "text"));
+
+  if (_state === 'refreshing') {
+    iconEl.innerHTML = iconRefreshing;
+  } else {
+    iconEl.innerHTML = iconArrow;
+  }
+
+  if (_state === 'releasing') {
+    textEl.innerHTML = instructionsReleaseToRefresh;
+  }
+
+  if (_state === 'pulling' || _state === 'pending') {
+    textEl.innerHTML = instructionsPullToRefresh;
+  }
+
+  if (_state === 'refreshing') {
+    textEl.innerHTML = instructionsRefreshing;
+  }
+}
+
+function _setupEvents() {
+  function onReset() {
+    var cssProp = _SETTINGS.cssProp;
+    var ptrElement = _SETTINGS.ptrElement;
+    var classPrefix = _SETTINGS.classPrefix;
+
+    ptrElement.classList.remove((classPrefix + "refresh"));
+    ptrElement.style[cssProp] = '0px';
+
+    _state = 'pending';
+  }
+
+  function _onTouchStart(e) {
+    var shouldPullToRefresh = _SETTINGS.shouldPullToRefresh;
+    var triggerElement = _SETTINGS.triggerElement;
+
+    if (shouldPullToRefresh()) {
+      pullStartY = e.touches[0].screenY;
+    }
+
+    if (_state !== 'pending') {
+      return;
+    }
+
+    clearTimeout(_timeout);
+
+    _enable = triggerElement.contains(e.target);
+    _state = 'pending';
+    _update();
+  }
+
+  function _onTouchMove(e) {
+    var cssProp = _SETTINGS.cssProp;
+    var classPrefix = _SETTINGS.classPrefix;
+    var distMax = _SETTINGS.distMax;
+    var distThreshold = _SETTINGS.distThreshold;
+    var ptrElement = _SETTINGS.ptrElement;
+    var resistanceFunction = _SETTINGS.resistanceFunction;
+    var shouldPullToRefresh = _SETTINGS.shouldPullToRefresh;
+
+    if (!pullStartY) {
+      if (shouldPullToRefresh()) {
+        pullStartY = e.touches[0].screenY;
+      }
+    } else {
+      pullMoveY = e.touches[0].screenY;
+    }
+
+    if (!_enable || _state === 'refreshing') {
+      if (shouldPullToRefresh() && pullStartY < pullMoveY) {
+        e.preventDefault();
+      }
+
+      return;
+    }
+
+    if (_state === 'pending') {
+      ptrElement.classList.add((classPrefix + "pull"));
+      _state = 'pulling';
+      _update();
+    }
+
+    if (pullStartY && pullMoveY) {
+      dist = pullMoveY - pullStartY;
+    }
+
+    if (dist > 0) {
+      e.preventDefault();
+
+      ptrElement.style[cssProp] = distResisted + "px";
+
+      distResisted = resistanceFunction(dist / distThreshold)
+        * Math.min(distMax, dist);
+
+      if (_state === 'pulling' && distResisted > distThreshold) {
+        ptrElement.classList.add((classPrefix + "release"));
+        _state = 'releasing';
+        _update();
+      }
+
+      if (_state === 'releasing' && distResisted < distThreshold) {
+        ptrElement.classList.remove((classPrefix + "release"));
+        _state = 'pulling';
+        _update();
+      }
+    }
+  }
+
+  function _onTouchEnd() {
+    var ptrElement = _SETTINGS.ptrElement;
+    var onRefresh = _SETTINGS.onRefresh;
+    var refreshTimeout = _SETTINGS.refreshTimeout;
+    var distThreshold = _SETTINGS.distThreshold;
+    var distReload = _SETTINGS.distReload;
+    var cssProp = _SETTINGS.cssProp;
+    var classPrefix = _SETTINGS.classPrefix;
+
+    if (_state === 'releasing' && distResisted > distThreshold) {
+      _state = 'refreshing';
+
+      ptrElement.style[cssProp] = distReload + "px";
+      ptrElement.classList.add((classPrefix + "refresh"));
+
+      _timeout = setTimeout(function () {
+        var retval = onRefresh(onReset);
+
+        if (retval && typeof retval.then === 'function') {
+          retval.then(function () { return onReset(); });
+        }
+
+        if (!retval && !onRefresh.length) {
+          onReset();
+        }
+      }, refreshTimeout);
+    } else {
+      if (_state === 'refreshing') {
+        return;
+      }
+
+      ptrElement.style[cssProp] = '0px';
+
+      _state = 'pending';
+    }
+
+    _update();
+
+    ptrElement.classList.remove((classPrefix + "release"));
+    ptrElement.classList.remove((classPrefix + "pull"));
+
+    pullStartY = pullMoveY = null;
+    dist = distResisted = 0;
+  }
+
+  function _onScroll() {
+    var mainElement = _SETTINGS.mainElement;
+    var classPrefix = _SETTINGS.classPrefix;
+    var shouldPullToRefresh = _SETTINGS.shouldPullToRefresh;
+
+    mainElement.classList.toggle((classPrefix + "top"), shouldPullToRefresh());
+  }
+
+  window.addEventListener('touchend', _onTouchEnd);
+  window.addEventListener('touchstart', _onTouchStart);
+  window.addEventListener('touchmove', _onTouchMove, supportsPassive
+    ? { passive: _SETTINGS.passive || false }
+    : undefined);
+
+  window.addEventListener('scroll', _onScroll);
+
+  // Store event handlers to use for teardown later
+  return {
+    onTouchStart: _onTouchStart,
+    onTouchMove: _onTouchMove,
+    onTouchEnd: _onTouchEnd,
+    onScroll: _onScroll,
+  };
+}
+
+function _run() {
+  var mainElement = _SETTINGS.mainElement;
+  var getMarkup = _SETTINGS.getMarkup;
+  var getStyles = _SETTINGS.getStyles;
+  var classPrefix = _SETTINGS.classPrefix;
+  var onInit = _SETTINGS.onInit;
+
+  if (!document.querySelector(("." + classPrefix + "ptr"))) {
+    var ptr = document.createElement('div');
+
+    if (mainElement !== document.body) {
+      mainElement.parentNode.insertBefore(ptr, mainElement);
+    } else {
+      document.body.insertBefore(ptr, document.body.firstChild);
+    }
+
+    ptr.classList.add((classPrefix + "ptr"));
+    ptr.innerHTML = getMarkup()
+      .replace(/__PREFIX__/g, classPrefix);
+
+    _SETTINGS.ptrElement = ptr;
+  }
+
+  // Add the css styles to the style node, and then
+  // insert it into the dom
+  // ========================================================
+  var styleEl;
+  if (!document.querySelector('#pull-to-refresh-js-style')) {
+    styleEl = document.createElement('style');
+    styleEl.setAttribute('id', 'pull-to-refresh-js-style');
+
+    document.head.appendChild(styleEl);
+  } else {
+    styleEl = document.querySelector('#pull-to-refresh-js-style');
+  }
+
+  styleEl.textContent = getStyles()
+    .replace(/__PREFIX__/g, classPrefix)
+    .replace(/\s+/g, ' ');
+
+  if (typeof onInit === 'function') {
+    onInit(_SETTINGS);
+  }
+
+  return {
+    styleNode: styleEl,
+    ptrElement: _SETTINGS.ptrElement,
+  };
+}
+
+var pulltorefresh = {
+  init: function init(options) {
+    if ( options === void 0 ) options = {};
+
+    var handlers;
+    Object.keys(_defaults).forEach(function (key) {
+      _SETTINGS[key] = options[key] || _defaults[key];
+    });
+
+    var methods = ['mainElement', 'ptrElement', 'triggerElement'];
+    methods.forEach(function (method) {
+      if (typeof _SETTINGS[method] === 'string') {
+        _SETTINGS[method] = document.querySelector(_SETTINGS[method]);
+      }
+    });
+
+    if (!_setup) {
+      handlers = _setupEvents();
+      _setup = true;
+    }
+
+    var ref = _run();
+    var styleNode = ref.styleNode;
+    var ptrElement = ref.ptrElement;
+
+    return {
+      destroy: function destroy() {
+        // Teardown event listeners
+        window.removeEventListener('touchstart', handlers.onTouchStart);
+        window.removeEventListener('touchend', handlers.onTouchEnd);
+        window.removeEventListener('touchmove', handlers.onTouchMove, supportsPassive
+          ? { passive: _SETTINGS.passive || false }
+          : undefined);
+        window.removeEventListener('scroll', handlers.onScroll);
+
+        // Remove ptr element and style tag
+        styleNode.parentNode.removeChild(styleNode);
+        ptrElement.parentNode.removeChild(ptrElement);
+
+        // Enable setupEvents to run again
+        _setup = false;
+
+        // null object references
+        handlers = null;
+        styleNode = null;
+        ptrElement = null;
+        _SETTINGS = {};
+      },
+    };
+  },
+};
+
+return pulltorefresh;
+
+}());
+

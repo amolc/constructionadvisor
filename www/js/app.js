@@ -104,11 +104,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $urlRouterProvider.otherwise('/tab/dash');
   
 });
-
+/*
 ionicBootstrap(starter, null, {
     platforms: {
       ios: {
         statusbarPadding: true
       }
     }
-  });
+  });*/

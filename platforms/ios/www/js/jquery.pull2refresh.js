@@ -1,1 +1,86 @@
-"use strict";!function(t){function o(o){var i=o*Math.PI/(4*t(window).height());return Math.pow(Math.cos(i),2)*o}function i(){t(e).before(t('<img src="'+e.config.loaderImage+'" alt="loader" class="'+e.config.loaderClass+'"/>'))}var e,r=!1,n={init:function(n){e=this,e.config=n||{},e.config.loaderImage=e.config.loaderImage||"loader.gif",e.config.loaderClass=e.config.loaderClass||"pull2refresh-loader",e.config.start=e.config.start||function(){},i(),t(e).draggable({axis:"y",helper:function(){return t("<div></div>").css("opacity",0)},create:function(){var o=t(this);o.data("starttop",o.position().top)},stop:function(o,i){if(!r){var n=t(this);if(i.helper.position().top>=200){e.config.start();var a=200}n.stop().velocity({top:a||n.data("starttop")},400,"easeOutCirc",function(){})}},drag:function(i,e){t(this).stop().velocity({top:o(e.helper.position().top)},400,"easeOutCirc")}})},hide:function(){r=!0,t(e).stop().velocity({top:0},600,"easeOutCirc",function(){r=!1})}};t.fn.pull2refresh=function(o){return n[o]?n[o].apply(this,Array.prototype.slice.call(arguments,1)):"object"!=typeof o&&o?void t.error("Method "+o+" does not exist on jQuery.tooltip"):n.init.apply(this,arguments)}}(jQuery);
+/*
+ * @package jquery.pull2refresh.js
+ * @copyright Copyright(c) 2014 Wouter Vroege. <info AT woutervroege DOT nl>
+ * @author Wouter Vtoege <wouter AT woutervroege DOT nl>
+ * @author Olmo Kramer <olmo DOT kramer AT gmail DOT com>
+ * @licence https://github.com/woutervroege/jquery.pull2refresh.js/blob/master/LICENSE MIT License
+ */
+
+"use strict";
+
+(function($) {
+
+    var ELEM;
+    var isHiding = false;
+
+    function calculateAnimationTop(dragY) {
+        var rads = dragY * Math.PI / (4 * $(window).height());
+        return Math.pow(Math.cos(rads), 2) * dragY;
+    }
+
+    function setLoaderImage() {
+        $(ELEM).before($('<img src="' + ELEM.config.loaderImage + '" alt="loader" class="' + ELEM.config.loaderClass + '"/>'));
+    }
+
+    var methods = {
+        init: function(options) {
+            ELEM = this;
+            ELEM.config = options || {};
+            ELEM.config.loaderImage = ELEM.config.loaderImage || "loader.gif";
+            ELEM.config.loaderClass = ELEM.config.loaderClass || "pull2refresh-loader";
+            ELEM.config.start = ELEM.config.start || function() {};
+
+            setLoaderImage();
+
+            $(ELEM).draggable({
+                axis: "y",
+                helper: function() {
+                    return $('<div></div>').css('opacity', 0);
+                },
+                create: function() {
+                    var $this = $(this);
+                    $this.data('starttop', $this.position().top);
+                },
+                stop: function(event, ui) {
+                    if (isHiding) {
+                        return;
+                    }
+                    var $this = $(this);
+                    if (ui.helper.position().top >= 200) {
+                        ELEM.config.start();
+                        var top = 200;
+                    }
+                    $this.stop().velocity({
+                        top: top || $this.data('starttop')
+                    }, 400, 'easeOutCirc', function() {});
+                },
+                drag: function(event, ui) {
+                    $(this).stop().velocity({
+                        top: calculateAnimationTop(ui.helper.position().top)
+                    }, 400, 'easeOutCirc');
+                }
+            });
+
+        },
+        hide: function() {
+            isHiding = true;
+            $(ELEM).stop().velocity({
+                top: 0
+            }, 600, 'easeOutCirc', function() {
+                isHiding = false;
+            });
+        }
+    };
+
+    $.fn.pull2refresh = function(methodOrOptions) {
+        if (methods[methodOrOptions]) {
+            return methods[methodOrOptions].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
+            // Default to "init"
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + methodOrOptions + ' does not exist on jQuery.tooltip');
+        }
+    };
+
+})(jQuery);

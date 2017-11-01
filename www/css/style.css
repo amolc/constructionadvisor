@@ -27,7 +27,7 @@ a:hover{ color:#000000;}
 }
 .header ul li{  display:inline-block; vertical-align:top; margin-left:1%; font-size:11px;}
 .header ul li.search-text{ width:83%; margin-left:0; position:relative;}
-.header ul li .search-input{ width:100%; font-weight:300; padding:15px; height: 46px; border-radius:3px; border:0 ; background:#FFF;     box-sizing: border-box;}
+.header ul li .search-input{ width:100%; font-weight:300; padding:15px; /*height: 46px;*/ border-radius:3px; border:0 ; background:#FFF;     box-sizing: border-box;}
 .header ul button.search-btn { position: absolute;right: 6px;top: 50%;    margin-top: -8px;border: 0;background-color: inherit; cursor:pointer;}
 .header ul{ font-size:0; }
 .header ul li a.btn{  padding:8px 10px; background:#FFF; border-radius:3px; display:inline-block; position:relative; border:1px solid #dcdcdc;     box-shadow: inset 0px 0px 1px #d8d8d8;  }
