@@ -1,1 +1,235 @@
-!function(e){e.fn.smk_Accordion=function(c){if(this.length>1)return this.each(function(){e(this).smk_Accordion(c)}),this;var n=this;this.isInteger=function(e){return"number"==typeof e&&isFinite(e)&&Math.floor(e)===e},this.isArray=function(e){return"[object Array]"===Object.prototype.toString.call(e)},this.isObject=function(e){return"[object Object]"===Object.prototype.toString.call(e)};var t=e.extend({closeAble:!1,closeOther:!0,slideSpeed:150,activeIndex:1},c);e.each(t,function(e,c){var i=e.replace(/([A-Z])/g,"-$1").toLowerCase().toString(),o=n.data(i);(o||!1===o)&&(t[e]=o)}),(t.activeIndex===!1||t.closeOther===!1)&&(t.closeAble=!0);var i=function(){"refresh"===c&&(n.unbind(),n.destroy()),n.createStructure(),n.clickHead()};return this.toggleSection=function(c,i,o){if(i instanceof jQuery||n.isArray(i))var a=i;else if(n.isInteger(i))var a=n.children().eq(i-1);e.each(a,function(i,a){if(n.isInteger(a))var s=e(n.children().eq(a-1)).children().eq(1);else var s=e(a).children().eq(1);o=o>=0?o:t.slideSpeed,o>0?"open"===c?s.slideDown(o):s.slideUp(o):"open"===c?s.show(o):s.hide(o),"open"===c?e(a).addClass("acc_active"):e(a).removeClass("acc_active")})},this.openSection=function(e,c){n.toggleSection("open",e,c)},this.closeSection=function(e,c){n.toggleSection("close",e,c)},this.closeAllSections=function(e,c){n.closeSection(e,c)},this.destroy=function(){e.each(n.children(),function(c,n){var t=e(n),i=t.children();t.removeClass("acc_section"),e(i[0]).removeClass("acc_head"),e(i[1]).removeClass("acc_content")}),n.children(".acc_section").not(".acc_active").children(".acc_content").show()},this.createStructure=function(){n.addClass("smk_accordion"),e.each(n.children(),function(c,n){var t=e(n),i=t.children();t.addClass("acc_section"),i.length<2&&t.append('<div class="acc_content"></div>'),e(i[0]).addClass("acc_head"),e(i[1]).addClass("acc_content")}),n.children(".acc_section").not(".acc_active").children(".acc_content").hide(),n.isArray(t.activeIndex)?n.openSection(t.activeIndex,0):t.activeIndex>1?n.openSection(t.activeIndex,0):!1!==t.activeIndex&&n.openSection(1,0)},this.clickHead=function(){n.on("click",".acc_head",function(){var c=e(this).parent();c.hasClass("acc_active")===!1&&t.closeOther&&n.closeSection(n.children()),c.hasClass("acc_active")?n.closeSection(c):n.openSection(c)})},i(),this},jQuery(document).ready(function(e){e(".smk_accordion").smk_Accordion(),e(".routes, #footer ,#search-input").click(function(c){1==e("#menu-btn").prop("checked")&&e("#menu-btn").click()})})}(jQuery);
+
+(function ( $ ) {
+
+	$.fn.smk_Accordion = function( options ) {
+		
+		if (this.length > 1){
+			this.each(function() { 
+				$(this).smk_Accordion(options);
+			});
+			return this;
+		}
+
+		// To avoid scope issues, use 'plugin' instead of 'this'
+		// to reference this class from internal events and functions.
+		var plugin = this;
+
+		this.isInteger =  function(value) {
+			return typeof value === 'number' && 
+				isFinite(value) && 
+				Math.floor(value) === value;
+		};
+
+		this.isArray = function(arg) {
+			return Object.prototype.toString.call(arg) === '[object Array]';
+		};
+
+		this.isObject = function isObject(arg) {
+			return Object.prototype.toString.call(arg) === '[object Object]';
+		};
+
+		// Defaults
+		var settings = $.extend({
+			closeAble:  false, // Allow self close.
+			closeOther: true, // Close other sections.
+			slideSpeed: 150, // Animation Speed.
+			activeIndex: 1  // The section open on first init.
+		}, options );
+
+		// Assign to plugin options data-* attributes if they exists
+		$.each(settings, function(option, value) {
+			var data_attr = option.replace(/([A-Z])/g, '-$1').toLowerCase().toString(), //`optionsName` becomes `option-name`
+			new_val       =  plugin.data( data_attr );
+
+			if( new_val || false === new_val ){
+				settings[ option ] = new_val;
+			}
+		});
+
+		if( settings.activeIndex === false || settings.closeOther === false ){
+			settings.closeAble = true;
+		}
+
+		// "Constructor"
+		var init = function() {
+
+			if( options === 'refresh' ){
+				plugin.unbind();
+				plugin.destroy();
+			}
+
+			plugin.createStructure();
+			plugin.clickHead();
+		}
+
+		// Toggle a single section by index
+		this.toggleSection = function(mode, section, speed){
+			if( section instanceof jQuery || plugin.isArray( section ) ){
+				var this_section = section;
+			}
+			else if( plugin.isInteger( section ) ){
+				var this_section = plugin.children().eq(section - 1);
+			}
+
+			$.each(this_section, function(index, sect) {
+				if( plugin.isInteger( sect ) ){
+					var acc_content = $( plugin.children().eq(sect - 1) ).children().eq(1);
+				}
+				else{
+					var acc_content = $(sect).children().eq(1);
+				}
+
+				speed = ( speed >= 0 ) ? speed : settings.slideSpeed;
+
+				if( speed > 0 ){
+					( 'open' === mode ) ? acc_content.slideDown( speed ) : acc_content.slideUp( speed );
+				}
+				else{
+
+					( 'open' === mode ) ? acc_content.show( speed ) : acc_content.hide( speed );
+				}
+
+				( 'open' === mode ) ? $(sect).addClass('acc_active') : $(sect).removeClass('acc_active');
+			});
+		}
+
+		// Open a single section by index
+		this.openSection = function(section, speed){
+			//alert('hi');
+			plugin.toggleSection( 'open', section, speed );
+		}
+
+		// Close a single section by index
+		this.closeSection = function(section, speed){
+			//alert('hii');
+			plugin.toggleSection( 'close', section, speed );
+		}
+
+		// Close all sections
+		this.closeAllSections = function(current_accortdion_sections, speed){
+			//alert('hi');
+			plugin.closeSection( current_accortdion_sections, speed );
+		}
+
+	    this.destroy = function(){
+
+			//Add classes to accordion head and content for each section
+			$.each( plugin.children(), function(index, elem){
+				var _t = $(elem),
+				childs = _t.children();
+
+				//Create sections if they were not created already
+				_t.removeClass('acc_section');
+
+				//Add the necesary css clases
+				$(childs[0]).removeClass('acc_head');
+				$(childs[1]).removeClass('acc_content');
+			});
+			
+			//Hide inactive
+			plugin.children('.acc_section').not('.acc_active').children('.acc_content').show();
+		}
+
+		// Add .smk_accordion class
+		this.createStructure = function() {
+
+			//Add Main CSS Class
+			plugin.addClass('smk_accordion');
+
+			//Add classes to accordion head and content for each section
+			$.each( plugin.children(), function(index, elem){
+				var _t = $(elem),
+				childs = _t.children();
+
+				//Create sections if they were not created already
+				_t.addClass('acc_section');
+
+				//Make sure the section content exists. If not, then append an empty div. 
+				if( childs.length < 2 ){
+					_t.append('<div class="acc_content"></div>');
+				}
+
+				//Add the necesary css clases
+				$(childs[0]).addClass('acc_head');
+				$(childs[1]).addClass('acc_content');
+			});
+			
+			//Hide inactive
+			plugin.children('.acc_section').not('.acc_active').children('.acc_content').hide();
+
+			//Active index
+			if( plugin.isArray( settings.activeIndex ) ){
+				plugin.openSection( settings.activeIndex, 0 );
+			}
+			else if(settings.activeIndex > 1){
+				plugin.openSection( settings.activeIndex, 0 );
+			}
+			else if( false !== settings.activeIndex ){
+				plugin.openSection( 1, 0 );
+			}
+
+		}
+
+		// Action when the user click accordion head
+		this.clickHead = function() {
+
+			plugin.on('click', '.acc_head', function(){
+				
+				var s_parent = $(this).parent(); 
+				
+				// Close other sections when this section is opened
+				if( s_parent.hasClass('acc_active') === false && settings.closeOther ){
+					//alert('hi');
+					plugin.closeSection( plugin.children() );
+				}
+
+				// Allow to close itself
+				if( s_parent.hasClass('acc_active') ){
+					//alert('hello');
+					//if( false !== settings.closeAble || plugin.children().length === 1 ){
+						plugin.closeSection( s_parent );
+					//}
+				}
+
+				// Default behavior
+				else{
+					plugin.openSection( s_parent );
+				}
+
+			});
+
+		}
+
+		//"Constructor" init
+		init();
+		return this;
+
+	};
+	// Allow to create accordions only with `.smk_accordion` class
+	// jQuery(document).ready(function($){
+	 	//alert('hi');
+	 	//$(".smk_accordion").smk_Accordion();
+	 	//$('#dropdown').hide();
+	 	/*$('#menu-btn').click(function (event) {  
+ 			alert('list'); 
+
+          	$('#dropdown').toggle();
+ 		});
+
+ 		$('#menu-btnbtndetails').click(function (event) {  
+ 			alert('details'); 
+          	$('#dropdown').toggle();
+ 		});
+
+
+		$('#app_body,#search-input,#app_body_detail').click(function (event) {    
+
+          	//if($('#menu-btn').prop("checked") == true)
+		  	 	//$('#menu-btn').click();
+		  	$('#dropdown').hide();
+ 		});*/
+
+ 		
+	//});
+
+}( jQuery ));

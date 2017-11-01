@@ -6,16 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/global.css" rel="stylesheet" type="text/css" />
-<link href="css/print.css" rel="stylesheet" type="text/css" />
+<!-- <link href="css/print.css" rel="stylesheet" type="text/css" /> -->
+<link href="https://www.app.constructionadvisor.com.au/assets/css/mobile_app.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700|Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="js/pulltorefresh.js" type="text/javascript"></script>
 </head>
 
-<body ng-app="myApp" ng-controller="customersCtrl">
+<body class="contribute" ng-app="myApp" ng-controller="customersCtrl">
 <div id="wrapper">
   <div class="header">
   <div class="container">
@@ -32,10 +34,22 @@
             <ul class="menu dropdown-content smk_accordion">
               <li class="menu-titlie">Filter</li>
               <li class="acc_active">
-                <h3>
-                  <input type="checkbox">
+               <h3>
+                  <label>Sector</label>
+              </h3> 
+               <ul>
+                
+                <li ng-repeat="ft in fsector">
+                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" value="{{ ft.id }}" onclick="get_filtered_records()">
+                    <label>{{ ft.title }}</label>
+                </li>
+               </ul> 
+                
+              </li>
+              <li>
+               <h3>
                   <label>Article type</label>
-                </h3>
+                </h3> 
                 <ul>
                 
                 <li ng-repeat="ft in ftype">
@@ -57,7 +71,7 @@
                   </li> -->
                 </ul>
               </li>
-              <li>
+          <!-- <li>
                 <h3>
                   <input type="checkbox">
                   <label>Date Punlished</label>
@@ -76,7 +90,7 @@
                     <label>Shared article</label>
                   </li>
                 </ul>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -90,7 +104,7 @@
     <div id="newsdiv">
        <div class="sub-news">
         <h3>Send us News</h3>
-        <p>If We Use It We'll Pay You</p>
+        <p>If we use it we'll pay you</p>
         <a href="mailto:news@constructionadvisor.com.au">news@constructionadvisor.com.au</a> </div>
       <div class="photo-sec">
         <ul>
@@ -124,7 +138,25 @@
 
 
 
-  <div class="footer-space" id="footer">
+ <div class="footer-space" id="footer">
+   <div class="footer-sec">
+    <div class="container">
+      <ul class="reset">
+        <li> <a href="news.html"><img src="images/news.png" alt="News">
+          <p>News</p>
+          </a> </li>
+        <li class="current"> <a href="contribute.html" class="active-link"><img src="images/contribute.png" alt="Contributation">
+          <p>Contribute</p>
+          </a> </li>
+        <li> <a href="about.html"><img src="images/about-ca.png" alt="About">
+          <p>About CA </p>
+          </a> </li>
+       <!--  <li> <a href="setting.html"><img src="images/setting.png" alt="Setting">
+          <p>Settings</p>
+          </a> </li> -->
+      </ul>
+    </div>
+  </div>
 
 </div>
 <script type="text/javascript" src="js/smk-accordion.js"></script> 
@@ -134,25 +166,32 @@
 </body>
 </html>
 <script type="text/javascript">
-   $("#footer").load("footer.html"); 
    $(".routes").hide(); 
    var app = angular.module('myApp', []);
    app.controller('customersCtrl', function($scope, $http) {
-      $http.get("http://constructionadvisor.theelook.in/newsAPI")
+      $http.get("https://www.app.constructionadvisor.com.au/newsAPI")
       .then(function (response) {
         $scope.ftype = response.data.filtypes;
+        $scope.fsector = response.data.filsectors;
         $( "#search-input" ).prop( "disabled", false );
       });
   });
 
-
+PullToRefresh.init({
+    mainElement: 'body',
+    onRefresh: function(){
+        // What do you want to do when the user does the pull-to-refresh gesture
+        window.location.reload(); 
+    }
+    
+});
 
 $("#search-input").on('keyup', function() { 
 
     if ($(this).val().length>2)
      {
 
-      var URL = "http://constructionadvisor.theelook.in/newssearch/"+$(this).val();
+      var URL = "https://www.app.constructionadvisor.com.au/newssearch/"+$(this).val();
             $.ajax({
               type: "GET",
               url: URL,
@@ -175,7 +214,7 @@ $("#search-input").on('keyup', function() {
           else
      {  
 
-            var URL = "http://constructionadvisor.theelook.in/newsAPI";
+            var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
             $.ajax({
               type: "GET",
               url: URL,
@@ -202,10 +241,10 @@ function get_filtered_records()
   $('input.filter_chkbox:checkbox:checked').each(function () {
     arr.push($(this).val());
   });
-  alert(arr.length);
+  //alert(arr.length);
   if (arr.length>0) 
   {
-     var URL = "http://constructionadvisor.theelook.in/newstype";
+     var URL = "https://www.app.constructionadvisor.com.au/newstype";
             $.ajax({
               type: "POST",
               url: URL,
@@ -217,7 +256,6 @@ function get_filtered_records()
                 $('.news').hide();
                   $('.routes').show();
                   $('#news li').remove();
-                 $('.smk-accordion').hide();
                  
                   $.each(data.records,function (index, value) { 
 
@@ -232,7 +270,7 @@ function get_filtered_records()
   else
   {
 
-            var URL = "http://constructionadvisor.theelook.in/newsAPI";
+            var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
             $.ajax({
               type: "GET",
               url: URL,
