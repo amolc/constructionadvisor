@@ -27,8 +27,8 @@ a:hover{ color:#000000;}
 }
 .header ul li{  display:inline-block; vertical-align:top; margin-left:1%; font-size:11px;}
 .header ul li.search-text{ width:83%; margin-left:0; position:relative;}
-.header ul li .search-input{ width:100%; font-weight:300; padding:15px; /*height: 46px;*/ border-radius:3px; border:0 ; background:#FFF;     box-sizing: border-box;}
-.header ul button.search-btn { position: absolute;right: 6px;top: 50%;    margin-top: -8px;border: 0;background-color: inherit; cursor:pointer;}
+.header ul li .search-input{ width:100%; font-weight:300; padding:15px; height: 100%; border-radius:3px; border:0 ; background:#FFF;     box-sizing: border-box;}
+.header ul button.search-btn { position: absolute;right: 6px;top: 50%;    margin-top: -13px;border: 0;background-color: inherit; cursor:pointer;}
 .header ul{ font-size:0; }
 .header ul li a.btn{  padding:8px 10px; background:#FFF; border-radius:3px; display:inline-block; position:relative; border:1px solid #dcdcdc;     box-shadow: inset 0px 0px 1px #d8d8d8;  }
 .header ul li a.min-logo{ display:inline-block;  }
@@ -79,7 +79,7 @@ max-height: 100%;
 
 ul#recentnews { margin-top:10px;border:solid 1px #e5e5e5; list-style-type:none;}
 ul#recentnews h3{	 background: #36454f;padding: 20px;font-size: 22px;font-weight: 700;line-height: 1.2;margin-bottom: 0px;color: #fff;text-transform: uppercase;border-bottom:0;}
-ul#recentnews li { border-top:solid 1px #e5e5e5;}
+ul#recentnews li { border-top:solid 1px #e5e5e5; background: #fff;}
 ul#recentnews li:first-child { border-top:0;}
 ul#recentnews li a p { margin:0;}
 ul#recentnews li a {color: #36454f;padding: 10px 15px;display: inline-block;border-top: 0; transition: all 0.5s ease 0s;}
@@ -417,7 +417,7 @@ z-index: 8;}*/
 }
 @media only screen and ( max-width: 385px ) {
 	
-.header ul li .search-input {padding: 3.9% 10px;}
+.header ul li .search-input {padding: 2.9% 10px;}
 }
 
 @media only screen and ( max-width: 375px ) {
@@ -550,3 +550,8 @@ ion-tabs.tabs-color-active-positive .tab-item {
     z-index: 999;
     background: linear-gradient(to bottom, #1c262f 0%,#1e2831 1%,#242e37 23%,#263039 24%,#25323a 29%,#35424b 58%,#3c4a53 76%,#3e4c57 78%,#3e4c55 82%,#404e59 83%,#404e57 86%,#42505b 88%,#414f5a 90%,#43515c 91%,#45535e 100%) !important;
 }
+.pane{background: transparent !important;}
+[nav-view-transition="ios"][nav-view-direction="forward"], [nav-view-transition="ios"][nav-view-direction="back"]{
+    background: #26323b !important;
+}
+body{background: #26323b !important;}
