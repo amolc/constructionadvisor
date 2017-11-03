@@ -1,54 +1,56 @@
 <ion-header-bar id="app_header">
-      <div class="header bar-stable">
-    <div class="container">
-      <ul class="reset">
-        <li class="search-text">
-          <input type="text" placeholder="Search.." class="search-input" id="search-input" onkeyup="search(this.value);" onclick="$('.smk_accordion').hide();">
-          <button class="search-btn"><img src="images/search.png" alt="Search"></button>
-        </li>
-        <li>
-          <div class="mob-menu">
-            <div class="mob-nav" id="listToggle">
-              <input class="menu-btn" type="checkbox" id="menu-btn" onclick="$('.smk_accordion').toggle();" />
-              <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
-              <ul class="menu dropdown-content smk_accordion">
-              <li class="menu-titlie">Filter</li>
-              <li class="acc_active">
-               <h3>
-                  <label>Sector</label>
-              </h3> 
-               <ul>
-                
-                <li ng-repeat="ft in fsector">
-                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="chk_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
-                    <label for="chk_{{ ft.id }}">{{ ft.title }}</label>
-                </li>
-               </ul> 
-                
-              </li>
-              <li>
-               <h3>
-                  <label>Article type</label>
-                </h3> 
-                <ul>
-                
-                <li ng-repeat="ft in ftype">
-                   <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="chk_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
-                    <label for="chk_{{ ft.id }}">{{ ft.title }}</label>
-                </li>
+  <ion-toolbar>
+       <div class="header bar-stable">
+        <div class="container">
+          <ul class="reset">
+            <li class="search-text">
+              <input type="text" placeholder="Search.." class="search-input" id="search-input" onkeyup="search(this.value);" onclick="$('.smk_accordion').hide();">
+              <button class="search-btn"><img src="images/search.png" alt="Search"></button>
+            </li>
+            <li>
+              <div class="mob-menu">
+                <div class="mob-nav" id="listToggle">
+                  <input class="menu-btn" type="checkbox" id="menu-btn" onclick="$('.smk_accordion').toggle();" />
+                  <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
+                  <ul class="menu dropdown-content smk_accordion">
+                  <li class="menu-titlie">Filter</li>
+                  <li class="acc_active">
+                   <h3>
+                      <label>Sector</label>
+                  </h3> 
+                   <ul>
+                    
+                    <li ng-repeat="ft in fsector">
+                       <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="chk_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
+                        <label for="chk_{{ ft.id }}">{{ ft.title }}</label>
+                    </li>
+                   </ul> 
+                    
+                  </li>
+                  <li>
+                   <h3>
+                      <label>Article type</label>
+                    </h3> 
+                    <ul>
+                    
+                    <li ng-repeat="ft in ftype">
+                       <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="chk_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
+                        <label for="chk_{{ ft.id }}">{{ ft.title }}</label>
+                    </li>
+
+                    </ul>
+                  </li>
 
                 </ul>
-              </li>
-
-            </ul>
-            </div>
-          </div>
-        </li>
-        <li><a href="index.html" class="min-logo"><img src="images/mini-logo.png" alt="Mini-Logo"></a></li>
-      </ul>
-    </div>
-  </div>
-    </ion-header-bar> 
+                </div>
+              </div>
+            </li>
+            <li><a href="index.html" class="min-logo"><img src="images/mini-logo.png" alt="Mini-Logo"></a></li>
+          </ul>
+        </div>
+      </div>
+   </ion-toolbar>
+</ion-header-bar> 
 <ion-view view-title="Construction Advisor" id="app_body" onclick="$('.smk_accordion').hide();">
  
   <ion-content class="card-background-page" id="news">
