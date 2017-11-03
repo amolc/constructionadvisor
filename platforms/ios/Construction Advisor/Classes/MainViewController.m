@@ -92,12 +92,7 @@
     return[super newCordovaViewWithFrame:bounds];
 }
 
-// CB-12098
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000  
-- (NSUInteger)supportedInterfaceOrientations
-#else  
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-#endif
+- (NSUInteger)supportedInterfaceOrientations 
 {
     return [super supportedInterfaceOrientations];
 }

@@ -1,6 +1,9 @@
-<ion-header-bar id="app_header">
+<ion-header-bar id="app_header" >
   <ion-toolbar>
        <div class="header bar-stable">
+         <div class="space">
+           <p><p>
+         </div>
         <div class="container">
           <ul class="reset">
             <li class="search-text">
@@ -17,22 +20,22 @@
                   <li class="acc_active">
                    <h3>
                       <label>Sector</label>
-                  </h3> 
+                  </h3>
                    <ul>
-                    
+
                     <li ng-repeat="ft in fsector">
                        <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="chk_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
                         <label for="chk_{{ ft.id }}">{{ ft.title }}</label>
                     </li>
-                   </ul> 
-                    
+                   </ul>
+
                   </li>
                   <li>
                    <h3>
                       <label>Article type</label>
-                    </h3> 
+                    </h3>
                     <ul>
-                    
+
                     <li ng-repeat="ft in ftype">
                        <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="chk_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
                         <label for="chk_{{ ft.id }}">{{ ft.title }}</label>
@@ -50,25 +53,25 @@
         </div>
       </div>
    </ion-toolbar>
-</ion-header-bar> 
+</ion-header-bar>
 <ion-view view-title="Construction Advisor" id="app_body" onclick="$('.smk_accordion').hide();">
- 
+
   <ion-content class="card-background-page" id="news">
     <ion-refresher
           pulling-text="Refreshing..."
           on-refresh="doRefresh()">
         </ion-refresher>
     <div class="card" ng-repeat="x in news | filter:search.txt">
-      
+
         <div class="item item-text-wrap">
-          <h2><strong><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></strong></h2><br /> 
+          <h2><strong><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></strong></h2><br />
           <img class="full-image" src="{{x.postImage}}"/>
           <br />
           <div>{{x.postContent}}</div>
         </div>
 
   </div>
- 
+
 
   </ion-content>
 </ion-view>
@@ -80,7 +83,7 @@
     onRefresh: function(){
       alert("do you want to rerfesh");
         // What do you want to do when the user does the pull-to-refresh gesture
-        window.location.reload(); 
+        window.location.reload();
     }
 
 });

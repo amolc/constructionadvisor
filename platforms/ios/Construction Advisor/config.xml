@@ -1,11 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.constructionadvisor.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.constructionadvisor.ask" version="1.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
-    </feature>
-    <feature name="Console">
-        <param name="ios-package" value="CDVLogger" />
-        <param name="onload" value="true" />
     </feature>
     <feature name="HandleOpenUrl">
         <param name="ios-package" value="CDVHandleOpenURL" />
@@ -19,10 +15,24 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="ios-package" onload="true" value="IonicKeyboard" />
+    </feature>
     <name>Construction Advisor</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="magnusideas5@magnusideas.com" href="http://magnusideas.com/">Magnus Ideas Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.2.167:8101" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -31,6 +41,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="http://192.168.2.9:8100" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
+    <allow-navigation href="http://192.168.2.167:8101" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -78,6 +93,8 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="dash" value="default" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />

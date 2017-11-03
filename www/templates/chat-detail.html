@@ -13,9 +13,13 @@
   </ion-content>
 </ion-view> -->
 <ion-header-bar id="news_detail_header">
-  <ion-toolbar>    
+  <ion-toolbar>
       <div class="header bar-stable">
+        <div class="space">
+          <p><p>
+        </div>
         <div class="container">
+
           <ul class="reset">
             <li class="search-text">
               <input type="text" placeholder="Search.." class="search-input" onkeyup="search(this.value);" id="search-input" onclick="$('.smk_accordion').hide();">
@@ -31,22 +35,22 @@
                   <li class="acc_active">
                    <h3>
                       <label>Sector</label>
-                  </h3> 
+                  </h3>
                    <ul>
-                    
+
                     <li ng-repeat="ft in fsector">
                        <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="check_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
                         <label for="check_{{ ft.id }}">{{ ft.value }}</label>
                     </li>
-                   </ul> 
-                    
+                   </ul>
+
                   </li>
                   <li>
                    <h3>
                       <label>Article type</label>
-                    </h3> 
+                    </h3>
                     <ul>
-                    
+
                     <li ng-repeat="ft in ftype">
                        <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="check_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
                         <label for="check_{{ ft.id }}">{{ ft.value }}</label>
@@ -64,15 +68,15 @@
         </div>
       </div>
    </ion-toolbar>
- 
-</ion-header-bar> 
+
+</ion-header-bar>
 <ion-view view-title="Construction Advisor" id="app_body_detail" onclick="$('.smk_accordion').hide();">
 
   <ion-content class="padding" id="news_detail">
   <div class="card">
-      
+
         <div class="item item-text-wrap">
-          <h2><strong>{{chat.postTitle}}</strong></h2><br />  
+          <h2><strong>{{chat.postTitle}}</strong></h2><br />
           <img ng-src="{{chat.postImage}}" class="full-image">
           <br />
           <div ng-bind-html="chat.postContent"></div>
@@ -81,15 +85,15 @@
   </div>
   <ul id="recentnews">
         <h3>RECENT NEWS</h3>
-        
+
         <li ng-repeat="x in chat.recentnews ">
           <a href="#/tab/chats/{{x.postID}}">
           <p>{{x.postTitle}}</p></a>
-        </li>         
+        </li>
   </ul>
 
 
-   
-    
+
+
   </ion-content>
 </ion-view>

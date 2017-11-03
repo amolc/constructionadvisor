@@ -7,13 +7,25 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.constructionadvisor.ask"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.constructionadvisor.ask"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.constructionadvisor.ask"
+        },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.canewsapp.myapp"
+            "PACKAGE_NAME": "com.constructionadvisor.ask"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.constructionadvisor.ask"
         }
     },
     "dependent_plugins": {
         "in.edelworks.sharedpreferences": {
-            "PACKAGE_NAME": "com.canewsapp.myapp"
+            "PACKAGE_NAME": "com.constructionadvisor.ask"
         }
     }
 }
