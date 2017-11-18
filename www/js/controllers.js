@@ -13,8 +13,8 @@ angular.module('starter.controllers', ['ngCordova'])
   console.log("model : "+$scope.model);
   console.log("manufacturer : "+$scope.manufacturer);
   */
-  $scope.uuid = $cordovaDevice.getUUID();
-  console.log("uuid : "+$scope.uuid);
+  /*$scope.uuid = $cordovaDevice.getUUID();
+  console.log("uuid : "+$scope.uuid);*/
 
   ionic.Platform.ready(function (device) {
     console.log('I am working');
@@ -24,10 +24,10 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.response = res;
       //  console.log(res);
         if (res.status == 'false') {
-            alert(res.message);
+           //// alert(res.message);
           } else {
             window.localStorage.setItem("UUID",$scope.uuid);
-            alert(res.message);
+            //alert(res.message);
           }
         }).error(function() {
               // alert("Please check your internet connection or data source..");
@@ -60,7 +60,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
       push.on('notification', (data) => {
 
-        alert(JSON.stringify(data));
+       // alert(JSON.stringify(data));
 
         if (data.additionalData.foreground) {
 
@@ -118,7 +118,7 @@ angular.module('starter.controllers', ['ngCordova'])
   window.localStorage.removeItem('NewsTitle');
   /*$scope.uuid = $cordovaDevice.getUUID();
   console.log($scope.uuid);*/
-  if(window.localStorage.getItem("UUID") === null){
+  /*if(window.localStorage.getItem("UUID") === null){
       $scope.data = {};
       $scope.data.UUID = $scope.uuid;
       $scope.data.SendNotification = 'Yes';
@@ -136,7 +136,7 @@ angular.module('starter.controllers', ['ngCordova'])
             // alert("Please check your internet connection or data source..");
       });
       console.log("UUID - "+$scope.uuid);
-    }
+    }*/
   //console.log(credential);
   /*window.FirebasePlugin.verifyPhoneNumber(number, timeOutDuration, function(credential) {
           console.log(credential);
@@ -247,7 +247,7 @@ angular.module('starter.controllers', ['ngCordova'])
       window.plugins.socialsharing.shareViaWhatsApp(window.localStorage.getItem('NewsTitle'), null, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase(), null, function(errormsg){alert("You need to install WhatsApp application to share this news")});  
     }*/
     if(window.localStorage.getItem('NewsTitle') === null){
-      alert("without news");
+      //alert("without news");
       window.plugins.socialsharing.shareViaWhatsApp('Construction Advisor', null /* img */, "https://play.google.com/store/apps/details?id=com.constructionadvisor.ask" /* url */, null, function(errormsg){alert("You need to install WhatsApp application to share this news")});  
     }else{
       window.plugins.socialsharing.shareViaWhatsApp(window.localStorage.getItem('NewsTitle'), null, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase(), null, function(errormsg){alert("You need to install WhatsApp application to share this news")});  
@@ -273,7 +273,6 @@ angular.module('starter.controllers', ['ngCordova'])
 
     }
   }
-
 }])
 .controller('AccountCtrl', function($scope,$http,$ionicHistory) {
   $scope.clearHistory = function() {
@@ -286,6 +285,17 @@ angular.module('starter.controllers', ['ngCordova'])
     });
 
 })
+
+.controller('NotificationCtrl', function($scope,$http,$ionicHistory) {
+  $scope.clearHistory = function() {
+        $ionicHistory.clearHistory();
+  }
+   window.localStorage.removeItem('NewsTitle');
+   $scope.notify = function() {
+          console.log(this.val());
+    };
+})
+
 
 
 .directive('searchBar', [function () {

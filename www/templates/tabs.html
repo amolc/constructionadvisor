@@ -29,6 +29,13 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-share"></ion-nav-view>
   </ion-tab>
 
- <div class="bottomstrip"><a href="https://constructionadvisor.com.au" target="_blank">constructionadvisor.com.au</a></div>
+
+  <ion-tab title="Settings" icon-off="ion-ios-cog-outline" icon-on="ion-gear-b" on-deselect="clearHistory()" href="#/tab/notifications">
+    <ion-nav-view name="tab-notifications"></ion-nav-view>
+  </ion-tab>
+
+<div class="bottomstrip"><a href="https://constructionadvisor.com.au" target="_blank">constructionadvisor.com.au</a></div>
+ 
+
 
 </ion-tabs>

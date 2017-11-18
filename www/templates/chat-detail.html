@@ -76,6 +76,7 @@
   <div class="card">
 
         <div class="item item-text-wrap">
+        <br />
           <h2><strong>{{chat.postTitle}}</strong></h2><br />
           <img ng-src="{{chat.postImage}}" class="full-image">
           <br />
@@ -92,6 +93,14 @@
           <img ng-src="{{x.postImage}}" height="120" width="120" class="full-image">{{x.postTitle}}</p></a>
         </li>
   </ul>
+
+   <ul id="ads">
+        <li ng-repeat="x in chat.ads ">
+          <a href="#">
+          <img ng-src="{{x.img}}" height="120" width="120" class="full-image"></a>
+        </li>
+  </ul>
+
 
 
 

@@ -449,8 +449,8 @@ z-index: 8;}*/
 }
 .bar { background: #26323b !important;}
 .tabs{ background-color: #26323b !important;
-    padding-left: 12%;
-    padding-right: 12%;
+    padding-left: 5%;
+    padding-right: 5%;
     height: 66px;
     bottom: 14px !important;
 }
@@ -579,3 +579,34 @@ background-color: #fff;
     font-size: 10px;
 }
 .bottomstrip a {color: #000; text-decoration: none;}
+.share-btn{
+    padding: 11px;
+    border-radius: 0px;
+    -wwebkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+
+}
+.whatsup-bg{
+    background-color: #50ca5d !important;
+}
+.twitter-bg{
+    background-color: #1da1f2 !important;
+}
+.share-bg{
+    background-color: #ff9016 !important;
+}
+.lf{float: left;}
+.rf{float: right;}
+.allow{padding:1px 15px; position: relative;}
+.allow .item{
+    background: transparent;
+    border:0px;
+    position: static;
+}
+.allow .toggle-small.item-toggle .toggle {
+    top: 13px;
+}
+.allow .toggle-small .track{background: #a09f9f;}
+.toggle .handle{background: #a09f9f;}
