@@ -452,6 +452,7 @@ z-index: 8;}*/
     padding-left: 12%;
     padding-right: 12%;
     height: 66px;
+    bottom: 14px !important;
 }
 #recentnews{margin-bottom: 50px;}
 
@@ -563,3 +564,18 @@ ion-tabs.tabs-color-active-positive .tab-item {
     background: #26323b !important;
 }
 body{background: #26323b !important;}
+.bottomstrip{
+background-color: #fff;
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+    width: 100%;
+    height: 18px;
+    color: #000;
+    padding: 0px;
+    z-index: 999;
+    text-align: center;
+    line-height: 21px;
+    font-size: 10px;
+}
+.bottomstrip a {color: #000; text-decoration: none;}

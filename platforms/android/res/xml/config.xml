@@ -1,7 +1,38 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.constructionadvisor.ask" version="1.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Calendar">
+        <param name="android-package" value="nl.xservices.plugins.Calendar" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="FCMPlugin">
+        <param name="android-package" value="com.gae.scaffolder.plugin.FCMPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="UniqueDeviceID">
+        <param name="android-package" value="hu.dpal.phonegap.plugins.UniqueDeviceID" />
+    </feature>
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="SocialSharing">
+        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
         <param name="onload" value="true" />
     </feature>
     <feature name="Sharedpreferences">
@@ -10,7 +41,7 @@
     <name>Construction Advisor</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="magnusideas5@magnusideas.com" href="http://magnusideas.com/">Magnus Ideas Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.2.3:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -24,6 +55,7 @@
     <allow-navigation href="https://*/*" />
     <allow-navigation href="data:*" />
     <allow-navigation href="http://192.168.2.167:8101" />
+    <allow-navigation href="http://192.168.2.3:8100" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />

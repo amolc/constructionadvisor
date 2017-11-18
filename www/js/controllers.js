@@ -1,19 +1,123 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('DashCtrl', function($scope,$http, $cordovaDevice) {
+.controller('DashCtrl', function($scope,$cordovaToast,$cordovaDialogs,$http, $cordovaDevice) {
  /* ionic.Platform.ready(function(){
     console.log( window.device.uuid );
-  });
-  var device = $cordovaDevice.getDevice();
+  });*/
+  /*var device = $cordovaDevice.getDevice();
   $scope.manufacturer = device.manufacturer;
   $scope.model = device.model;
   $scope.platform = device.platform;
-  $scope.uuid = device.uuid;*/
+  $scope.uuid = device.uuid;
+  console.log("platform : "+$scope.platform);
+  console.log("model : "+$scope.model);
+  console.log("manufacturer : "+$scope.manufacturer);
+  */
+  $scope.uuid = $cordovaDevice.getUUID();
+  console.log("uuid : "+$scope.uuid);
 
+  ionic.Platform.ready(function (device) {
+    console.log('I am working');
+    FCMPlugin.getToken(function(token){
+        console.log(token);
+        $http.get('https://www.app.constructionadvisor.com.au/saveuid/?UUID='+token).success(function(res) {
+        $scope.response = res;
+      //  console.log(res);
+        if (res.status == 'false') {
+            alert(res.message);
+          } else {
+            window.localStorage.setItem("UUID",$scope.uuid);
+            alert(res.message);
+          }
+        }).error(function() {
+              // alert("Please check your internet connection or data source..");
+        });
+    });
+   /* FCMPlugin.onTokenRefresh(function(token){
+        alert( token );
+    });*/
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+  /*    let push = Push.init({
+        android: {
+          senderID: "1034993386249",
+          topics: ["appAndroid"],
+          clearNotifications: "true"
+        },
+        ios: {
+          senderID: "1034993386249",
+          alert: "true",
+          badge: false,
+          sound: "true",
+          topics: ["appIos"]
+        },
+        windows: {}
+      });*/
+
+      push.on('registration', (data) => {
+        //TODO - send device token to server
+      });
+
+      push.on('notification', (data) => {
+
+        alert(JSON.stringify(data));
+
+        if (data.additionalData.foreground) {
+
+          let confirmAlert = this.alertCtrl.create({
+            title: 'Nuova notifica',
+            message: data.message,
+            buttons: [{
+              text: 'Ignora',
+              role: 'cancel'
+            }, {
+              text: 'Visualizza',
+              handler: () => {
+                alert("redirect app aperta");
+              }
+            }]
+          });
+          confirmAlert.present();
+        } else {
+         if (data.additionalData.coldstart)
+         {
+          alert("Push notification clicked app closed");
+         }
+         else
+         {
+          alert("Push notification clicked app background");
+          }
+        }
+      });
+      push.on('error', (e) => {
+        console.log(e.message);
+      });
+      /*var push = PushNotification.init({ "android": {"senderID": "1034993386249"}});
+       push.on('registration', function(data) {
+        //alert(data.registrationId);
+       });
+
+       push.on('notification', function(data) {
+        //alert(data.title+" Message: " +data.message);
+       });
+
+       push.on('error', function(e) {
+        alert(e);
+       });*/
+    /*FCMPlugin.onNotification(function(data){
+        if(data.wasTapped){
+          //Notification was received on device tray and tapped by the user.
+          alert( JSON.stringify(data) );
+        }else{
+          //Notification was received in foreground. Maybe the user needs to be notified.
+          alert( JSON.stringify(data) );
+        }
+    });*/
+  });
   //window.localStorage.clear('NewsTitle');
   window.localStorage.removeItem('NewsTitle');
   /*$scope.uuid = $cordovaDevice.getUUID();
-  console.log($scope.uuid);
+  console.log($scope.uuid);*/
   if(window.localStorage.getItem("UUID") === null){
       $scope.data = {};
       $scope.data.UUID = $scope.uuid;
@@ -32,9 +136,9 @@ angular.module('starter.controllers', ['ngCordova'])
             // alert("Please check your internet connection or data source..");
       });
       console.log("UUID - "+$scope.uuid);
-    }*/
-  console.log(credential);
-  window.FirebasePlugin.verifyPhoneNumber(number, timeOutDuration, function(credential) {
+    }
+  //console.log(credential);
+  /*window.FirebasePlugin.verifyPhoneNumber(number, timeOutDuration, function(credential) {
           console.log(credential);
 
           // ask user to input verificationCode:
@@ -46,7 +150,7 @@ angular.module('starter.controllers', ['ngCordova'])
           firebase.auth().signInWithCredential(signInCredential);
       }, function(error) {
           console.error(error);
-      });
+      });*/
 
 })
 

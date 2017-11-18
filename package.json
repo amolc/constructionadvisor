@@ -11,10 +11,10 @@
   "dependencies": {
     "@ionic/cloud-angular": "^0.12.0",
     "android-versions": "^1.2.1",
+    "cordova-android": "6.3.0",
     "cordova-plugin-calendar": "https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-fcm": "^2.1.2",
-    "cordova-plugin-firebase": "^0.1.24",
     "cordova-plugin-inappbrowser": "~1.4.0",
     "cordova-plugin-splashscreen": "^4.0.3",
     "cordova-plugin-statusbar": "^2.2.1",
@@ -36,9 +36,10 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-calendar": {},
       "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-fcm": {},
-      "cordova-plugin-firebase": {}
+      "cordova-plugin-fcm": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }

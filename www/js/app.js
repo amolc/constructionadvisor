@@ -20,13 +20,69 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    /*new push = new ionic.push({
+    /*let push = Push.init({
+        android: {
+          senderID: "1034993386249",
+          topics: ["appAndroid"],
+          clearNotifications: "true"
+        },
+        ios: {
+          senderID: "1034993386249",
+          alert: "true",
+          badge: false,
+          sound: "true",
+          topics: ["appIos"]
+        },
+        windows: {}
+      });
+
+      push.on('registration', (data) => {
+        //TODO - send device token to server
+      });
+*/
+     /* push.on('notification', (data) => {
+
+        alert(JSON.stringify(data));
+
+        if (data.additionalData.foreground) {
+
+          let confirmAlert = this.alertCtrl.create({
+            title: 'Nuova notifica',
+            message: data.message,
+            buttons: [{
+              text: 'Ignora',
+              role: 'cancel'
+            }, {
+              text: 'Visualizza',
+              handler: () => {
+                alert("redirect app aperta");
+              }
+            }]
+          });
+          confirmAlert.present();
+        } else {
+         if (data.additionalData.coldstart)
+         {
+          alert("Push notification clicked app closed");
+         }
+         else
+         {
+          alert("Push notification clicked app background");
+          }
+        }
+      });
+      push.on('error', (e) => {
+        console.log(e.message);
+      });*/
+    /*var push = PushNotification.init({ "android": {"senderID": "1034993386249"},
+        "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+    *//*new push = new ionic.push({
       'debug':true
     });
     push.register(function(token){
       console.log("device token: ",token.token);
     });*/
-      window.FirebasePlugin.verifyPhoneNumber(number, timeOutDuration, function(credential) {
+     /* window.FirebasePlugin.verifyPhoneNumber(number, timeOutDuration, function(credential) {
           console.log(credential);
 
           // ask user to input verificationCode:
@@ -38,7 +94,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
           firebase.auth().signInWithCredential(signInCredential);
       }, function(error) {
           console.error(error);
-      });
+      });*/
   });
 })
 
