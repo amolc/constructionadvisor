@@ -169,7 +169,6 @@ angular.module('starter.controllers', ['ngCordova'])
 
     }
   }
-
 }])
 .controller('AccountCtrl', function($scope,$http,$ionicHistory) {
   $scope.clearHistory = function() {
@@ -182,6 +181,19 @@ angular.module('starter.controllers', ['ngCordova'])
     });
 
 })
+
+.controller('NotificationCtrl', function($scope,$http,$ionicHistory) {
+  $scope.clearHistory = function() {
+        $ionicHistory.clearHistory();
+  }
+   window.localStorage.removeItem('NewsTitle');
+   $scope.notify = function() {
+    
+       console.log(this.val());
+          
+      };
+})
+
 
 
 .directive('searchBar', [function () {
