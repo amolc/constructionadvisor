@@ -127,6 +127,16 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
     }
   });
 
+  .state('tab.notifications', {
+    url: '/notifications',
+    views: {
+      'tab-notifications': {
+        templateUrl: 'templates/tab-notifications.html',
+        controller: 'NotificationCtrl'
+      }
+    }
+  });
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
   
