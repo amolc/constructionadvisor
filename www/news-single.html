@@ -83,6 +83,10 @@
   
     </ul>
 
+    <ul class="reset" id="ads">
+  
+    </ul>
+
     </div>
   </div>
   <div class="footer-space" id="footer">
@@ -178,7 +182,7 @@ $(document).ready(function () {
 
            $.each(data.ads,function (index, value) { 
 
-                    var content = '<li><a href="'+value.site+'"><img src="'+value.img+'" height="143px" width="297px"></li>';
+                    var content = '<li><a href="'+value.url+'"><img src="'+value.img+'"></li>';
                     $("#ads").append(content);
 
                  });
