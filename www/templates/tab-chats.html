@@ -55,12 +55,15 @@
    </ion-toolbar>
 </ion-header-bar>
 <ion-view view-title="Construction Advisor" id="app_body" onclick="$('.smk_accordion').hide();">
-
+    
   <ion-content class="card-background-page" id="news">
     <ion-refresher
           pulling-text="Refreshing..."
           on-refresh="doRefresh()">
         </ion-refresher>
+        <div class="space">
+          <p><p>
+        </div>
     <div class="card" ng-repeat="x in news | filter:search.txt">
 
         <div class="item item-text-wrap">

@@ -4,11 +4,18 @@ body, html { height:100%;}
 body.contribute{ background:#26323b}
 
 /*** GLOBAL SELECTORS ***/
-a{ color:#c81221; }
+a{ color:#f78e2a; }
 a:hover{ color:#000000;}
 
 .active-link {
     background: #ff9016;
+}
+
+.card, .list-inset {
+    overflow: hidden;
+    margin: 10px 10px;
+    border-radius: 2px;
+    background-color: #fff;
 }
 
 /*Main COntent*/

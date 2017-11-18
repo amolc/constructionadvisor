@@ -98,6 +98,37 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034993386249:android:da50f266a9a6350e",
+        "android_client_info": {
+          "package_name": "com.constructionadvisor.ask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034993386249-kmke1g14trj0kraova7kpk0i3ge5bk0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRbkhFczpmsVZNBUThFG0XNGce8Or02Dc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

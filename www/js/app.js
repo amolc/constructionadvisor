@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic','starter.controllers', 'starter.services','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,6 +20,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    /*new push = new ionic.push({
+      'debug':true
+    });
+    push.register(function(token){
+      console.log("device token: ",token.token);
+    });*/
+      window.FirebasePlugin.verifyPhoneNumber(number, timeOutDuration, function(credential) {
+          console.log(credential);
+
+          // ask user to input verificationCode:
+          var code = inputField.value.toString();
+
+          var verificationId = credential.verificationId;
+          
+          var signInCredential = firebase.auth.PhoneAuthProvider.credential(verificationId, code);
+          firebase.auth().signInWithCredential(signInCredential);
+      }, function(error) {
+          console.error(error);
+      });
   });
 })
 
@@ -88,7 +107,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
   
-    
+   .state('tab.share', {
+    url: "/share",
+    views: {
+      'tab-share': {
+        templateUrl: "templates/share.html",
+        controller: 'shareCtrl'
+      }
+    }
+  }) 
 
   .state('tab.account', {
     url: '/account',
