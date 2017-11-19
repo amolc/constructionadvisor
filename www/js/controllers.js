@@ -20,13 +20,14 @@ angular.module('starter.controllers', ['ngCordova'])
     console.log('I am working');
     FCMPlugin.getToken(function(token){
         console.log(token);
+        $scope.devicetoken = token;
         $http.get('https://www.app.constructionadvisor.com.au/saveuid/?UUID='+token).success(function(res) {
         $scope.response = res;
       //  console.log(res);
         if (res.status == 'false') {
            //// alert(res.message);
           } else {
-            window.localStorage.setItem("UUID",$scope.uuid);
+            window.localStorage.setItem("UUID",$scope.devicetoken);
             //alert(res.message);
           }
         }).error(function() {
@@ -54,11 +55,11 @@ angular.module('starter.controllers', ['ngCordova'])
         windows: {}
       });*/
 
-      push.on('registration', (data) => {
+      /*push.on('registration', (data) => {
         //TODO - send device token to server
-      });
+      });*/
 
-      push.on('notification', (data) => {
+      /*push.on('notification', (data) => {
 
        // alert(JSON.stringify(data));
 
@@ -91,7 +92,7 @@ angular.module('starter.controllers', ['ngCordova'])
       });
       push.on('error', (e) => {
         console.log(e.message);
-      });
+      });*/
       /*var push = PushNotification.init({ "android": {"senderID": "1034993386249"}});
        push.on('registration', function(data) {
         //alert(data.registrationId);
@@ -118,25 +119,25 @@ angular.module('starter.controllers', ['ngCordova'])
   window.localStorage.removeItem('NewsTitle');
   /*$scope.uuid = $cordovaDevice.getUUID();
   console.log($scope.uuid);*/
-  /*if(window.localStorage.getItem("UUID") === null){
+  if(window.localStorage.getItem("UUID") === null){
       $scope.data = {};
-      $scope.data.UUID = $scope.uuid;
-      $scope.data.SendNotification = 'Yes';
+     // $scope.data.UUID = $scope.device.token;
+      //$scope.data.SendNotification = 'Yes';
       
-      $http.get('https://www.app.constructionadvisor.com.au/saveuid/?UUID='+$scope.uuid).success(function(res) {
+      $http.get('https://www.app.constructionadvisor.com.au/saveuid/?UUID='+$scope.devicetoken).success(function(res) {
         $scope.response = res;
       //  console.log(res);
         if (res.status == 'false') {
           alert(res.message);
         } else {
-          window.localStorage.setItem("UUID",$scope.uuid);
+          window.localStorage.setItem("UUID",$scope.devicetoken);
           alert(res.message);
         }
       }).error(function() {
             // alert("Please check your internet connection or data source..");
       });
-      console.log("UUID - "+$scope.uuid);
-    }*/
+      console.log("UUID - "+$scope.devicetoken);
+    }
   //console.log(credential);
   /*window.FirebasePlugin.verifyPhoneNumber(number, timeOutDuration, function(credential) {
           console.log(credential);
