@@ -61,7 +61,7 @@ a:hover{ color:#000000;}
  
  
  		/*News Page*/
-.routes{ background:#ebebeb; padding:82px 0px 12px; position: absolute;
+.routes{ background:#ebebeb; padding:82px 0px 12px; /*position: absolute;*/
     max-width: 800px; width: 100%;}	
 .sub-routes	{ padding:12px 10px; background:#FFF;  }
 .routes ul li{ margin-top:20px;}

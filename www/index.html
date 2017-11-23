@@ -183,6 +183,7 @@ function showHideClient(val){
   //alert(arr.length);
   if (arr.length>0) 
   {
+    $('.smk_accordion').toggle();
      var URL = "https://www.app.constructionadvisor.com.au/newstype";
             $.ajax({
               type: "POST",
@@ -198,6 +199,7 @@ function showHideClient(val){
                   $("#news_detail").html('');
                   $.each(data.records,function (index, value) { 
 
+                    
 
                     var content = '<div class="card"><div class="item item-text-wrap"><h2><strong><a href="#/tab/chats/'+value.postID+'">'+value.postTitle+'</a></strong></h2><br /><img class="full-image" src="'+value.postImage+'"/><br /><div>'+value.postContent+'..</div></div></div>';
 
@@ -212,7 +214,7 @@ function showHideClient(val){
   }
   else
   {
-
+            $('.smk_accordion').toggle();
             var URL = "https://www.app.constructionadvisor.com.au/newsAPI";
             $.ajax({
               type: "GET",

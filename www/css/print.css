@@ -15,16 +15,7 @@ a:hover{ color:#000000;}
 #wrapper{ max-width:800px; margin:0 auto; height:100%;}
 
 .container{ width:96%; margin:0 auto;}
-.header{ padding:10px 0px; border-bottom:2px solid #313f4a; background:#26323b; text-align:center;
-	position: fixed;
-    width: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    max-width: 800px;
-    margin: 0 auto;
-    z-index: 999;
-}
+.header{ padding:10px 0px; border-bottom:2px solid #313f4a; background:#26323b; text-align:center;position: fixed;width: auto;top: 0;left: 0;right: 0;max-width: 800px;margin: 0 auto;z-index: 999;}
 .header ul li{  display:inline-block; vertical-align:top; margin-left:1%; font-size:11px;}
 .header ul li.search-text{ width:83%; margin-left:0; position:relative;}
 .header ul li .search-input{ width:100%; font-weight:300; padding:15px; border-radius:3px; border:0 ; background:#FFF;     box-sizing: border-box;}
@@ -426,3 +417,4 @@ z-index: 8;}*/
 
 
 }
+

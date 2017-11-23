@@ -18,8 +18,7 @@
           <h4>Allow Notifications</h4>
         </div>
         <div class="rf">
-          <ion-toggle onchage="notify(1)">
-          </ion-toggle>
+           <ion-toggle ng-Model="notifyMe.SendNotification" ng-change="notify()"></ion-toggle>
           </div>
         
         <div class="clearfix"></div>

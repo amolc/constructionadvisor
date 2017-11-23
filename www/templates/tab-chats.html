@@ -56,25 +56,27 @@
 </ion-header-bar>
 <ion-view view-title="Construction Advisor" id="app_body" onclick="$('.smk_accordion').hide();">
     
-  <ion-content class="card-background-page" id="news">
+  <ion-content class="card-background-page">
     <ion-refresher
           pulling-text="Refreshing..."
           on-refresh="doRefresh()">
         </ion-refresher>
         <div class="space">
           <p><p>
-        </div>
-    <div class="card" ng-repeat="x in news | filter:search.txt">
-
-        <div class="item item-text-wrap">
-          <h2><strong><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></strong></h2><br />
-          <img class="full-image" src="{{x.postImage}}"/>
           <br />
-          <div>{{x.postContent}}</div>
         </div>
+        <div id="news">
+          <div class="card" ng-repeat="x in news | filter:search.txt">
 
-  </div>
+              <div class="item item-text-wrap">
+                <h2><strong><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></strong></h2><br />
+                <img class="full-image" src="{{x.postImage}}"/>
+                <br />
+                <div>{{x.postContent}}</div>
+              </div>
 
+        </div>
+      </div>
 
   </ion-content>
 </ion-view>

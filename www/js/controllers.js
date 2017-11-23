@@ -18,6 +18,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
   ionic.Platform.ready(function (device) {
     console.log('I am working');
+    window.localStorage.removeItem('NewsTitle');
+    window.localStorage.removeItem("SendNotification");
     FCMPlugin.getToken(function(token){
         console.log(token);
         $scope.devicetoken = token;
@@ -33,90 +35,23 @@ angular.module('starter.controllers', ['ngCordova'])
         }).error(function() {
               // alert("Please check your internet connection or data source..");
         });
+
+        
     });
-   /* FCMPlugin.onTokenRefresh(function(token){
-        alert( token );
-    });*/
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-  /*    let push = Push.init({
-        android: {
-          senderID: "1034993386249",
-          topics: ["appAndroid"],
-          clearNotifications: "true"
-        },
-        ios: {
-          senderID: "1034993386249",
-          alert: "true",
-          badge: false,
-          sound: "true",
-          topics: ["appIos"]
-        },
-        windows: {}
-      });*/
-
-      /*push.on('registration', (data) => {
-        //TODO - send device token to server
-      });*/
-
-      /*push.on('notification', (data) => {
-
-       // alert(JSON.stringify(data));
-
-        if (data.additionalData.foreground) {
-
-          let confirmAlert = this.alertCtrl.create({
-            title: 'Nuova notifica',
-            message: data.message,
-            buttons: [{
-              text: 'Ignora',
-              role: 'cancel'
-            }, {
-              text: 'Visualizza',
-              handler: () => {
-                alert("redirect app aperta");
-              }
-            }]
-          });
-          confirmAlert.present();
-        } else {
-         if (data.additionalData.coldstart)
-         {
-          alert("Push notification clicked app closed");
-         }
-         else
-         {
-          alert("Push notification clicked app background");
-          }
-        }
+   
+   if(window.localStorage.getItem("UUID") !== null){
+      $http.get("https://www.app.constructionadvisor.com.au/getnotifystatus?uuid="+ window.localStorage.getItem("UUID"))
+          .then(function (response) {
+            window.localStorage.setItem("SendNotification",response.data.SendNotification);
+         //  console.log(response);
+           console.log(response.data.SendNotification);
+           // $scope.notifyMe.SendNotification = response.status;
       });
-      push.on('error', (e) => {
-        console.log(e.message);
-      });*/
-      /*var push = PushNotification.init({ "android": {"senderID": "1034993386249"}});
-       push.on('registration', function(data) {
-        //alert(data.registrationId);
-       });
-
-       push.on('notification', function(data) {
-        //alert(data.title+" Message: " +data.message);
-       });
-
-       push.on('error', function(e) {
-        alert(e);
-       });*/
-    /*FCMPlugin.onNotification(function(data){
-        if(data.wasTapped){
-          //Notification was received on device tray and tapped by the user.
-          alert( JSON.stringify(data) );
-        }else{
-          //Notification was received in foreground. Maybe the user needs to be notified.
-          alert( JSON.stringify(data) );
-        }
-    });*/
+    }
+  
   });
   //window.localStorage.clear('NewsTitle');
-  window.localStorage.removeItem('NewsTitle');
+
   /*$scope.uuid = $cordovaDevice.getUUID();
   console.log($scope.uuid);*/
   if(window.localStorage.getItem("UUID") === null){
@@ -234,6 +169,8 @@ angular.module('starter.controllers', ['ngCordova'])
           $scope.chat = response.data;
          // $scope.NewsTitle = response.data.postTitle;
           window.localStorage.setItem('NewsTitle',response.data.postTitle);
+          window.localStorage.setItem('NewsImage',response.data.postImage);
+
           $scope.ftype = response.data.filtypes;
           $scope.fsector = response.data.filsectors;
 
@@ -251,27 +188,30 @@ angular.module('starter.controllers', ['ngCordova'])
       //alert("without news");
       window.plugins.socialsharing.shareViaWhatsApp('Construction Advisor', null /* img */, "https://play.google.com/store/apps/details?id=com.constructionadvisor.ask" /* url */, null, function(errormsg){alert("You need to install WhatsApp application to share this news")});  
     }else{
-      window.plugins.socialsharing.shareViaWhatsApp(window.localStorage.getItem('NewsTitle'), null, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase(), null, function(errormsg){alert("You need to install WhatsApp application to share this news")});  
+      window.plugins.socialsharing.shareViaWhatsApp(window.localStorage.getItem('NewsTitle'),  null /* img */, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase(), null, function(errormsg){alert("You need to install WhatsApp application to share this news")});  
     }
     
   }
   
   $scope.twitterShare=function(){
     if(window.localStorage.getItem('NewsTitle') === null){
-            window.plugins.socialsharing.shareViaTwitter('Construction Advisor', null /* img */, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask', null, function(errormsg){alert("'You need to install Twitter application to share this news'")});
-
+      window.plugins.socialsharing.shareViaTwitter('Construction Advisor', null /* img */, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask', null, function(errormsg){alert("'You need to install Twitter application to share this news'")});
     }else{
-            window.plugins.socialsharing.shareViaTwitter(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase() /* url */, null, function(errormsg){alert("'You need to install WhatsApp application to share this news'")});  
-
+      window.plugins.socialsharing.shareViaTwitter(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase() /* url */, null, function(errormsg){alert("'You need to install twitter application to share this news'")});  
+    }
+  }
+  $scope.facebookShare=function(){
+    if(window.localStorage.getItem('NewsTitle') === null){
+      window.plugins.socialsharing.shareViaFacebook('Construction Advisor', null /* img */, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask', null, function(errormsg){alert("'You need to install facebook application to share this news'")});
+    }else{
+      window.plugins.socialsharing.shareViaFacebook(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase() /* url */, null, function(errormsg){alert("'You need to install facebook application to share this news'")});  
     }
   }
    $scope.OtherShare=function(){
     if(window.localStorage.getItem('NewsTitle') === null){
-           window.plugins.socialsharing.share('Construction Advisor', null, null, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask');
-
+      window.plugins.socialsharing.share('Construction Advisor', null, null, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask');
     }else{
-           window.plugins.socialsharing.share(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase() /* url */, null, function(errormsg){alert("'You need to install WhatsApp application to share this news'")});  
-
+      window.plugins.socialsharing.share(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.app.constructionadvisor.com.au/details/post/"+window.localStorage.getItem('NewsTitle').replace(/\s+/g, '-').toLowerCase() /* url */, null, function(errormsg){alert("'You need to install selected application to share this news'")});  
     }
   }
 }])
@@ -291,10 +231,37 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.clearHistory = function() {
         $ionicHistory.clearHistory();
   }
+  $scope.notifyMe = {};
    window.localStorage.removeItem('NewsTitle');
+   $scope.notifyMe.UUID =  window.localStorage.getItem("UUID");
+   if(window.localStorage.getItem("SendNotification")===null || window.localStorage.getItem("SendNotification")==='No'){
+      $scope.notifyMe.SendNotification = false;
+    }else{
+      $scope.notifyMe.SendNotification = true;
+    }
+  /* $http.get("https://www.app.constructionadvisor.com.au/getnotifystatus?uuid="+$scope.notifyMe.UUID)
+      .then(function (response) {
+
+          alert(response.status);
+       // $scope.notifyMe.SendNotification = window.localStorage.setItem("SendNotification");
+      });*/
+   // $scope.notifyMe = {
+   //  "SendNotification": true,
+   //  };
    $scope.notify = function() {
-          console.log(this.val());
+      //alert($scope.notifyMe.notifyMe);
+      if(window.localStorage.getItem('UUID') !== null){
+        $scope.notifyMe.UUID =  window.localStorage.getItem("UUID");
+        $scope.notifyMe.SendNotification = $scope.notifyMe.SendNotification;
+        $http.get("https://www.app.constructionadvisor.com.au/setnotifystatus/?UUID="+$scope.notifyMe.UUID+"&SendNotification="+$scope.notifyMe.SendNotification)
+        .then(function (response) {
+         // $scope.names = response.data.records;
+        });
+      }
+     //alert('UUID:'+$scope.notifyMe.UUID+'-SendNotification:'+$scope.notifyMe.SendNotification);
     };
+
+    
 })
 
 
