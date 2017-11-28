@@ -11,7 +11,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+   /* if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 
@@ -19,13 +19,13 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }
-       
+    }*/
+        $cordovaStatusBar.style(1); //Light
   });
 
-   $cordovaStatusBar.style(1); //Light
-   $cordovaStatusBar.style(2); //Black, transulcent
-   $cordovaStatusBar.style(3); //Black, opaque
+  
+   //$cordovaStatusBar.style(2); //Black, transulcent
+   //$cordovaStatusBar.style(3); //Black, opaque
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
