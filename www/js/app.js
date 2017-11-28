@@ -18,10 +18,11 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
     }
     /*if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }*/
-        $cordovaStatusBar.style(1); //Light
+      StatusBar.styleDefault();    }*/
+  
+    $cordovaStatusBar.style(1); //Light
   });
+
 
   
    //$cordovaStatusBar.style(2); //Black, transulcent
