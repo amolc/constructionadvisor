@@ -112,7 +112,7 @@ ul#recentnews li a:hover { background-color: #f0f0f0;}
 
  		/*footer-sec*/
 
-.notification{ background:#ebebeb; padding:8px 0px;height: 100%;}
+.notification{ /*background:#ebebeb;*/ padding:8px 0px;height: 100%;}
 .sub-noti{ background:#FFF; padding:16px 15px; margin-bottom:2px;}
 .sub-noti h3{ font-size:24px; color:#26323b; font-weight:400;}
 
@@ -289,6 +289,10 @@ z-index: 8;}*/
 
 .adviser-process {padding: 250px 0;}
 #general-user-tab .adviser-process { padding: 240px 0 180px;}
+
+/*.scroll-content {
+    position: fixed;
+}*/
 
 @media only screen and ( max-width: 1140px ) {
 
@@ -467,8 +471,8 @@ z-index: 8;}*/
 .tabs{ background-color: #26323b !important;
     padding-left: 5%;
     padding-right: 5%;
-    height: 57px;
-    bottom: 18px !important;
+    height: 75px;
+    bottom: 0px !important;
 }
 #recentnews{margin-bottom: 50px;}
 
@@ -478,8 +482,8 @@ ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active, ion-
 }
 ion-tabs.tabs-color-active-positive .tab-item {
   color: #fff !important;  font-size: 15px !important;
-  padding-top: 6px;
-    padding-bottom: 6px;
+  padding-top: 12px;
+    padding-bottom: 12px;
 }
   ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
     color: #fff !important;  font-size: 15px !important;

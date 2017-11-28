@@ -63,10 +63,10 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.response = res;
       //  console.log(res);
         if (res.status == 'false') {
-          alert(res.message);
+          //alert(res.message);
         } else {
           window.localStorage.setItem("UUID",$scope.devicetoken);
-          alert(res.message);
+          //alert(res.message);
         }
       }).error(function() {
             // alert("Please check your internet connection or data source..");
