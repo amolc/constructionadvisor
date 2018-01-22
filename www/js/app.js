@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','starter.controllers', 'starter.services','ngCordova'])
 
-.run(function($ionicPlatform,$cordovaStatusbar) {
+.run(function($ionicPlatform) { //,$cordovaStatusbar
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,7 +20,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();    }*/
   
-    $cordovaStatusBar.style(1); //Light
+   // $cordovaStatusbar.style(1); //Light
   });
 
 
@@ -35,13 +35,15 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+
   $stateProvider
 
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'tabCtrl'
   })
 
   // Each tab has its own nav history stack:
@@ -60,7 +62,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
       views: {
         'tab-contribute': {
           templateUrl: 'templates/tab-contribute.html',
-          controller: 'ChatsCtrl'
+          controller: 'ContributeCtrl'
         }
       }
     })
@@ -84,6 +86,17 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
       }
     })
 
+
+    .state('tab.search', {
+      url: '/search',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/tab_search.html',
+          controller: 'SearchCtrl'
+        }
+      }
+    })
+
   .state('tab.news', {
       url: '/news',
       views: {
@@ -93,10 +106,28 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
         }
       }
     })
-  
-   .state('tab.share', {
+    // .state('tab.search', {
+    //   url: '/search',
+    //   views: {
+    //     'tab-search': {
+    //       templateUrl: 'templates/tab_search.html',
+    //       //controller: 'NewsCtrl'
+    //     }
+    //   }
+    // })
+
+  //  .state('tab.share', {
+  //   url: "/share",
+  //   views: {
+  //     'tab-share': {
+  //       templateUrl: "templates/share.html",
+  //       controller: 'shareCtrl'
+  //     }
+  //   }
+  // }) 
+  .state('tab.share', {
     url: "/share",
-    views: {
+        views: {
       'tab-share': {
         templateUrl: "templates/share.html",
         controller: 'shareCtrl'
@@ -124,7 +155,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/chats');
   
 });
 /*

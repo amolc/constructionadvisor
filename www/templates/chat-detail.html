@@ -12,7 +12,7 @@
     </p>
   </ion-content>
 </ion-view> -->
-<ion-header-bar id="news_detail_header">
+<!-- <ion-header-bar id="news_detail_header">
   <ion-toolbar>
       <div class="header bar-stable">
         <div class="space">
@@ -69,41 +69,84 @@
       </div>
    </ion-toolbar>
 
-</ion-header-bar>
+</ion-header-bar> -->
 <ion-view view-title="Construction Advisor" id="app_body_detail" onclick="$('.smk_accordion').hide();">
 
-  <ion-content class="padding" id="news_detail">
-  <div class="card">
+  <ion-content class="" id="news_detail">
+    <div id="top-wrap">
+      
+      <div class="top-btn">
+        <div class="container banner-btn-wrap">
+          <div class=" ">
+            <div class="col-sm-12 col-xs-12">
+              <div class="banner-btn">
+                <ul class="right-icon">
+                  
+                  <li>
+                      <a href="javascript:void(0)" class="share-img" ng-click="OtherShare()">
+                      <img src="images/share-arrow.png" alt="" title="" / >
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="banner-overlap">
+        <div class="container text-potion">
+          <div class="">
+            <div class="col-sm-12 col-xs-12">
+              <div class="banner-text">
+                <h4 class="color-white">{{chat.postTitle}}</h4>
+                <span class="color-white">by Construction Advisor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-wrap">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img ng-src="{{chat.thumbnail}}" class="full-image">
+            </div>
+           
+          </div>
+
+          
+        </div>
+      </div>
+     
+    </div>
+  <div class="">
 
         <div class="item item-text-wrap">
         <br />
-          <h2><strong>{{chat.postTitle}}</strong></h2><br />
-          <img ng-src="{{chat.postImage}}" class="full-image">
-          <br />
+        
           <div ng-bind-html="chat.postContent"></div>
         </div>
 
   </div>
-  <ul id="recentnews">
+  <ul id="recentnews" hidden="">
         <h3>RECENT NEWS</h3>
 
         <li ng-repeat="x in chat.recentnews ">
           <a href="#/tab/chats/{{x.postID}}">
           <p>
-          <img ng-src="{{x.postImage}}" height="120" width="120" class="full-image">{{x.postTitle}}</p></a>
+          <img ng-src="{{x.thumbnail}}" height="120" width="120" class="full-image">{{x.postTitle}}</p></a>
         </li>
   </ul>
 
-   <ul id="ads">
+   <ul id="ads" hidden="">
         <li ng-repeat="x in chat.ads ">
           <a href="#">
           <img ng-src="{{x.img}}" height="120" width="120" class="full-image"></a>
         </li>
   </ul>
-
-
-
-
 
   </ion-content>
 </ion-view>

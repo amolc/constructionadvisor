@@ -16,9 +16,14 @@
       }
     </script>-->
 <!--     <link href="css/mobile_app.css" rel="stylesheet"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style2.css" rel="stylesheet">
+
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    
+    <link href="css/swiper.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -26,15 +31,16 @@
 
     <!-- ionic/angularjs js -->
     
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-  
 
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+
+
+  <script type="text/javascript" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
@@ -60,10 +66,27 @@
     <ion-nav-view></ion-nav-view>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
 
 
 <script type="text/javascript" src="js/smk-accordion.js"></script> 
+  <!-- Swiper JS -->
+
+
     <script type="text/javascript">
+
+
+
+   /*$(document).ready(function () {
+    $('.carousel').carousel({
+        interval: 3500,
+    });
+  });  */
+
 function showHideClient(val){
     if(val=='client'){
   $(".adviser-btn").removeClass("current");     
@@ -174,6 +197,7 @@ function showHideClient(val){
   
 //});
 
+
   function get_filtered_records()
 {
   var arr = [];
@@ -242,6 +266,69 @@ function showHideClient(val){
 
   }
 }
+
+
+  function postnews(){
+
+    //console.log($("#postnewsform").serialize());
+    if ($('#fullname').val()=='' || $('#email').val()=='' || $('#story').val()=='') 
+    {
+      alert('All Fields Are Mandetory');
+    }
+    else
+    {
+       email = $('#email').val()
+       var atpos = email.indexOf("@");
+       var dotpos = email.lastIndexOf(".");
+       if (atpos < 1 || ( dotpos - atpos < 2 )) 
+       {
+          alert('Please Enter Valid Email Address');
+       }
+       else
+       {
+
+           URL = 'https://www.app.constructionadvisor.com.au/sendmail'
+               // alert(URL);
+                 $.ajax({
+                 type: "POST",
+                 url: URL,
+                 data: $("#postnewsform").serialize(),
+                 dataType :'json',
+                 success: function(data)
+                 {  
+                    //alert(data);  
+                   //console.log(data); 
+                   if (data.status == true)
+                   {
+                     document.postnewsform.reset(); 
+                     $('#imagepreview').children().remove();
+                     alert("News Posted successfully");
+
+                   }   
+                   else
+                   {
+                    alert("Please try After sometime");
+                   }
+                   
+                  
+                 },
+                });
+
+       }
+    }
+  }
+
+
+  function reset(){
+
+    document.searchform.reset(); 
+
+  }
+
+  function search_news() {
+    //console.log($("#searchform").serialize());
+  }
+
 // for iPhone
 //if (navigator.userAgent.match(/(\(iPod|\(iPhone|\(iPad)/)) {
 
@@ -269,6 +356,38 @@ if (deviceType == "iPhone" || deviceType == "iPad" ) {
     }
 
 });*/
+
+
+</script>
+  <script src="js/swiper.js"></script>
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+     /* $('#carousel-example-generic').bind('mousewheel', function(e) {
+          if(e.originalEvent.wheelDelta /120 > 0) {
+              $(this).carousel('next');
+          } else {
+              $(this).carousel('prev');
+          }
+      });*/
+   // var swiper = new Swiper('.swiper-container', {
+   //    spaceBetween: 30,
+   //    centeredSlides: true,
+   //    loop: true,
+   //    autoplay: {
+   //      delay: 2500,
+   //      disableOnInteraction: false,
+   //    },
+   //    pagination: {
+   //      el: '.swiper-pagination',
+   //      clickable: true,
+   //    },
+   //    navigation: {
+   //      nextEl: '.swiper-button-next',
+   //      prevEl: '.swiper-button-prev',
+   //    },
+   //  });
+  });
 </script>
   </body>
   

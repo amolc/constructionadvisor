@@ -1,0 +1,126 @@
+
+<ion-view view-title="Search">
+  <ion-content>
+        <!-- Large modal -->
+            <div class="serach-modal">
+              <div class=" ">
+                <div class=" ">
+                   <div class="result-title">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-sm-12 col-xs-12">
+                            <div class="modal-title margin-none">
+                                <h5>
+                                  <span>
+                                    <a href="#/tab/chats">
+                                      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                    </a>
+                                  </span>
+                                      SEARCH
+                                  <em>
+                                  <a href="javascript:void(0)" id="srchlink" onclick="$('.searchform').show(); $('#btnsearch').show(); $('#newsresults').hide();">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                  </a>
+                                </em>
+                                </h5>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+                  <!-- <div class="col-sm-12">
+                    <div class="modal-title">
+                      <h5>
+                        <span>
+                         <a href="#/tab/chats" >
+                          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                        </span>
+                        SEARCH
+                        <em>
+                        <a href="javascript:void(0)" onclick="$('.searchform').show();$('#newsresults').hide();">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                        </a>
+                      </em>
+                      </h5>
+                    </div>
+                  </div> -->
+                 <form name="searchform" id="searchform" class="searchform" method="post">
+                    <div class="col-sm-12 col-xs-12">
+                      <div class="form-group serch-input">
+                          <!-- <input type="search" class="form-control" id="search" placeholder="What are you looking for?" name="keyword"> -->
+                          <input type="text" class="cos-input form-control" id="search" 
+                       name="keyword" placeholder="What are you looking for?" required>
+                       <span><i class="fa fa-search" aria-hidden="true" ng-click="search_news()"></i></span>
+                      </div>
+                      <div class="form-group">
+                        <select class="form-control" name="sectors">
+                       <option value="">All Sectors</option>
+                        <!-- <option>All Sectors</option> -->
+                        <option ng-repeat="s in fsector" value="{{s.id}}">{{s.title}}</option>
+                        <!-- <option>Sectors 1</option>
+                        <option>Sectors 2</option>
+                        <option>Sectors 3</option>
+                        <option>Sectors 4</option> -->
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <select class="form-control" name="types">
+                        <!-- <option>All Article Types</option> -->
+                        <option value="">All Article Types</option>
+                        <option ng-repeat="t in ftype" value="{{t.id}}">{{t.title}}</option>
+                       <!--  <option>Article 1</option>
+                        <option>Article 2</option>
+                        <option>Article 3</option>
+                        <option>Article 4</option> -->
+                      </select>
+                    </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              
+            </div>  
+
+             <ion-list id="searchresult">
+                <div id="newsresults"> </div>
+                 
+             </ion-list>
+             <div class="clearfix"></div>
+            
+          <!-- <ion-list>
+            <ion-item ng-repeat="x in searchresults | filter:search.txt">
+              <ion-thumbnail item-start>
+                <img src="{{x.postImage}}"/>
+              </ion-thumbnail>
+              <p>{{x.categoryTitle}}</p>
+              <h2><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></h2>
+
+              <span ion-button clear item-end>{{x.datePosted}}</span>
+            </ion-item>
+             <div class="space">
+               <p><p>
+             </div>
+          </ion-list> -->
+     
+      <div class="clearfix"></div>
+              <div class="searchform2" id="btnsearch">
+                    <div class="col-sm-6 col-xs-6">
+                      <button type="button" class="btn trns-btn" onclick="reset()">RESET FILTERS</button>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                      <button type="button" class="btn yellow-btn" ng-click="search_news()">APPLY FILTERS</button>
+                    </div>
+
+                  </div>
+
+ 
+                    <div class="space2">
+                        <p><p>
+                        <p><p>
+                         <p><p>
+                        <p><p>
+                        
+                    </div>
+  </ion-content>
+</ion-view>

@@ -3,19 +3,28 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-bottom tabs-color-active-positive" id="app_footer">
+
+
+<ion-tabs class="tabs-icon-bottom tabs-color-active-positive {{$rootScope.hideTabs}}" id="app_footer">
   <!-- Dashboard Tab -->
-  <ion-tab title="Home" class="hide" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/dash">
+  <!-- <ion-tab title="Home" class="hide" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/dash">
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab> -->
+
+  <ion-tab title="Home" class="hide first-tab2" href="#/tab/dash">
     <ion-nav-view name="tab-dash"></ion-nav-view>
   </ion-tab>
 
   <!-- News Tab -->
-  <ion-tab title="News" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" on-deselect="clearHistory()" href="#/tab/chats">
+  <!-- <ion-tab icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" on-deselect="clearHistory()" href="#/tab/chats">
+    <ion-nav-view name="tab-chats"></ion-nav-view>
+  </ion-tab> -->
+  <ion-tab class="first-tab" on-deselect="clearHistory()" on-select="clearLocalStoreage();" href="#/tab/chats">
     <ion-nav-view name="tab-chats"></ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="Contribute" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" on-deselect="clearHistory()" href="#/tab/contribute">
+  <ion-tab  icon-off="ion-ios-plus-outline" icon-on="ion-ios-plus" on-select="clearLocalStoreage();"  on-deselect="clearHistory()" href="#/tab/contribute">
     <ion-nav-view name="tab-contribute"></ion-nav-view>
   </ion-tab>
 
@@ -26,12 +35,16 @@ navigation history that also transitions its views in and out.
  -->
   <!-- Account Tab -->
   
-  <ion-tab title="Share" icon-off="ion-ios-redo-outline" icon-on="ion-ios-redo" on-deselect="clearHistory()" href="#/tab/share">
+<!--   <ion-tab  icon-off="ion-ios-upload-outline" icon-on="ion-ios-upload" on-deselect="clearHistory()" href="#/tab/share">
+    <ion-nav-view name="tab-share"></ion-nav-view>
+  </ion-tab> -->
+
+    <ion-tab  icon-off="ion-ios-upload-outline" icon-on="ion-ios-upload"  on-deselect="clearLocalStoreage(); clearHistory()" ng-click="OtherShare()" href="#/tab/share">
     <ion-nav-view name="tab-share"></ion-nav-view>
   </ion-tab>
 
 
-  <ion-tab title="Settings" icon-off="ion-ios-cog-outline" icon-on="ion-gear-b" on-deselect="clearHistory()" href="#/tab/notifications">
+  <ion-tab  icon-off="ion-ios-cog-outline" icon-on="ion-ios-cog" on-select="clearLocalStoreage();"  on-deselect="clearHistory()" href="#/tab/notifications">
     <ion-nav-view name="tab-notifications"></ion-nav-view>
   </ion-tab>
 

@@ -1,0 +1,165 @@
+
+<ion-view view-title="Construction Advisor" id="app_body" onclick="$('.smk_accordion').hide();">
+    
+  <ion-content class="card-background-page">
+     <div id="top-wrap">
+      
+      <div class="top-btn">
+        <div class="container banner-btn-wrap">
+          <div class=" ">
+            <div class="col-sm-12 col-xs-12">
+              <div class="banner-btn">
+                <ul class="right-icon">
+                  <li>
+                  <!--   <a href="javascript:void(0);" ng-click="opensearch()">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </a> -->
+                      <a href="#/tab/search" class="icon-flip">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#/tab/share" class="share-img">
+                      <!-- <i class="fa fa-upload" aria-hidden="true"></i> -->
+                      <img src="images/share-arrow.png" alt="" title="" / >
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <div class="banner-overlap">
+        <div class="container text-potion">
+          <div class="">
+            <div class="col-sm-12 col-xs-12">
+              <div class="banner-text">
+                <em class="color-white">FEATURED</em>
+                <h1 class="color-white">SPA PROJECT<br> UPDATE</h1>
+                <span class="color-white">by Construction Advisor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-wrap">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <!-- <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="5"></li> -->
+            <li ng-repeat="fl in featured" data-target="#carousel-example-generic" data-slide-to="{{$index}}" ng-class="{active:!$index}"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+          <!-- <div class="item active">
+              <img src="images/banner1.jpg" alt="" title=""> 
+            </div>
+            <div class="item">
+              <img src="images/banner1.jpg" alt="" title="">
+            </div>
+            <div class="item">
+              <img src="images/banner1.jpg" alt="" title="">
+            </div>
+            <div class="item">
+              <img src="images/banner1.jpg" alt="" title="">
+            </div>
+            <div class="item">
+              <img src="images/banner1.jpg" alt="" title="">
+            </div>
+            <div class="item">
+              <img src="images/banner1.jpg" alt="" title="">
+            </div> -->
+            <!-- <div class="item" ng-repeat="f in featured" ng-class="{'active': $index == 0}">
+              <img src="{{f.thumbnail}}" alt="" title="">
+            </div> -->
+             <div class="item" ng-repeat="f in featured" ng-class="{active:!$index}">
+              <img src="{{f.thumbnail}}" alt="" title="">
+            </div>
+
+          </div>
+
+          
+        </div>
+      </div>
+  
+    </div>
+    <ion-refresher
+          pulling-text="Refreshing..."
+          on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="space">
+          <p><p>
+          <br />
+        </div>
+        <div class="title-wrap">
+          <h2 class="section-hedaing color-yellow">
+              LATEST NEWS
+            </h2>
+        </div>
+        <div id="news">
+          <ion-list>
+            <ion-item ng-repeat="x in news | filter:search.txt">
+              <ion-thumbnail item-start>
+                <div class="news-img">
+                  <img src="{{x.thumbnail}}"/>
+                </div>
+              </ion-thumbnail>
+              <div class="tumbnil-text">
+                <p>{{x.categoryTitle}}</p>
+                <h2><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></h2>
+  <!--               <p>{{x.postContent}}</p> -->
+                <!-- <button ion-button clear item-end>View</button> -->
+                <span ion-button clear item-end>{{x.datePosted}}</span>
+              </div>
+            </ion-item>
+             <div class="space">
+               <p><p>
+             </div>
+          </ion-list>
+          <!-- <div class="card" ng-repeat="x in news | filter:search.txt">
+
+              <div class="item item-text-wrap">
+                <h2><strong><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></strong></h2><br />
+                <img class="full-image" src="{{x.postImage}}"/>
+                <br />
+                <div>{{x.postContent}}</div>
+              </div>
+
+        </div> -->
+  
+      </div>
+
+  </ion-content>
+
+<script>
+  // $(document).ready(function () {
+  //   $('.carousel').carousel({
+  //       interval: 1000,
+  //   });
+  // });  
+
+</script>
+
+<script type="text/javascript">
+
+
+   /* PullToRefresh.init({
+    mainElement: '#news',
+    onRefresh: function(){
+      alert("do you want to rerfesh");
+        // What do you want to do when the user does the pull-to-refresh gesture
+        window.location.reload();
+    }
+
+});
+ */
+
+</script>

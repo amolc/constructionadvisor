@@ -1,62 +1,93 @@
-<ion-header-bar id="app_header" >
-  <ion-toolbar>
-       <div class="header bar-stable">
-         <div class="space">
-           <p><p>
-         </div>
-        <div class="container">
-          <ul class="reset">
-            <li class="search-text">
-              <input type="text" placeholder="Search.." class="search-input" id="search-input" onkeyup="search(this.value);" onclick="$('.smk_accordion').hide();">
-              <button class="search-btn"><img src="images/search.png" alt="Search"></button>
-            </li>
-            <li>
-              <div class="mob-menu">
-                <div class="mob-nav" id="listToggle">
-                  <input class="menu-btn" type="checkbox" id="menu-btn" onclick="$('.smk_accordion').toggle();" />
-                  <label class="menu-icon" for="menu-btn"><img src="images/btn-bg.png" alt="Dashboard"></label>
-                  <ul class="menu dropdown-content smk_accordion">
-                  <li class="menu-titlie">Filter</li>
-                  <li class="acc_active">
-                   <h3>
-                      <label>Sector</label>
-                  </h3>
-                   <ul>
-
-                    <li ng-repeat="ft in fsector">
-                       <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="chk_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
-                        <label for="chk_{{ ft.id }}">{{ ft.title }}</label>
-                    </li>
-                   </ul>
-
-                  </li>
-                  <li>
-                   <h3>
-                      <label>Article type</label>
-                    </h3>
-                    <ul>
-
-                    <li ng-repeat="ft in ftype">
-                       <input type="checkbox" name="filter_chkbox[]" class="filter_chkbox" id="chk_{{ ft.id }}" value="{{ ft.id }}" onclick="get_filtered_records()">
-                        <label for="chk_{{ ft.id }}">{{ ft.title }}</label>
-                    </li>
-
-                    </ul>
-                  </li>
-
-                </ul>
-                </div>
-              </div>
-            </li>
-            <li><a href="index.html" class="min-logo"><img src="images/mini-logo.png" alt="Mini-Logo"></a></li>
-          </ul>
-        </div>
-      </div>
-   </ion-toolbar>
-</ion-header-bar>
 <ion-view view-title="Construction Advisor" id="app_body" onclick="$('.smk_accordion').hide();">
     
   <ion-content class="card-background-page">
+     <div id="top-wrap">
+      
+      <div class="top-btn">
+        <div class="container banner-btn-wrap">
+          <div class=" ">
+            <div class="col-sm-12 col-xs-12">
+              <div class="banner-btn">
+                <ul class="right-icon">
+                  <li>
+                  <!--   <a href="javascript:void(0);" ng-click="opensearch()">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </a> -->
+                      <a href="#/tab/search" class="icon-flip">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" class="share-img" ng-click="OtherShare()">
+                      <!-- <i class="fa fa-upload" aria-hidden="true"></i> -->
+                      <img src="images/share-arrow.png" alt="" title="" / >
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <!-- <div class="banner-overlap">
+        <div class="container text-potion">
+          <div class="">
+            <div class="col-sm-12 col-xs-12">
+              <div class="banner-text">
+                <em class="color-white">FEATURED</em>
+                <h1 class="color-white">SPA PROJECT<br> UPDATE</h1>
+                <span class="color-white">by Construction Advisor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+     <!--  <div class="slider-wrap">
+         <div id="slides_control">
+    <div>
+      <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides | limitTo:5">
+          <img ng-src="{{slide.thumbnail}}">
+          <div class="carousel-caption banner-text">
+            h4>Slide {{$index+1}}</h4>
+             <em class="color-white">FEATURED</em>
+                <h1 class="color-white">{{slide.postTitle}}</h1>
+                <span class="color-white">by Construction Advisor</span>
+          </div>
+        </slide>
+      </carousel>
+      
+    </div>
+  </div>
+
+          
+        </div> -->
+        <div class="swiper-container">
+    <div class="swiper-wrapper">
+     <!-- <div class="swiper-slide" ng-repeat="f in slides">
+     <img ng-src="{{f.thumbnail}}" alt="" title="">
+     </div> -->
+      <!--<div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">Slide 5</div>
+      <div class="swiper-slide">Slide 6</div>
+      <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div>
+      <div class="swiper-slide">Slide 9</div>
+      <div class="swiper-slide">Slide 10</div> -->
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+   <!--  <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div> -->
+  </div>
+      </div>
+  
+   
     <ion-refresher
           pulling-text="Refreshing..."
           on-refresh="doRefresh()">
@@ -65,8 +96,32 @@
           <p><p>
           <br />
         </div>
+        <div class="title-wrap">
+          <h2 class="section-hedaing color-yellow">
+              LATEST NEWS
+            </h2>
+        </div>
         <div id="news">
-          <div class="card" ng-repeat="x in news | filter:search.txt">
+          <ion-list id="newslist">
+            <ion-item ng-repeat="x in news | filter:search.txt">
+              <ion-thumbnail item-start>
+                <div class="news-img">
+                  <img src="{{x.thumbnail}}"/>
+                </div>
+              </ion-thumbnail>
+              <div class="tumbnil-text">
+                <p>{{x.categoryTitle}}</p>
+                <h2><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></h2>
+  <!--               <p>{{x.postContent}}</p> -->
+                <!-- <button ion-button clear item-end>View</button> -->
+                <span ion-button clear item-end>{{x.datePosted}}</span>
+              </div>
+            </ion-item>
+             <!-- <div class="space">
+               <p><p>
+             </div> -->
+          </ion-list>
+          <!-- <div class="card" ng-repeat="x in news | filter:search.txt">
 
               <div class="item item-text-wrap">
                 <h2><strong><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></strong></h2><br />
@@ -75,11 +130,24 @@
                 <div>{{x.postContent}}</div>
               </div>
 
-        </div>
+        </div> -->
+  
       </div>
+      <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
 
   </ion-content>
-</ion-view>
+
+
+
+<script>
+  // $(document).ready(function () {
+  //   $('.carousel').carousel({
+  //       interval: 1000,
+  //   });
+  // });  
+
+</script>
+
 <script type="text/javascript">
 
 

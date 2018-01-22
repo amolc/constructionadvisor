@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.constructionadvisor.ask" version="1.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.constructionadvisor.ask" version="1.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Calendar">
         <param name="android-package" value="nl.xservices.plugins.Calendar" />
     </feature>
@@ -38,6 +38,17 @@
     <feature name="Sharedpreferences">
         <param name="android-package" value="in.edelworks.sharedpreferences.Sharedpreferences" />
     </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
     <name>Construction Advisor</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="magnusideas5@magnusideas.com" href="http://magnusideas.com/">Magnus Ideas Team</author>
@@ -57,6 +68,7 @@
     <allow-navigation href="http://192.168.2.167:8101" />
     <allow-navigation href="http://192.168.2.3:8100" />
     <allow-navigation href="http://192.168.2.5:8100" />
+    <allow-navigation href="http://192.168.2.7:8100" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
