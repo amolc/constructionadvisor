@@ -883,8 +883,11 @@ input:checked + .slider:before {
 .carousel-inner>.item{
     padding: 0px;
 }
-.item-toggle .toggle{
+/*.item-toggle .toggle{
     top: 11px !important;
+}*/
+.toggle-small.item-toggle .toggle{
+    top: 6px;
 }
 .item{
     border-width: 0px;
@@ -975,17 +978,25 @@ input[type="email"].cos-input{
     background-image: url(../images/logo2.png);
     /* height: 50px; */
     /* width: 50px; */
-    background-size: 37px;
+    background-size: inherit;
+    -webkit-background-size: inherit;
+    -moz-background-size: inherit;
+    -ms-background-size: inherit;
+    -o-background-size: inherit;
     background-repeat: no-repeat;
-    background-position: center 50%;
+    background-position: center 15px;
 }
 .tab-item-active.first-tab{
     background-image: url(../images/logo1.png) !important;
     /* height: 50px; */
     /* width: 50px; */
-    background-size: 37px;
+    background-size: inherit;
+    -webkit-background-size: inherit;
+    -moz-background-size: inherit;
+    -ms-background-size: inherit;
+    -o-background-size: inherit;
     background-repeat: no-repeat;
-    background-position: center 32%;
+    background-position: center 15px;
 }
  
 .searchform2{
@@ -1015,4 +1026,10 @@ input[type="email"].cos-input{
 .swiper-slide img{
     width: 100%;
     height: auto;
+}
+.switch .item{
+    overflow: visible;
+}
+.switch .toggle{
+    margin: 0px;
 }
