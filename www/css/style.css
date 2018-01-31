@@ -72,7 +72,7 @@ max-height: 100%;
 .top-news-right h3 { display:inline-block; color:#fff !important; /*font-size: 36px !important;*/ }
 
 
-.space{height:10px;}
+.space{height:40px;}
 .sub-news h3{ font-size:28px; font-family: 'Montserrat', sans-serif; font-weight:400; color:#ff9016; border-bottom:1px dashed #ff9016; border-top:1px dashed #ff9016; padding:5px 20px; display:inline-block;}
 .sub-news p{ font-size:20px; color:#FFF; font-weight:300; margin-top:15px;}
 .sub-news a{ font-size:20px; color:#ff9016; font-weight:300;display: inline-block;margin-top: 6px;}
@@ -479,7 +479,7 @@ z-index: 8;}*/
 .tabs{ background-color: #26323b !important;
     padding-left: 5%;
     padding-right: 5%;
-    height: 57px;
+    height: 75px;
     bottom: 0px !important;
 }
 #recentnews{margin-bottom: 50px;}
@@ -985,7 +985,7 @@ input[type="email"].cos-input{
     /* width: 50px; */
     background-size: 37px;
     background-repeat: no-repeat;
-    background-position: center 50%;
+    background-position: center 32%;
 }
  
 .searchform2{
