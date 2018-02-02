@@ -24,6 +24,9 @@ a:hover{ color:#000000;}
     background-color: #fff;
 }
 
+.item-toggle .toggle{
+    top:2px !important;
+}
 /*Main COntent*/
 #wrapper{ max-width:800px; margin:0 auto; height:100%;}
 
@@ -971,7 +974,7 @@ input[type="email"].cos-input{
 .serch-input span{
     position: absolute;
     right: 10px;
-    top: 15px;
+    top: 11px;
     color: #FF9016;
 }
 .first-tab{
@@ -1032,4 +1035,10 @@ input[type="email"].cos-input{
 }
 .switch .toggle{
     margin: 0px;
+}
+.home-search{
+    font-size: 30px;
+}
+.serch-input span i{
+    font-size: 20px;
 }

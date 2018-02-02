@@ -324,9 +324,12 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
 
      $scope.OtherShare=function(){
 
+      window.plugins.socialsharing.share('Construction Advisor', null, null, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask');
+
+
    // alert('hi');
     // if(window.localStorage.getItem('NewsTitle') === null){
-      window.plugins.socialsharing.share('Construction Advisor', null, null, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask');
+      //window.plugins.socialsharing.share('Construction Advisor', null, null, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask');
     // }else{
     //   window.plugins.socialsharing.share(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.constructionadvisor.com.au/article/"+window.localStorage.getItem('NewsTitle').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase()+'/'+window.localStorage.getItem('postID') /* url */, null, function(errormsg){alert("'You need to install selected application to share this news'")});  
     // }
@@ -427,7 +430,9 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
     if(window.localStorage.getItem('NewsTitle') === null){
       window.plugins.socialsharing.share('Construction Advisor', null, null, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask');
     }else{
-      window.plugins.socialsharing.share(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.constructionadvisor.com.au/article/"+window.localStorage.getItem('NewsTitle').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase()+'/'+window.localStorage.getItem('postID') /* url */, null, function(errormsg){alert("'You need to install selected application to share this news'")});  
+      //window.plugins.socialsharing.share(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.constructionadvisor.com.au/article/"+window.localStorage.getItem('NewsTitle').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase()+'/'+window.localStorage.getItem('postID') /* url */, null, function(errormsg){alert("'You need to install selected application to share this news'")});  
+
+      window.plugins.socialsharing.share(window.localStorage.getItem('NewsTitle'), null /* img */, "https://www.constructionadvisor.com.au/article/"+window.localStorage.getItem('NewsTitle').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase()+'/'+window.localStorage.getItem('postID') /* url */, null, function(errormsg){});  
     }
   }
       $scope.NewsTitle = "";
@@ -501,7 +506,7 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
       window.plugins.socialsharing.share('Construction Advisor', null, null, 'https://play.google.com/store/apps/details?id=com.constructionadvisor.ask');
     }else{
      // alert("https://www.constructionadvisor.com.au/article/"+window.localStorage.getItem('NewsTitle').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase()+'/'+window.localStorage.getItem('postID'));
-      window.plugins.socialsharing.share(window.localStorage.getItem('NewsTitle'), null , null ,  "https://www.constructionadvisor.com.au/article/"+window.localStorage.getItem('NewsTitle').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase()+'/'+window.localStorage.getItem('postID') /* url */, null, function(errormsg){alert("'You need to install selected application to share this news'")});  
+      window.plugins.socialsharing.share(window.localStorage.getItem('NewsTitle'), null , null ,  "https://www.constructionadvisor.com.au/article/"+window.localStorage.getItem('NewsTitle').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase()+'/'+window.localStorage.getItem('postID') /* url */, null, function(errormsg){});  
     }
   }
 
