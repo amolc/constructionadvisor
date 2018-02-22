@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.constructionadvisor.ask" version="1.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Construction Advisor</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <name>Advisor</name>
+    <description>An awesome Construction news app.</description>
     <author email="magnusideas5@magnusideas.com" href="http://magnusideas.com/">Magnus Ideas Team</author>
     <content src="index.html" />
     <access origin="*" />

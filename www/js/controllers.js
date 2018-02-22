@@ -312,8 +312,6 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
                   prevEl: '.swiper-button-prev',
                 },
               });
-
-
       }
 
 

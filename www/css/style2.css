@@ -52,6 +52,8 @@ p{margin: 0px;}
 }
 .banner-text{
   text-align: left !important;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .banner-text h1{
   font-size: 23px;

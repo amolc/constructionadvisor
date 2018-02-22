@@ -49,8 +49,8 @@
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
-    <name>Construction Advisor</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <name>Advisor</name>
+    <description>An awesome Construction news app.</description>
     <author email="magnusideas5@magnusideas.com" href="http://magnusideas.com/">Magnus Ideas Team</author>
     <content src="index.html" />
     <access origin="*" />

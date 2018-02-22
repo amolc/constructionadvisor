@@ -482,7 +482,7 @@ z-index: 8;}*/
 .tabs{ background-color: #26323b !important;
     padding-left: 5%;
     padding-right: 5%;
-    height: 75px;
+   /* height: 75px;*/
     bottom: 0px !important;
 }
 #recentnews{margin-bottom: 50px;}
