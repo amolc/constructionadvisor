@@ -66,6 +66,17 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ng
         }
       }
     })
+
+   .state('tab.success', {
+      url: '/success',
+      views: {
+        'tab-success': {
+          templateUrl: 'templates/tab-success.html',
+          controller: 'ContributeCtrl'
+        }
+      }
+    })
+
    .state('tab.chats', {
       url: '/chats',
       views: {

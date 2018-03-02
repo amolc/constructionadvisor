@@ -206,6 +206,43 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
    // window.localStorage.clear('NewsTitle');
+    ionic.Platform.ready(function (device) {
+    console.log('I am working');
+    window.localStorage.removeItem('NewsTitle');
+    window.localStorage.removeItem('NewsImage');
+    window.localStorage.removeItem('postID');
+    window.localStorage.removeItem("SendNotification");
+    FCMPlugin.getToken(function(token){
+        console.log(token);
+        $scope.devicetoken = token;
+        $http.get('https://www.app.constructionadvisor.com.au/saveuid/?UUID='+token).success(function(res) {
+        $scope.response = res;
+      //  console.log(res);
+        if (res.status == 'false') {
+           //// alert(res.message);
+          } else {
+            window.localStorage.setItem("UUID",$scope.devicetoken);
+            //alert(res.message);
+          }
+        }).error(function() {
+              // alert("Please check your internet connection or data source..");
+        });
+
+        
+    });
+   
+   if(window.localStorage.getItem("UUID") !== null){
+      $http.get("https://www.app.constructionadvisor.com.au/getnotifystatus?uuid="+ window.localStorage.getItem("UUID"))
+          .then(function (response) {
+            window.localStorage.setItem("SendNotification",response.data.SendNotification);
+         //  console.log(response);
+           console.log(response.data.SendNotification);
+           // $scope.notifyMe.SendNotification = response.status;
+      });
+    }
+  
+  });
+
      $ionicLoading.show();
      $scope.noMoreItemsAvailable = true;
     window.localStorage.removeItem('NewsTitle');
@@ -289,7 +326,7 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
 
         $.each($scope.slides,function (index, value) { 
 
-                var content = '<div class="swiper-slide"><img src="'+value.thumbnail+'" alt="" title=""><div class="carousel-caption banner-text"><em class="color-white">FEATURED</em><h4 class="color-white"><a href="#/tab/chats/'+value.postID+'">'+value.postTitle+'</a></h4><span class="color-white">by Construction Advisor</span></div></div>';
+                var content = '<div class="swiper-slide"><a href="#/tab/chats/'+value.postID+'"><img src="'+value.thumbnail+'" alt="" title=""><div class="carousel-caption banner-text"><em class="color-white">FEATURED</em><h4 class="color-white">'+value.postTitle+'</h4><span class="color-white">by Construction Advisor</span></div></a></div>';
                 $('.swiper-wrapper').append(content);
 
         });
@@ -513,7 +550,7 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
         window.localStorage.removeItem('NewsTitle');
        window.localStorage.removeItem('NewsImage');
        window.localStorage.removeItem('postID');
-       window.localStorage.clear();
+       //window.localStorage.clear();
     }
 })
 
@@ -522,7 +559,7 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
         $ionicHistory.clearHistory();
   }
    window.localStorage.removeItem('NewsTitle');
-  $http.get("https://www.app.constructionadvisor.com.au/getcategories")
+   $http.get("https://www.app.constructionadvisor.com.au/getcategories")
     .then(function (response) {
       $scope.names = response.data.records;
     });
@@ -555,20 +592,22 @@ angular.module('starter.controllers', ['ngCordova','ui.bootstrap'])
    // $scope.notifyMe = {
    //  "SendNotification": true,
    //  };
-   $scope.notify = function() {
+   $scope.notify = function(){
+
+        //alert(window.localStorage.getItem('UUID'));
+
       //alert($scope.notifyMe.notifyMe);
-      if(window.localStorage.getItem('UUID') !== null){
+        if(window.localStorage.getItem('UUID') !== null){
+        //alert("in if");
         $scope.notifyMe.UUID =  window.localStorage.getItem("UUID");
         $scope.notifyMe.SendNotification = $scope.notifyMe.SendNotification;
         $http.get("https://www.app.constructionadvisor.com.au/setnotifystatus/?UUID="+$scope.notifyMe.UUID+"&SendNotification="+$scope.notifyMe.SendNotification)
-        .then(function (response) {
-         // $scope.names = response.data.records;
+        .then(function (response){
+         //$scope.names = response.data.records;
         });
       }
      //alert('UUID:'+$scope.notifyMe.UUID+'-SendNotification:'+$scope.notifyMe.SendNotification);
     };
-
-    
 })
 
 

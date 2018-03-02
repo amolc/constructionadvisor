@@ -108,5 +108,6 @@
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
     <allow-navigation href="http://192.168.2.7:8100" />
+    <allow-navigation href="http://192.168.2.12:8100" />
     <engine name="android" spec="6.3.0" />
 </widget>

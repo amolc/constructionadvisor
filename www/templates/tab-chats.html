@@ -23,7 +23,7 @@
                   <li>
                     <a href="javascript:void(0)" class="share-img" ng-click="OtherShare()">
                       <!-- <i class="fa fa-upload" aria-hidden="true"></i> -->
-                      <img src="images/share-arrow.png" alt="" title="" / >
+                      <img src="images/share-arrow.png" alt="" title="" />
                     </a>
                   </li>
                 </ul>
@@ -113,10 +113,14 @@
                 </div>
               </ion-thumbnail>
               <div class="tumbnil-text">
-                <p>{{x.categoryTitle}}</p>
-                <h2><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></h2>
-  <!--               <p>{{x.postContent}}</p> -->
+              <p>{{x.categoryTitle}}</p>
+                <p style="color: #FF9016">{{x.type}}</p>
+
+                <h2 class="newsheading"><a href="#/tab/chats/{{x.postID}}">{{x.postTitle}}</a></h2>
+
+          <!--<p>{{x.postContent}}</p> -->
                 <!-- <button ion-button clear item-end>View</button> -->
+                
                 <span ion-button clear item-end>{{x.datePosted}}</span>
               </div>
             </ion-item>

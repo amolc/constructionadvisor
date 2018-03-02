@@ -795,7 +795,7 @@ input:checked + .slider:before {
 #news .item h2 a, .news-block-tab h2 a{
     color: #FFFFFF;
     font-weight: 300;
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 8px;
     text-decoration: none;
     margin: 9px 0px 10px;
@@ -1041,4 +1041,20 @@ input[type="email"].cos-input{
 }
 .serch-input span i{
     font-size: 20px;
+}
+
+.newsheading{
+    font-size: 18px;
+    /*color: #FF9016;*/
+}
+.swiper-slide img{
+    width: 100%;
+    height: auto;
+}
+.swiper-slide a{
+    width: 100%;
+    height: auto;
+}
+.swiper-slide{
+    width: 100% !important;
 }
